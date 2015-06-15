@@ -2,37 +2,29 @@
    If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide_addons.html
    This text does not appear on pypi or github. It is a comment.
 
-==============================================================================
+=============================================================================
 pas.plugins.memberpropertytogroup
-==============================================================================
+=============================================================================
 
-Tell me what your product does
+Plone PAS plugin that allows to create virtual groups based on member
+properties.
+
+The main use case are organisations that have an existing LDAP infrastructure
+that organise groups through member properties instead of LDAP groups. If you
+have a vanilla Plone site without LDAP you most likely do not need this
+plugin.
+
+
+Credits
+-------
+
+The development of this plugin has been kindly sponsored by `Bonn University`_.
+
 
 Features
 --------
 
 - Can be bullet points
-
-
-Examples
---------
-
-This add-on can be seen in action at the following sites:
-- Is there a page on the internet where everybody can see the features?
-
-
-Documentation
--------------
-
-Full documentation for end users can be found in the "docs" folder, and is also available online at http://docs.plone.org/foo/bar
-
-
-Translations
-------------
-
-This product has been translated into
-
-- Klingon (thanks, K'Plai)
 
 
 Installation
@@ -54,19 +46,23 @@ and then running "bin/buildout"
 Contribute
 ----------
 
-- Issue Tracker: https://github.com/collective/pas.plugins.memberpropertytogroup/issues
-- Source Code: https://github.com/collective/pas.plugins.memberpropertytogroup
-- Documentation: https://docs.plone.org/foo/bar
+- Issue Tracker: https://github.com/kitconcept/pas.plugins.memberpropertytogroup/issues / https://waffle.io/kitconcept/pas.plugins.memberpropertytogroup
+- Source Code: https://github.com/kitconcept/pas.plugins.memberpropertytogroup
 
+Development
+-----------
 
-Support
--------
+Plone 3
 
-If you are having issues, please let us know.
-We have a mailing list located at: project@example.com
+  $ mkdir downloads
+  $ python2.4 plone-3.3.x-bootstrap.py -c plone-3.3.x.cfg
+  $ bin/buildout -c plone-3.3.x.cfg
 
 
 License
 -------
 
 The project is licensed under the GPLv2.
+
+
+.. _Bonn University: http://www3.uni-bonn.de/
