@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<layers>
+  <layer
+    name="pas.plugins.memberpropertytogroup"
+    interface="pas.plugins.memberpropertytogroup.interfaces.IPasPluginsMemberpropertytogroupLayer"
+  />
+</layers>
