@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """Setup tests for this package."""
 from pas.plugins.memberpropertytogroup.testing import PAS_PLUGINS_MEMBERPROPERTYTOGROUP_INTEGRATION_TESTING  # noqa
-from plone import api
+from Products.CMFCore.utils import getToolByName
 
-import unittest2 as unittest
+import unittest
 
 
 class TestSetup(unittest.TestCase):
@@ -14,7 +14,7 @@ class TestSetup(unittest.TestCase):
     def setUp(self):
         """Custom shared utility setup for tests."""
         self.portal = self.layer['portal']
-        self.installer = api.portal.get_tool('portal_quickinstaller')
+        self.installer = getToolByName(self.portal, 'portal_quickinstaller')
 
     def test_product_installed(self):
         """Test if pas.plugins.memberpropertytogroup is installed with
