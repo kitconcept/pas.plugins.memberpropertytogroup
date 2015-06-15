@@ -1,21 +1,15 @@
+from pas.plugins.memberpropertytogroup.testing import \
+    PAS_PLUGINS_MEMBERPROPERTYTOGROUP_INTEGRATION_TESTING
+from pas.plugins.memberpropertytogroup.interfaces import \
+    IPasPluginsMemberpropertytogroupSettings
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.testing.z2 import Browser
-import unittest2 as unittest
-
-from zope.component import getMultiAdapter
-
-from Products.CMFCore.utils import getToolByName
-
 from plone.registry import Registry
-
 from plone.app.testing import logout
-
-from pas.plugins.memberpropertytogroup.testing import \
-    PAS_PLUGINS_MEMBERPROPERTYTOGROUP_INTEGRATION_TESTING
-
-from pas.plugins.memberpropertytogroup.interfaces import \
-    IPasPluginsMemberpropertytogroupSettings
+from Products.CMFCore.utils import getToolByName
+from zope.component import getMultiAdapter
+import unittest
 
 
 class TestMailchimpSettingsControlPanel(unittest.TestCase):
