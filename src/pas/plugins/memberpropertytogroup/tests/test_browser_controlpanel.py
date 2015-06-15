@@ -26,10 +26,12 @@ class TestMailchimpSettingsControlPanel(unittest.TestCase):
         )
 
     def test_memberpropertytogroup_controlpanel_view(self):
-        view = getMultiAdapter((self.portal, self.portal.REQUEST),
-                               name="memberpropertytogroup-controlpanel")
+        view = getMultiAdapter(
+            (self.portal, self.portal.REQUEST),
+            name="memberpropertytogroup-controlpanel"
+        )
         view = view.__of__(self.portal)
-        self.failUnless(view())
+        self.assertTrue(view())
 
     def test_memberpropertytogroup_controlpanel_view_protected(self):
         from AccessControl import Unauthorized
@@ -42,7 +44,7 @@ class TestMailchimpSettingsControlPanel(unittest.TestCase):
 
     def test_memberpropertytogroup_in_controlpanel(self):
         self.controlpanel = getToolByName(self.portal, "portal_controlpanel")
-        self.failUnless(
+        self.assertTrue(
             'memberpropertytogroup' in [
                 a.getAction(self)['id']
                 for a in self.controlpanel.listActions()
