@@ -59,7 +59,7 @@ Contribute
 Development
 -----------
 
-Plone 3
+Plone 3::
 
   $ mkdir downloads
   $ python2.4 plone-3.3.x-bootstrap.py -c plone-3.3.x.cfg
