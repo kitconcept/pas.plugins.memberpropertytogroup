@@ -2,7 +2,9 @@
 
 
 def isNotCurrentProfile(context):
-    return context.readDataFile('paspluginsmemberpropertytogroup_marker.txt') is None
+    return context.readDataFile(
+        'paspluginsmemberpropertytogroup_marker.txt'
+    ) is None
 
 
 def post_install(context):

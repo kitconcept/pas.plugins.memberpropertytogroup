@@ -21,7 +21,7 @@ class PasPluginsMemberpropertytogroupLayer(PloneSandboxLayer):
         applyProfile(portal, 'pas.plugins.memberpropertytogroup:default')
 
 
-PAS_PLUGINS_MEMBERPROPERTYTOGROUP_FIXTURE = PasPluginsMemberpropertytogroupLayer()
+PAS_PLUGINS_MEMBERPROPERTYTOGROUP_FIXTURE = PasPluginsMemberpropertytogroupLayer()  # noqa
 
 
 PAS_PLUGINS_MEMBERPROPERTYTOGROUP_INTEGRATION_TESTING = IntegrationTesting(

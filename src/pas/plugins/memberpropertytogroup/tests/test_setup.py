@@ -17,16 +17,28 @@ class TestSetup(unittest.TestCase):
         self.installer = api.portal.get_tool('portal_quickinstaller')
 
     def test_product_installed(self):
-        """Test if pas.plugins.memberpropertytogroup is installed with portal_quickinstaller."""
-        self.assertTrue(self.installer.isProductInstalled('pas.plugins.memberpropertytogroup'))
+        """Test if pas.plugins.memberpropertytogroup is installed with
+           portal_quickinstaller.
+        """
+        self.assertTrue(
+            self.installer.isProductInstalled(
+                'pas.plugins.memberpropertytogroup'
+            )
+        )
 
     def test_uninstall(self):
         """Test if pas.plugins.memberpropertytogroup is cleanly uninstalled."""
         self.installer.uninstallProducts(['pas.plugins.memberpropertytogroup'])
-        self.assertFalse(self.installer.isProductInstalled('pas.plugins.memberpropertytogroup'))
+        self.assertFalse(
+            self.installer.isProductInstalled(
+                'pas.plugins.memberpropertytogroup'
+            )
+        )
 
     def test_browserlayer(self):
         """Test that IPasPluginsMemberpropertytogroupLayer is registered."""
-        from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupLayer
+        from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupLayer  # noqa
         from plone.browserlayer import utils
-        self.assertIn(IPasPluginsMemberpropertytogroupLayer, utils.registered_layers())
+        self.assertTrue(
+            IPasPluginsMemberpropertytogroupLayer in utils.registered_layers()
+        )
