@@ -1,4 +1,4 @@
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 from pas.plugins.memberpropertytogroup.testing import PAS_PLUGINS_MEMBERPROPERTYTOGROUP_ACCEPTANCE_TESTING  # noqa
 from plone.app.testing import ROBOT_TEST_LEVEL
 from plone.testing import layered

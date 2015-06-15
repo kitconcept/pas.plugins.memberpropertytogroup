@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from plone.app.registry.browser import controlpanel
 
 from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupSettings  # noqa

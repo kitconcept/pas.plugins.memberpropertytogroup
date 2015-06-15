@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from pas.plugins.memberpropertytogroup.testing import \
     PAS_PLUGINS_MEMBERPROPERTYTOGROUP_INTEGRATION_TESTING
 from pas.plugins.memberpropertytogroup.interfaces import \
