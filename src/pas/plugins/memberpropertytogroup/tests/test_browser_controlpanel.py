@@ -14,7 +14,8 @@ from plone.app.testing import logout
 from pas.plugins.memberpropertytogroup.testing import \
     PAS_PLUGINS_MEMBERPROPERTYTOGROUP_INTEGRATION_TESTING
 
-from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupSettings # noqa
+from pas.plugins.memberpropertytogroup.interfaces import \
+    IPasPluginsMemberpropertytogroupSettings
 
 
 class TestMailchimpSettingsControlPanel(unittest.TestCase):
@@ -55,9 +56,12 @@ class TestMailchimpSettingsControlPanel(unittest.TestCase):
 
     def test_record_example_field(self):
         record = self.registry.records[
-            'pas.plugins.memberpropertytogroup.interfaces.IPasPluginsMemberpropertytogroupSettings.example_field' # noqa
+            'pas.plugins.memberpropertytogroup.interfaces.' +
+            'IPasPluginsMemberpropertytogroupSettings.example_field'
         ]
-        self.failUnless('example_field' in IPasPluginsMemberpropertytogroupSettings)
+        self.assertTrue(
+            'example_field' in IPasPluginsMemberpropertytogroupSettings
+        )
         self.assertEquals(record.value, u"")
 
 

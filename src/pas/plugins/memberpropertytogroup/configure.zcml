@@ -20,11 +20,4 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
-    <genericsetup:importStep
-        name="pas.plugins.memberpropertytogroup-postInstall"
-        title="pas.plugins.memberpropertytogroup post_install import step"
-        description="Post install import step from pas.plugins.memberpropertytogroup"
-        handler=".setuphandlers.post_install">
-    </genericsetup:importStep>
-
 </configure>
