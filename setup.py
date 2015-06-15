@@ -42,6 +42,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'setuptools',
+        'plone.app.registry',
     ],
     extras_require={
         'test': [

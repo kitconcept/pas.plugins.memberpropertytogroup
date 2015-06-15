@@ -4,4 +4,11 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="pas.plugins.memberpropertytogroup">
 
+    <!-- Control panel -->
+    <browser:page
+        name="memberpropertytogroup-controlpanel"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".controlpanel.MemberpropertiestogroupSettingsEditFormSettingsControlPanel"
+        permission="cmf.ManagePortal"
+        />
 </configure>
