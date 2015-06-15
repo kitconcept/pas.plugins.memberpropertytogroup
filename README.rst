@@ -20,6 +20,13 @@ Credits
 
 The development of this plugin has been kindly sponsored by `Bonn University`_.
 
+.. image:: http://www3.uni-bonn.de/logo.png
+   :height: 164px
+   :width: 222px
+   :scale: 50 %
+   :alt: Bonn University
+   :align: right
+
 
 Features
 --------
