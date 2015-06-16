@@ -1,6 +1,11 @@
-.. image:: https://badge.waffle.io/kitconcept/pas.plugins.memberpropertytogroup.png?label=ready&title=Ready 
+
+.. image:: https://coveralls.io/repos/kitconcept/pas.plugins.memberpropertytogroup/badge.svg
+  :target: https://coveralls.io/r/kitconcept/pas.plugins.memberpropertytogroup
+
+.. image:: https://badge.waffle.io/kitconcept/pas.plugins.memberpropertytogroup.png?label=ready&title=Ready
  :target: https://waffle.io/kitconcept/pas.plugins.memberpropertytogroup
  :alt: 'Stories in Ready'
+
 .. This README is meant for consumption by humans and pypi. Pypi can render rst files so please do not use Sphinx features.
    If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide_addons.html
    This text does not appear on pypi or github. It is a comment.
