@@ -1,8 +1,8 @@
 python:
   - 2.7
 install:
-  - python bootstrap-buildout.py -c travis.cfg
-  - bin/buildout -Nc travis.cfg
+  - pip install zc.buildout
+  - buildout -Nc travis.cfg
 script:
   - bin/code-analysis
   - bin/test-coverage

@@ -12,6 +12,7 @@
 .settings/
 bin/
 buildout-cache/
+buildout.cfg
 develop-eggs/
 downloads
 eggs
