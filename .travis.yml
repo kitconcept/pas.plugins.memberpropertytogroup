@@ -1,7 +1,10 @@
+language: python
 python:
   - 2.7
 install:
   - pip install zc.buildout
+  - mkdir -p buildout-cache/{eggs,downloads}
+  - buildout -Nc travis.cfg annotate
   - buildout -Nc travis.cfg
 script:
   - bin/code-analysis
