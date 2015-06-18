@@ -12,13 +12,14 @@ matrix:
   allow_failures:
     - env: PLONE_VERSION=5.0
 before_install:
-  - pip install zc.buildout
   - mkdir -p $HOME/buildout-cache/{eggs,downloads}
+  - virtualenv .
+  - bin/pip install zc.buildout
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
 install:
   - sed -ie "s#plone-4.3.x.cfg#plone-$PLONE_VERSION.x.cfg#" travis.cfg
-  - buildout -N -t 3 -c travis.cfg
+  - /bin/buildout -N -t 3 -c travis.cfg
 script:
   - bin/code-analysis
   - bin/test-coverage --all
