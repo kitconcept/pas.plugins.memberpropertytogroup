@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Setup tests for this package."""
-from pas.plugins.memberpropertytogroup.testing import PAS_PLUGINS_MEMBERPROPERTYTOGROUP_INTEGRATION_TESTING  # noqa
+from pas.plugins.memberpropertytogroup.testing import PAS_PLUGINS_MPTG_PLONE_INTEGRATION_TESTING  # noqa
 from Products.CMFCore.utils import getToolByName
 
 import unittest
@@ -9,7 +9,7 @@ import unittest
 class TestSetup(unittest.TestCase):
     """Test that pas.plugins.memberpropertytogroup is properly installed."""
 
-    layer = PAS_PLUGINS_MEMBERPROPERTYTOGROUP_INTEGRATION_TESTING
+    layer = PAS_PLUGINS_MPTG_PLONE_INTEGRATION_TESTING
 
     def setUp(self):
         """Custom shared utility setup for tests."""

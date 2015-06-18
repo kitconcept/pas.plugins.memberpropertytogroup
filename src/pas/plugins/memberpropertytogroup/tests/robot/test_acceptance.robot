@@ -10,7 +10,7 @@
 #
 # 1) Start robot server:
 #
-# $ bin/robot-server --reload-path src pas.plugins.memberpropertytogroup.testing.PAS_PLUGINS_MEMBERPROPERTYTOGROUP_ACCEPTANCE_TESTING
+# $ bin/robot-server --reload-path src pas.plugins.memberpropertytogroup.testing.PAS_PLUGINS_MPTG_PLONE_ACCEPTANCE_TESTING
 #
 # 2) Run robot tests:
 #

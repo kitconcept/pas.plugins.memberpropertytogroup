@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-from plone.app.registry.browser import controlpanel
-
+from pas.plugins.memberpropertytogroup.interfaces import _
 from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupSettings  # noqa
-from pas.plugins.memberpropertytogroup import _
+from plone.app.registry.browser import controlpanel
 
 
 class MemberpropertiestogroupSettingsEditForm(controlpanel.RegistryEditForm):

@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-from pas.plugins.memberpropertytogroup import _
 from zope import schema
+from zope.i18nmessageid import MessageFactory
 from zope.interface import Interface
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
+
+_ = MessageFactory('pas.plugins.memberpropertytogroup')
 
 
 class IPasPluginsMemberpropertytogroupLayer(IDefaultBrowserLayer):
@@ -17,3 +19,7 @@ class IPasPluginsMemberpropertytogroupSettings(Interface):
         required=False,
         default=u'',
     )
+
+
+class IMPTGPlugin(Interface):
+    """Member Properties To Group Plugin"""

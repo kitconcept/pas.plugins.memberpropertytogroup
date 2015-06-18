@@ -5,12 +5,86 @@ from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
+from plone.testing import Layer
 from plone.testing import z2
+from Products.CMFCore.interfaces import ISiteRoot
+from zope.component import provideUtility
 
 import pas.plugins.memberpropertytogroup
 
+try:
+    # plone 5.x with PlonePAS >=5.0
+    from Products.PlonePAS.setuphandlers import migrate_root_uf
+except ImportError:
+    # plone 3.x and 4.x with PlonePAS <5.0
+    from Products.PlonePAS.Extensions.Install import migrate_root_uf
 
-class PasPluginsMemberpropertytogroupLayer(PloneSandboxLayer):
+
+class PasPluginsMPTGZopeLayer(Layer):
+
+    defaultBases = (
+        z2.INTEGRATION_TESTING,
+    )
+
+    # Products that will be installed, plus options
+    products = (
+        ('Products.GenericSetup', {'loadZCML': True}, ),
+        ('Products.CMFCore', {'loadZCML': True}, ),
+        ('Products.PluggableAuthService', {'loadZCML': True}, ),
+        ('Products.PluginRegistry', {'loadZCML': True}, ),
+        ('Products.PlonePAS', {'loadZCML': True}, ),
+    )
+
+    def setUp(self):
+        self.setUpZCML()
+
+    def testSetUp(self):
+        self.setUpProducts()
+        provideUtility(self['app'], provides=ISiteRoot)
+        migrate_root_uf(self['app'])
+
+    def setUpZCML(self):
+        """Stack a new global registry and load ZCML configuration of Plone
+        and the core set of add-on products into it.
+        """
+
+        # Load dependent products's ZCML
+        from zope.configuration import xmlconfig
+        from zope.dottedname.resolve import resolve
+
+        def loadAll(filename):
+            for p, config in self.products:
+                if not config['loadZCML']:
+                    continue
+                try:
+                    package = resolve(p)
+                except ImportError:
+                    continue
+                try:
+                    xmlconfig.file(
+                        filename,
+                        package,
+                        context=self['configurationContext']
+                    )
+                except IOError:
+                    pass
+
+        loadAll('meta.zcml')
+        loadAll('configure.zcml')
+        loadAll('overrides.zcml')
+
+    def setUpProducts(self):
+        """Install all old-style products listed in the the ``products`` tuple
+        of this class.
+        """
+        for prd, config in self.products:
+            z2.installProduct(self['app'], prd)
+
+
+PAS_PLUGINS_MPTG_ZOPE_FIXTURE = PasPluginsMPTGZopeLayer()
+
+
+class PasPluginsMPTGPloneLayer(PloneSandboxLayer):
 
     defaultBases = (PLONE_FIXTURE,)
 
@@ -21,26 +95,26 @@ class PasPluginsMemberpropertytogroupLayer(PloneSandboxLayer):
         applyProfile(portal, 'pas.plugins.memberpropertytogroup:default')
 
 
-PAS_PLUGINS_MEMBERPROPERTYTOGROUP_FIXTURE = PasPluginsMemberpropertytogroupLayer()  # noqa
+PAS_PLUGINS_MPTG_PLONE_FIXTURE = PasPluginsMPTGPloneLayer()
 
 
-PAS_PLUGINS_MEMBERPROPERTYTOGROUP_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(PAS_PLUGINS_MEMBERPROPERTYTOGROUP_FIXTURE,),
-    name='PasPluginsMemberpropertytogroupLayer:IntegrationTesting'
+PAS_PLUGINS_MPTG_PLONE_INTEGRATION_TESTING = IntegrationTesting(
+    bases=(PAS_PLUGINS_MPTG_PLONE_FIXTURE,),
+    name='PasPluginsMPTGPloneLayer:IntegrationTesting'
 )
 
 
-PAS_PLUGINS_MEMBERPROPERTYTOGROUP_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(PAS_PLUGINS_MEMBERPROPERTYTOGROUP_FIXTURE,),
-    name='PasPluginsMemberpropertytogroupLayer:FunctionalTesting'
+PAS_PLUGINS_MPTG_PLONE_FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(PAS_PLUGINS_MPTG_PLONE_FIXTURE,),
+    name='PasPluginsMPTGPloneLayer:FunctionalTesting'
 )
 
 
-PAS_PLUGINS_MEMBERPROPERTYTOGROUP_ACCEPTANCE_TESTING = FunctionalTesting(
+PAS_PLUGINS_MPTG_PLONE_ACCEPTANCE_TESTING = FunctionalTesting(
     bases=(
-        PAS_PLUGINS_MEMBERPROPERTYTOGROUP_FIXTURE,
+        PAS_PLUGINS_MPTG_PLONE_FIXTURE,
         REMOTE_LIBRARY_BUNDLE_FIXTURE,
         z2.ZSERVER_FIXTURE
     ),
-    name='PasPluginsMemberpropertytogroupLayer:AcceptanceTesting'
+    name='PasPluginsMPTGPloneLayer:AcceptanceTesting'
 )

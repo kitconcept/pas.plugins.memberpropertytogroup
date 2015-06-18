@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from pas.plugins.memberpropertytogroup.testing import PAS_PLUGINS_MEMBERPROPERTYTOGROUP_ACCEPTANCE_TESTING  # noqa
+from pas.plugins.memberpropertytogroup.testing import PAS_PLUGINS_MPTG_PLONE_ACCEPTANCE_TESTING  # noqa
 from plone.app.testing import ROBOT_TEST_LEVEL
 from plone.testing import layered
 
@@ -22,7 +22,7 @@ def test_suite():
         suite.addTests([
             layered(
                 robottestsuite,
-                layer=PAS_PLUGINS_MEMBERPROPERTYTOGROUP_ACCEPTANCE_TESTING
+                layer=PAS_PLUGINS_MPTG_PLONE_ACCEPTANCE_TESTING
             ),
         ])
     return suite

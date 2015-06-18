@@ -6,8 +6,9 @@
     i18n_domain="pas.plugins.memberpropertytogroup">
 
     <!-- Plone 3 BBB -->
-    <five:registerPackage package="." initialize=".initialize" />
     <include package="plone.app.registry" />
+
+    <five:registerPackage package="." initialize=".initialize" />
 
     <includeDependencies package="." />
 
@@ -20,6 +21,14 @@
         title="pas.plugins.memberpropertytogroup"
         directory="profiles/default"
         description="Installs the pas.plugins.memberpropertytogroup add-on."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <genericsetup:registerProfile
+        name="plugin"
+        title="pas.plugins.memberpropertytogroup"
+        directory="profiles/zope"
+        description="Installs the acl_user/plain zope part pas.plugins.memberpropertytogroup add-on."
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 

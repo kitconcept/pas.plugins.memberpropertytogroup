@@ -1,21 +1,20 @@
 # -*- coding: utf-8 -*-
-from pas.plugins.memberpropertytogroup.testing import \
-    PAS_PLUGINS_MEMBERPROPERTYTOGROUP_INTEGRATION_TESTING
-from pas.plugins.memberpropertytogroup.interfaces import \
-    IPasPluginsMemberpropertytogroupSettings
+from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupSettings  # noqa
+from pas.plugins.memberpropertytogroup.testing import PAS_PLUGINS_MPTG_PLONE_INTEGRATION_TESTING  # noqa
+from plone.app.testing import logout
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
-from plone.testing.z2 import Browser
 from plone.registry import Registry
-from plone.app.testing import logout
+from plone.testing.z2 import Browser
 from Products.CMFCore.utils import getToolByName
 from zope.component import getMultiAdapter
+
 import unittest
 
 
 class TestMailchimpSettingsControlPanel(unittest.TestCase):
 
-    layer = PAS_PLUGINS_MEMBERPROPERTYTOGROUP_INTEGRATION_TESTING
+    layer = PAS_PLUGINS_MPTG_PLONE_INTEGRATION_TESTING
 
     def setUp(self):
         self.portal = self.layer['portal']
@@ -64,7 +63,7 @@ class TestMailchimpSettingsControlPanel(unittest.TestCase):
 
 class ControlpanelFunctionalTest(unittest.TestCase):
 
-    layer = PAS_PLUGINS_MEMBERPROPERTYTOGROUP_INTEGRATION_TESTING
+    layer = PAS_PLUGINS_MPTG_PLONE_INTEGRATION_TESTING
 
     def setUp(self):
         app = self.layer['app']

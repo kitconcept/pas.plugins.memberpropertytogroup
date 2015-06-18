@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
-"""Init and utils."""
+from AccessControl.Permissions import add_user_folders
+from pas.plugins.memberpropertytogroup.plugin import manage_addMPTGPlugin
+from pas.plugins.memberpropertytogroup.plugin import manage_addMPTGPluginForm
+from pas.plugins.memberpropertytogroup.plugin import MPTGPlugin
+from pas.plugins.memberpropertytogroup.plugin import tpl_dir
+from Products.PluggableAuthService import registerMultiPlugin
 
-from zope.i18nmessageid import MessageFactory
-
-_ = MessageFactory('pas.plugins.memberpropertytogroup')
+import os
 
 
 def initialize(context):
@@ -15,3 +18,11 @@ def initialize(context):
     Here, we call the Archetypes machinery to register our content types
     with Zope and the CMF.
     """
+    registerMultiPlugin(MPTGPlugin.meta_type)
+    context.registerClass(
+        MPTGPlugin,
+        permission=add_user_folders,
+        icon=os.path.join(tpl_dir, 'mptg.png'),
+        constructors=(manage_addMPTGPluginForm, manage_addMPTGPlugin),
+        visibility=None
+    )
