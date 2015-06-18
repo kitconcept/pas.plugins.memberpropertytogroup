@@ -1,9 +1,17 @@
 language: python
 python:
   - 2.7
-install:
+env:
+  - PLONE_VERSION=4.3 QA=true
+  - PLONE_VERSION=5.0
+matrix:
+  allow_failures:
+    - env: PLONE_VERSION=5.0
+before_install:
   - pip install zc.buildout
   - mkdir -p buildout-cache/{eggs,downloads}
+install:
+  - sed -ie "s#plone-4.3.x.cfg#plone-$PLONE_VERSION.x.cfg#" buildout.cfg
   - buildout -Nc travis.cfg annotate
   - buildout -Nc travis.cfg
 script:
