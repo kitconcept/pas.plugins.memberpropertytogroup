@@ -3,7 +3,7 @@ from AccessControl import ClassSecurityInfo
 from App.class_init import InitializeClass
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from Products.PlonePAS import interfaces as plonepas_interfaces
-from Products.PlonePAS.plugins.group import PloneGroup
+# from Products.PlonePAS.plugins.group import PloneGroup
 from Products.PluggableAuthService.interfaces import plugins as pas_interfaces
 from Products.PluggableAuthService.plugins.BasePlugin import BasePlugin
 from pas.plugins.memberpropertytogroup.interfaces import IMPTGPlugin
@@ -67,7 +67,7 @@ class MPTGPlugin(BasePlugin):
         o May assign groups based on values in the REQUEST object, if present
         """
         # XXX Write me
-        return tuple()
+        # return tuple()
 
     # ##
     # plonepas_interfaces.capabilities.IGroupCapability
@@ -81,7 +81,7 @@ class MPTGPlugin(BasePlugin):
 
         -> this is not possible
         """
-        return False
+        # return False
 
     @security.public
     def allowGroupRemove(self, principal_id, group_id):
@@ -91,7 +91,7 @@ class MPTGPlugin(BasePlugin):
 
         -> this is not possible
         """
-        return False
+        # return False
 
     # ##
     # plonepas_interfaces.capabilities.IGroupIntrospection
@@ -107,55 +107,55 @@ class MPTGPlugin(BasePlugin):
         # group_id = decode_utf8(group_id)
 
         # XXX fecth Title (from registry settings?) for this plugin
-        title = "READ ME FROM SOMEWHERE"
+        # title = "READ ME FROM SOMEWHERE"
 
-        group = PloneGroup(group_id, title).__of__(self)
-        pas = self._getPAS()
+        # group = PloneGroup(group_id, title).__of__(self)
+        # pas = self._getPAS()
 
-        # add properties
-        property_plugins = pas.plugins.listPlugins(
-            pas_interfaces.IPropertiesPlugin
-        )
-        for propfinder_id, propfinder in property_plugins:
-            data = propfinder.getPropertiesForUser(group, None)
-            if data is not None:
-                group.addPropertysheet(propfinder_id, data)
+        # # add properties
+        # property_plugins = pas.plugins.listPlugins(
+        #     pas_interfaces.IPropertiesPlugin
+        # )
+        # for propfinder_id, propfinder in property_plugins:
+        #     data = propfinder.getPropertiesForUser(group, None)
+        #     if data is not None:
+        #         group.addPropertysheet(propfinder_id, data)
 
-        # add subgroups
-        group._addGroups(
-            pas._getGroupsForPrincipal(group, None, plugins=pas.plugins)
-        )
+        # # add subgroups
+        # group._addGroups(
+        #     pas._getGroupsForPrincipal(group, None, plugins=pas.plugins)
+        # )
 
-        # add roles
-        role_plugins = pas.plugins.listPlugins(pas_interfaces.IRolesPlugin)
-        for rolemaker_id, rolemaker in role_plugins:
-            roles = rolemaker.getRolesForPrincipal(group, None)
-            if roles is not None:
-                group._addRoles(roles)
+        # # add roles
+        # role_plugins = pas.plugins.listPlugins(pas_interfaces.IRolesPlugin)
+        # for rolemaker_id, rolemaker in role_plugins:
+        #     roles = rolemaker.getRolesForPrincipal(group, None)
+        #     if roles is not None:
+        #         group._addRoles(roles)
 
-        return group
+        # return group
 
     def getGroups(self):
         """
         Returns an iteration of the available groups
         """
-        return map(self.getGroupById, self.getGroupIds())
+        # return map(self.getGroupById, self.getGroupIds())
 
     def getGroupIds(self):
         """
         Returns a list of the available groups (ids)
         """
-        return self.groups and self.groups.ids or []
+        # return self.groups and self.groups.ids or []
 
     def getGroupMembers(self, group_id):
         """
         return the members of the given group
         """
-        try:
-            group = self.groups[group_id]
-        except (KeyError, TypeError):
-            return ()
-        return tuple(group.member_ids)
+        # try:
+        #     group = self.groups[group_id]
+        # except (KeyError, TypeError):
+        #     return ()
+        # return tuple(group.member_ids)
 
 
 InitializeClass(MPTGPlugin)
