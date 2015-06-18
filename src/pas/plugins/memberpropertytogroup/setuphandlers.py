@@ -1,17 +1,11 @@
 # -*- coding: utf-8 -*-
 from pas.plugins.memberpropertytogroup.plugin import MPTGPlugin
 
-
 TITLE = 'Member Property To Group plugin (pas.plugins.memberpropertytogroup)'
 
 
-def isNotThisProfile(context):
-    return context.readDataFile('paspluginsmptg_zope_marker.txt') is None
-
-
 def _addPlugin(pas, pluginid='memberpropertytogroup'):
-    installed = pas.objectIds()
-    if pluginid in installed:
+    if pluginid in pas.objectIds():
         return TITLE + ' already installed.'
     plugin = MPTGPlugin(pluginid, title=TITLE)
     pas._setObject(pluginid, plugin)
@@ -28,8 +22,5 @@ def _addPlugin(pas, pluginid='memberpropertytogroup'):
 
 
 def setupPlugin(context):
-    if isNotThisProfile(context):
-        return
-    site = context.getSite()
-    pas = site.acl_users
-    _addPlugin(pas)
+    if context.readDataFile('paspluginsmptg_zope_marker.txt') is not None:
+        _addPlugin(context.getSite().acl_users)

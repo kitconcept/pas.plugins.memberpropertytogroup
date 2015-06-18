@@ -19,9 +19,15 @@ class TestPluginForGroupCapability(unittest.TestCase):
     def test_addplugin(self):
         PLUGINID = 'mptg'
         from pas.plugins.memberpropertytogroup.setuphandlers import _addPlugin
-        _addPlugin(self.aclu, pluginid=PLUGINID)
+        result = _addPlugin(self.aclu, pluginid=PLUGINID)
+        self.assertIs(result, None)
         self.assertIn(PLUGINID, self.aclu.objectIds())
 
         from pas.plugins.memberpropertytogroup.plugin import MPTGPlugin
         mptg = self.aclu[PLUGINID]
         self.assertIsInstance(mptg, MPTGPlugin)
+
+        from pas.plugins.memberpropertytogroup.setuphandlers import TITLE
+        result = _addPlugin(self.aclu, pluginid=PLUGINID)
+        self.assertEqual(result, TITLE + ' already installed.')
+
