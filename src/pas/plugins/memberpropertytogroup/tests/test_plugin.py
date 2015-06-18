@@ -18,6 +18,3 @@ class TestPluginForGroupCapability(unittest.TestCase):
 
     def test_getGroupsForPrincipal(self):
         pass
-
-    def test_getGroupsForPrincipal(self):
-        pass
