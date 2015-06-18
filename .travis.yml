@@ -4,7 +4,7 @@ python:
 cache:
   pip: true
   directories:
-    - buildout-cache
+    - $HOME/buildout-cache
 env:
   - PLONE_VERSION=4.3 QA=true
   - PLONE_VERSION=5.0
@@ -14,13 +14,14 @@ matrix:
 before_install:
   - pip install zc.buildout
   - mkdir -p buildout-cache/{eggs,downloads}
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
 install:
   - sed -ie "s#plone-4.3.x.cfg#plone-$PLONE_VERSION.x.cfg#" travis.cfg
-  - buildout -Nc travis.cfg annotate
-  - buildout -Nc travis.cfg
+  - buildout -N -t 3 -c travis.cfg
 script:
   - bin/code-analysis
-  - bin/test-coverage
+  - bin/test-coverage --all
 after_success:
   - pip install coveralls
   - coveralls
