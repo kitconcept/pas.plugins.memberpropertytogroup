@@ -2,9 +2,9 @@ Changelog
 =========
 
 
-0.1 (unreleased)
-----------------
+1.0dev0 (unreleased)
+--------------------
 
 - Initial release.
-  [tisto]
+  [tisto, jensens]
 

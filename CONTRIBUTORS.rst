@@ -1,1 +1,2 @@
 - Timo Stollenwerk, tisto@plone.org
+- Jens Klein, jens@bluedynamics.com
