@@ -30,4 +30,3 @@ class TestPluginForGroupCapability(unittest.TestCase):
         from pas.plugins.memberpropertytogroup.setuphandlers import TITLE
         result = _addPlugin(self.aclu, pluginid=PLUGINID)
         self.assertEqual(result, TITLE + ' already installed.')
-
