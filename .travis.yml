@@ -19,7 +19,7 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
 install:
   - sed -ie "s#plone-4.3.x.cfg#plone-$PLONE_VERSION.x.cfg#" travis.cfg
-  - /bin/buildout -N -t 3 -c travis.cfg
+  - bin/buildout -N -t 3 -c travis.cfg
 script:
   - bin/code-analysis
   - bin/test-coverage --all
@@ -29,4 +29,5 @@ after_success:
 notifications:
   email:
     - tisto@plone.org
+    - jens@bluedynamics.com
 
