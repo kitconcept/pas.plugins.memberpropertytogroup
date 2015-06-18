@@ -4,5 +4,5 @@
 ln -s plone-5.0.x.cfg buildout.cfg
 rm -r ./lib ./include ./local ./bin
 virtualenv --clear .
-./bin/pip install zc.buildout 
+./bin/pip install --upgrade pip setuptools zc.buildout 
 ./bin/buildout 
