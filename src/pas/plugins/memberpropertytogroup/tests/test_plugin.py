@@ -16,5 +16,8 @@ class TestPluginForGroupCapability(unittest.TestCase):
         """Custom shared utility setup for tests."""
         self.aclu = self.layer['app'].acl_users
 
-    def test_something(self):
+    def test_getGroupsForPrincipal(self):
+        pass
+
+    def test_getGroupsForPrincipal(self):
         pass
