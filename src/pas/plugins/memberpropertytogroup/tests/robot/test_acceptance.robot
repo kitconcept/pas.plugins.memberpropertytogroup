@@ -38,13 +38,13 @@ Scenario: As administrator I can create a group based on member properties
   Pass Execution  Not implemented yet
   Given a user 'John Doe' with the property 'usertype' = 'employee'
     and a logged-in manager
-   When I create a virtual group 'Employees' based on the property 'usertype' = 'employee'
+   When I create a virtual group 'Employees' with the property 'usertype' = 'employee'
    Then the user 'John Doe' is member of the group 'Employees'
 
 Scenario: As reviewer I can grant permissions based on member properties groups
   Pass Execution  Not implemented yet
   Given a user 'John Doe' with the property 'usertype' = 'employee'
-    and a virtual group 'Employees' based on the member property 'usertype' with the value 'employee'
+    and a virtual group 'Employees' with the property 'usertype' = 'employee'
     and a logged-in reviewer
    When I grant the user 'John Doe' the 'edit' permission on a folder
    Then the user 'John Doe' can edit the folder
@@ -54,8 +54,8 @@ Scenario: As administrator I can create a group based on multiple member propert
   Given a user 'John Doe' with the property 'usertype' = 'employee'
     and a user 'Jane Doe' with the property 'city' = 'bonn'
     and a logged-in manager
-   When I create a virtual group 'Employees' based on the property 'usertype' = 'employee'
-    and I create a virtual group 'Locals' based on the property 'city' = 'bonn'
+   When I create a virtual group 'Employees' with the property 'usertype' = 'employee'
+    and I create a virtual group 'Locals' with the property 'city' = 'bonn'
    Then the user 'John Doe' is member of the group 'Employees'
     and the user 'Jane Doe' is member of the group 'Locals'
 
@@ -63,7 +63,7 @@ Scenario: As administrator I can create a group based on member properties prefi
   Pass Execution  Not implemented yet
   Given a user 'John Doe' with the property 'student_id' = '1234567'
     and a logged-in manager
-   When I create a virtual group 'Students' based on the property 'student' = '123*'
+   When I create a virtual group 'Students' with the property 'student' = '123*'
    Then the user 'John Doe' is member of the group 'Students'
 
 
@@ -83,7 +83,7 @@ a user '${user}' with the property '${property}' = '${value}'
 
 # --- WHEN -------------------------------------------------------------------
 
-I create a virtual group '${group}' based on the property '${property}' = '${value}'
+I create a virtual group '${group}' with the property '${property}' = '${value}'
   Pass
 
 I grant the user '${user}' the '${permission}' permission on a folder
