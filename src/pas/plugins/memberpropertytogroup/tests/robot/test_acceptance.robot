@@ -1,5 +1,5 @@
 # ============================================================================
-# ACCEPTANCE TESTS
+# MEMBERPROPERTY TO GROUP ACCEPTANCE TESTS
 # ============================================================================
 #
 # Run this robot test stand-alone:
