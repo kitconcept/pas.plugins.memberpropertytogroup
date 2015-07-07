@@ -42,10 +42,14 @@ setup(
     zip_safe=False,
     install_requires=[
         'setuptools',
+        'Products.PlonePAS',
+        'Products.PlugableAuthService',
         'plone.app.registry',
     ],
     extras_require={
         'test': [
+            'ipdb',
+            'mock',
             'plone.app.testing',
             'plone.app.contenttypes',
             'plone.app.robotframework[debug]',

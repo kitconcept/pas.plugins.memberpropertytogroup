@@ -13,9 +13,11 @@ class IPasPluginsMemberpropertytogroupLayer(IDefaultBrowserLayer):
 
 class IPasPluginsMemberpropertytogroupSettings(Interface):
 
-    example_field = schema.TextLine(
-        title=_(u"Example Field"),
-        description=_(u"help_example_field"),
+    group_property = schema.TextLine(
+        title=_(u"Group Proprty"),
+        description=_(
+            u"Property on users PropertySheet used as group mapping."
+        ),
         required=False,
         default=u'',
     )

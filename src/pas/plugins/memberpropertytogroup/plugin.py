@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 from AccessControl import ClassSecurityInfo
 from App.class_init import InitializeClass
+from pas.plugins.memberpropertytogroup.interfaces import IMPTGPlugin
+from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupSettings  # noqa
+from plone.registry.interfaces import IRegistry
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from Products.PlonePAS import interfaces as plonepas_interfaces
-# from Products.PlonePAS.plugins.group import PloneGroup
 from Products.PluggableAuthService.interfaces import plugins as pas_interfaces
 from Products.PluggableAuthService.plugins.BasePlugin import BasePlugin
-from pas.plugins.memberpropertytogroup.interfaces import IMPTGPlugin
-from zope.interface import implementer
-
+from zope.component import queryUtility
+from zope.interface import implements
 import logging
 import os
 
@@ -16,11 +17,11 @@ logger = logging.getLogger(__name__)
 tpl_dir = os.path.join(os.path.dirname(__file__), 'browser')
 
 
-def manage_addMPTGPlugin(dispatcher, id, title='', RESPONSE=None, **kw):
+def manage_addMPTGPlugin(context, id, title='', RESPONSE=None, **kw):
     """Create an instance of a MPTG Plugin.
     """
     plugin = MPTGPlugin(id, title, **kw)
-    dispatcher._setObject(plugin.getId(), plugin)
+    context._setObject(plugin.getId(), plugin)
     if RESPONSE is not None:
         RESPONSE.redirect('manage_workspace')
 
@@ -32,15 +33,14 @@ manage_addMPTGPluginForm = PageTemplateFile(
 )
 
 
-@implementer(
-    IMPTGPlugin,
-    pas_interfaces.IGroupsPlugin,
-    plonepas_interfaces.capabilities.IGroupCapability,
-    plonepas_interfaces.group.IGroupIntrospection,
-)
 class MPTGPlugin(BasePlugin):
     """Memberproperties to Group mapping PAS plugin
     """
+    # using implements explicit here for python 2.4 compat.
+    implements(
+        IMPTGPlugin,
+        pas_interfaces.IGroupsPlugin,
+    )
     security = ClassSecurityInfo()
     meta_type = 'Member Properties To Group Plugin'
     BasePlugin.manage_options
@@ -54,10 +54,50 @@ class MPTGPlugin(BasePlugin):
         self.plugin_caching = True
 
     # ##
+    # helper
+
+    def _principal_by_id(self, principal_id):
+        """lookup principal by id
+        """
+        pas = self._getPAS()
+        return pas.getUserById(principal_id)
+
+    def _configured_property(self):
+        """get configured key to fetch the group property from propertysheet
+        """
+        registry = queryUtility(IRegistry)
+        settings = registry.forInterface(
+            IPasPluginsMemberpropertytogroupSettings,
+        )
+        return settings.group_property
+
+    def _sheets_of_principal(self, principal):
+        pas = self._getPAS()
+        sheet_plugins = pas.plugins.listPlugins(
+            pas_interfaces.IPropertiesPlugin
+        )
+        return dict(sheet_plugins)
+
+    def _group_property_of_principal(self, principal):
+        """get property with group information from principal
+        """
+        key = self._configured_property()
+        sheet_plugins = self._sheets_of_principal(principal)
+        for sheet_id in principal.listPropertysheets():
+            sheet_provider = sheet_plugins[sheet_id]
+            sheet = sheet_provider.getPropertiesForUser(principal)
+            value = sheet.getProperty(key)
+            if value:
+                return value
+        return None
+
+    # ##
     # pas_interfaces.IGroupsPlugin
     #
     #  Determine the groups to which a user belongs.
-    @security.private
+
+    security.declarePrivate('getGroupsForPrincipal')  # Plone3bbb
+
     def getGroupsForPrincipal(self, principal, request=None):
         """principal -> ( group_1, ... group_N )
 
@@ -66,96 +106,19 @@ class MPTGPlugin(BasePlugin):
 
         o May assign groups based on values in the REQUEST object, if present
         """
-        # XXX Write me
-        # return tuple()
+        group_prop_id = self._group_property_of_principal(principal)
+        print principal.getId(), " has group prop ", group_prop_id
 
-    # ##
-    # plonepas_interfaces.capabilities.IGroupCapability
-    # (plone ui specific)
-    #
-    @security.public
-    def allowGroupAdd(self, principal_id, group_id):
-        """
-        True if this plugin will allow adding a certain principal to
-        a certain group.
-
-        -> this is not possible
-        """
-        # return False
-
-    @security.public
-    def allowGroupRemove(self, principal_id, group_id):
-        """
-        True if this plugin will allow removing a certain principal
-        from a certain group.
-
-        -> this is not possible
-        """
-        # return False
-
-    # ##
-    # plonepas_interfaces.capabilities.IGroupIntrospection
-    # (plone ui specific)
-
-    # XXX: why dont we have security declarations here?
-
-    def getGroupById(self, group_id):
-        """
-        Returns the portal_groupdata-ish object for a group
-        corresponding to this id. None if group does not exist here!
-        """
-        # group_id = decode_utf8(group_id)
-
-        # XXX fecth Title (from registry settings?) for this plugin
-        # title = "READ ME FROM SOMEWHERE"
-
-        # group = PloneGroup(group_id, title).__of__(self)
-        # pas = self._getPAS()
-
-        # # add properties
-        # property_plugins = pas.plugins.listPlugins(
-        #     pas_interfaces.IPropertiesPlugin
-        # )
-        # for propfinder_id, propfinder in property_plugins:
-        #     data = propfinder.getPropertiesForUser(group, None)
-        #     if data is not None:
-        #         group.addPropertysheet(propfinder_id, data)
-
-        # # add subgroups
-        # group._addGroups(
-        #     pas._getGroupsForPrincipal(group, None, plugins=pas.plugins)
-        # )
-
-        # # add roles
-        # role_plugins = pas.plugins.listPlugins(pas_interfaces.IRolesPlugin)
-        # for rolemaker_id, rolemaker in role_plugins:
-        #     roles = rolemaker.getRolesForPrincipal(group, None)
-        #     if roles is not None:
-        #         group._addRoles(roles)
-
-        # return group
-
-    def getGroups(self):
-        """
-        Returns an iteration of the available groups
-        """
-        # return map(self.getGroupById, self.getGroupIds())
-
-    def getGroupIds(self):
-        """
-        Returns a list of the available groups (ids)
-        """
-        # return self.groups and self.groups.ids or []
-
-    def getGroupMembers(self, group_id):
-        """
-        return the members of the given group
-        """
-        # try:
-        #     group = self.groups[group_id]
-        # except (KeyError, TypeError):
-        #     return ()
-        # return tuple(group.member_ids)
+        # check if group is valid
+        pas = self._getPAS()
+        group_plugins = pas.plugins.listPlugins(
+            plonepas_interfaces.group.IGroupIntrospection
+        )
+        for plugin_id, plugin in group_plugins:
+            group = plugin.getGroupById(group_prop_id)
+            if group:
+                return (group.getId(), )
+        return tuple()
 
 
 InitializeClass(MPTGPlugin)

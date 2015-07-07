@@ -1,20 +1,64 @@
 # -*- coding: utf-8 -*-
 from pas.plugins.memberpropertytogroup.testing import PAS_PLUGINS_MPTG_ZOPE_FIXTURE  # noqa
-
+import mock
 import unittest
 
 
-class TestPluginForGroupCapability(unittest.TestCase):
-    """interface plonepas_interfaces.capabilities.IGroupCapability
-
-    Test if above interface works as expected
+class TestPluginHelpers(unittest.TestCase):
+    """check if helpers work
     """
 
     layer = PAS_PLUGINS_MPTG_ZOPE_FIXTURE
 
     def setUp(self):
         """Custom shared utility setup for tests."""
+        # create plugin
+        from pas.plugins.memberpropertytogroup.plugin import manage_addMPTGPlugin  # noqa
         self.aclu = self.layer['app'].acl_users
+        manage_addMPTGPlugin(self.aclu, 'mptg')
+        self.plugin = self.aclu['mptg']
 
-    def test_getGroupsForPrincipal(self):
-        pass
+        # mock property
+        from pas.plugins.memberpropertytogroup.plugin import MPTGPlugin
+        mock_property_key = mock.patch.object(
+            MPTGPlugin,
+            '_configured_property',
+            mock.Mock(wraps=MPTGPlugin._configured_property)
+        )
+        self.mocked_property_key = mock_property_key.start()
+        self.addCleanup(mock_property_key.stop)
+
+        # mock sheets
+        mock_sheets = mock.patch.object(
+            MPTGPlugin,
+            '_sheets_of_principal',
+            mock.Mock(wraps=MPTGPlugin._sheets_of_principal)
+        )
+        self.mocked_sheets = mock_sheets.start()
+        self.addCleanup(mock_sheets.stop)
+
+    def test_group_property_of_principal(self):
+        # mock a user with sheet
+        from Products.PluggableAuthService.PropertiedUser import PropertiedUser
+        mock_user = PropertiedUser('mockuser')
+        mock_user.addPropertysheet(
+            'testsheet',
+            {'testproperty': 'mockgroup'},
+        )
+        self.mocked_property_key.return_value = 'testproperty'
+        self.mocked_sheets.return_value = {
+            'testsheet': mock_user._propertysheets['testsheet']
+        }
+
+        value = self.plugin._group_property_of_principal(mock_user)
+        self.assertEqual(value, 'mockgroup')
+
+
+class TestPluginGroupCapability(unittest.TestCase):
+    """interface plonepas_interfaces.capabilities.IGroupCapability
+
+    Test if above interface works as expected
+    """
+
+
+
