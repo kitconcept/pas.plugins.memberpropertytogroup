@@ -41,10 +41,12 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'setuptools',
+        'plone.app.registry',
+        'Products.CMFQuickInstallerTool',
+        'Products.GenericSetup',
         'Products.PlonePAS',
         'Products.PluggableAuthService',
-        'plone.app.registry',
+        'setuptools',
     ],
     extras_require={
         'test': [

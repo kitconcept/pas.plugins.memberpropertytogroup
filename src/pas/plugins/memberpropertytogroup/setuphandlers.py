@@ -21,6 +21,6 @@ def _addPlugin(pas, pluginid='memberpropertytogroup'):
         )
 
 
-def setupPlugin(context):
+def setup_plugin(context):
     if context.readDataFile('paspluginsmptg_zope_marker.txt') is not None:
         _addPlugin(context.getSite().acl_users)

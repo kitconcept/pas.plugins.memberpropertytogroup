@@ -1,35 +1,38 @@
 <configure
+    i18n_domain="pas.plugins.memberpropertytogroup"
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    xmlns:i18n="http://namespaces.zope.org/i18n"
-    i18n_domain="pas.plugins.memberpropertytogroup">
+    xmlns:i18n="http://namespaces.zope.org/i18n">
 
-    <!-- Plone 3 BBB -->
-    <include package="plone.app.registry" />
+  <!-- Plone 3 BBB -->
+  <include package="plone.app.registry" />
 
-    <five:registerPackage package="." initialize=".initialize" />
+  <five:registerPackage
+      initialize=".initialize"
+      package="."
+  />
 
-    <includeDependencies package="." />
+  <includeDependencies package="." />
 
-    <i18n:registerTranslations directory="locales" />
+  <i18n:registerTranslations directory="locales" />
 
-    <include package=".browser" />
+  <include package=".browser" />
 
-    <genericsetup:registerProfile
-        name="default"
-        title="pas.plugins.memberpropertytogroup (plone)"
-        directory="profiles/default"
-        description="Installs the pas.plugins.memberpropertytogroup add-on."
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
+  <genericsetup:registerProfile
+      description="Installs the pas.plugins.memberpropertytogroup add-on."
+      directory="profiles/default"
+      name="default"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      title="pas.plugins.memberpropertytogroup (plone)"
+  />
 
-    <genericsetup:registerProfile
-        name="plugin"
-        title="pas.plugins.memberpropertytogroup (zope only)"
-        directory="profiles/zope"
-        description="Installs the acl_user/plain zope part pas.plugins.memberpropertytogroup add-on."
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
+  <genericsetup:registerProfile
+      description="Installs the acl_user/plain zope part pas.plugins.memberpropertytogroup add-on."
+      directory="profiles/zope"
+      name="plugin"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      title="pas.plugins.memberpropertytogroup (zope, plugin only)"
+  />
 
 </configure>
