@@ -6,8 +6,10 @@ from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberproper
 from plone.registry.interfaces import IRegistry
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from Products.PlonePAS import interfaces as plonepas_interfaces
+from Products.PlonePAS.plugins.group import PloneGroup
 from Products.PluggableAuthService.interfaces import plugins as pas_interfaces
 from Products.PluggableAuthService.plugins.BasePlugin import BasePlugin
+from Products.PluggableAuthService.UserPropertySheet import UserPropertySheet
 from zope.component import queryUtility
 from zope.interface import implements
 import logging
@@ -40,6 +42,9 @@ class MPTGPlugin(BasePlugin):
     implements(
         IMPTGPlugin,
         pas_interfaces.IGroupsPlugin,
+        plonepas_interfaces.capabilities.IGroupCapability,
+        plonepas_interfaces.group.IGroupIntrospection,
+        pas_interfaces.IPropertiesPlugin,
     )
     security = ClassSecurityInfo()
     meta_type = 'Member Properties To Group Plugin'
@@ -56,6 +61,20 @@ class MPTGPlugin(BasePlugin):
     # ##
     # helper
 
+    @property
+    def _settings(self):
+        registry = queryUtility(IRegistry)
+        settings = registry.forInterface(
+            IPasPluginsMemberpropertytogroupSettings,
+        )
+        return settings
+
+    def _valid_groups(self):
+        result = []
+        for line in self._settings.valid_groups:
+            result += (line.split('|') + [''] * 5)[:5]
+        return result
+
     def _principal_by_id(self, principal_id):
         """lookup principal by id
         """
@@ -65,11 +84,7 @@ class MPTGPlugin(BasePlugin):
     def _configured_property(self):
         """get configured key to fetch the group property from propertysheet
         """
-        registry = queryUtility(IRegistry)
-        settings = registry.forInterface(
-            IPasPluginsMemberpropertytogroupSettings,
-        )
-        return settings.group_property
+        return self._settings.group_property
 
     def _sheet_plugins_of_principal(self, principal):
         pas = self._getPAS()
@@ -106,19 +121,110 @@ class MPTGPlugin(BasePlugin):
 
         o May assign groups based on values in the REQUEST object, if present
         """
-        group_prop_id = self._group_property_of_principal(principal)
-        print principal.getId(), " has group prop ", group_prop_id
-
-        # check if group is valid
-        pas = self._getPAS()
-        group_plugins = pas.plugins.listPlugins(
-            plonepas_interfaces.group.IGroupIntrospection
-        )
-        for plugin_id, plugin in group_plugins:
-            group = plugin.getGroupById(group_prop_id)
-            if group:
-                return (group.getId(), )
+        group_prop_value = self._group_property_of_principal(principal)
+        for prop, gid, title, descr, email in self._valid_groups():
+            if group_prop_value == prop:
+                return (gid, )
         return tuple()
 
+    # ##
+    # plonepas_interfaces.capabilities.IGroupCapability
+    # (plone ui specific)
+    #
+    @security.public
+    def allowGroupAdd(self, principal_id, group_id):
+        """
+        True if this plugin will allow adding a certain principal to
+        a certain group.
+        """
+        return False
+
+    @security.public
+    def allowGroupRemove(self, principal_id, group_id):
+        """
+        True if this plugin will allow removing a certain principal
+        from a certain group.
+        """
+        return False
+
+    # ##
+    # plonepas_interfaces.capabilities.IGroupIntrospection
+    # (plone ui specific)
+
+    def getGroupById(self, group_id):
+        """
+        Returns the portal_groupdata-ish object for a group
+        corresponding to this id. None if group does not exist here!
+        """
+        for prop, gid, title, descr, email in self._valid_groups():
+            if gid != group_id:
+                continue
+            group = PloneGroup(gid, title).__of__(self)
+            pas = self._getPAS()
+            plugins = pas.plugins
+
+            # add properties
+            properties_provider = plugins.listPlugins(
+                pas_interfaces.IPropertiesPlugin
+            )
+            for propfinder_id, propfinder in properties_provider:
+                data = propfinder.getPropertiesForUser(group, None)
+                if not data:
+                    continue
+                group.addPropertysheet(propfinder_id, data)
+
+            # add subgroups
+            group._addGroups(
+                pas._getGroupsForPrincipal(
+                    group,
+                    None,
+                    plugins=plugins
+                )
+            )
+            # add roles
+            role_provider = plugins.listPlugins(pas_interfaces.IRolesPlugin)
+            for rolemaker_id, rolemaker in role_provider:
+                roles = rolemaker.getRolesForPrincipal(group, None)
+                if not roles:
+                    continue
+                group._addRoles(roles)
+            return group
+        return None
+
+    def getGroups(self):
+        """
+        Returns an iteration of the available groups
+        """
+        return map(self.getGroupById, self.getGroupIds())
+
+    def getGroupIds(self):
+        """
+        Returns a list of the available groups (ids)
+        """
+        return [_[1] for _ in self._valid_groups()]
+
+    def getGroupMembers(self, group_id):
+        """
+        return the members of the given group
+        """
+        # we can not list group members, since this is too expensive
+        return tuple()
+
+    # ##
+    # pas_interfaces.plugins.IPropertiesPlugin
+
+    def getPropertiesForUser(self, group, request=None):
+        group_id = group.getId()
+        for prop, gid, title, descr, email in self._valid_groups():
+            if gid != group_id:
+                continue
+            sheet = UserPropertySheet(
+                self.getId(),
+                title=title,
+                description=descr,
+                email=email
+            )
+            return sheet
+        return None
 
 InitializeClass(MPTGPlugin)
