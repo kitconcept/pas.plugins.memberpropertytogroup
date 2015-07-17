@@ -112,13 +112,13 @@ class TestPlugin(unittest.TestCase):
             ['prop2', 'group2', 'title2', 'descr2', 'email2'],
         ]
         self.mocked_group_property_of_principal.return_value = ''
-        group = self.plugin.getGroupById('group1')
+        group = self.plugin.getGroupById('group2')
 
         # id matches
-        self.assertEqual('group1', group.getId())
+        self.assertEqual('group2', group.getId())
 
         # username is Title
-        self.assertEqual('title1', group.getUserName())
+        self.assertEqual('title2', group.getUserName())
 
         # description, email are properties
         sheet = group.getPropertysheet(self.plugin.getId())
@@ -131,6 +131,17 @@ class TestPlugin(unittest.TestCase):
         ]
         self.mocked_group_property_of_principal.return_value = ''
         self.assertEqual(self.plugin.getGroupIds(), ['group1', 'group2'])
+
+    def test_getGroups(self):
+        self.mocked_valid_groups.return_value = [
+            ['prop1', 'group1', 'title1', 'descr1', 'email1'],
+            ['prop2', 'group2', 'title2', 'descr2', 'email2'],
+        ]
+        self.mocked_group_property_of_principal.return_value = ''
+        self.assertEqual(
+            len(self.plugin.getGroups()),
+            2
+        )
 
     def test_getPropertiesForUser(self):
         self.mocked_valid_groups.return_value = [
