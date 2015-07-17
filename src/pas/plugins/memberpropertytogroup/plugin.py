@@ -41,10 +41,11 @@ class MPTGPlugin(BasePlugin):
     # using implements explicit here for python 2.4 compat.
     implements(
         IMPTGPlugin,
+        pas_interfaces.IGroupEnumerationPlugin,
         pas_interfaces.IGroupsPlugin,
+        pas_interfaces.IPropertiesPlugin,
         plonepas_interfaces.capabilities.IGroupCapability,
         plonepas_interfaces.group.IGroupIntrospection,
-        pas_interfaces.IPropertiesPlugin,
     )
     security = ClassSecurityInfo()
     meta_type = 'Member Properties To Group Plugin'
@@ -226,5 +227,82 @@ class MPTGPlugin(BasePlugin):
             )
             return sheet
         return None
+
+    # ##
+    # pas_interfaces.IGroupEnumerationPlugin
+    #
+    #  Allow querying groups by ID, and searching for groups.
+    #
+    @security.private
+    def enumerateGroups(
+        self,
+        id=None,
+        exact_match=False,
+        sort_by=None,
+        max_results=None,
+        **kw
+    ):
+        """ -> ( group_info_1, ... group_info_N )
+
+        o Return mappings for groups matching the given criteria.
+
+        o 'id' in combination with 'exact_match' true, will
+          return at most one mapping per supplied ID ('id' and 'login'
+          may be sequences).
+
+        o If 'exact_match' is False, then 'id' may be treated by
+          the plugin as "contains" searches (more complicated searches
+          may be supported by some plugins using other keyword arguments).
+
+        o If 'sort_by' is passed, the results will be sorted accordingly.
+          known valid values are 'id' (some plugins may support others).
+
+        o If 'max_results' is specified, it must be a positive integer,
+          limiting the number of returned mappings.  If unspecified, the
+          plugin should return mappings for all groups satisfying the
+          criteria.
+
+        o Minimal keys in the returned mappings:
+
+          'id' -- (required) the group ID
+
+          'pluginid' -- (required) the plugin ID (as returned by getId())
+
+          'properties_url' -- (optional) the URL to a page for updating the
+                              group's properties.
+
+          'members_url' -- (optional) the URL to a page for updating the
+                           principals who belong to the group.
+
+        o Plugin *must* ignore unknown criteria.
+
+        o Plugin may raise ValueError for invalid critera.
+
+        o Insufficiently-specified criteria may have catastrophic
+          scaling issues for some implementations.
+        """
+        import ipdb; ipdb.set_trace()
+        if id:
+            kw['id'] = id
+        result = []
+        for prop, gid, title, descr, email in self._valid_groups():
+            record = {
+                'id': gid,
+                'pluginid': self.getId(),
+            }
+            if not kw:  # show all
+                result.append(record)
+                continue
+            if exact_match:
+                if 'id' in kw and kw['id'] == gid:
+                    result.append(record)
+                continue
+            if gid.startswith(kw['id']):
+                result.append(record)
+                continue
+        # todo: sort
+        if max_results and len(result) > max_results:
+            result = result[:max_results]
+        return result
 
 InitializeClass(MPTGPlugin)
