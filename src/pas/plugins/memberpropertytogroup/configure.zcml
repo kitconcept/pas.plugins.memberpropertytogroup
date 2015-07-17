@@ -27,18 +27,4 @@
       title="pas.plugins.memberpropertytogroup (plone)"
   />
 
-  <genericsetup:importStep
-      description=""
-      handler="pas.plugins.memberpropertytogroup.setuphandlers.setup_plugin"
-      name="pas.plugins.memberpropertytogroup.setup"
-      title="Setup pas.plugins.memberpropertytogroup PAS Plugin"
-  />
-
-  <genericsetup:importStep
-      description=""
-      handler="pas.plugins.memberpropertytogroup.setuphandlers.remove_plugin"
-      name="pas.plugins.memberpropertytogroup.remove"
-      title="Remove pas.plugins.memberpropertytogroup PAS Plugin"
-  />
-
 </configure>
