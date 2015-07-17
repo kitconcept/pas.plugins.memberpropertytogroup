@@ -71,7 +71,7 @@ class MPTGPlugin(BasePlugin):
         )
         return settings.group_property
 
-    def _sheets_of_principal(self, principal):
+    def _sheet_plugins_of_principal(self, principal):
         pas = self._getPAS()
         sheet_plugins = pas.plugins.listPlugins(
             pas_interfaces.IPropertiesPlugin
@@ -82,7 +82,7 @@ class MPTGPlugin(BasePlugin):
         """get property with group information from principal
         """
         key = self._configured_property()
-        sheet_plugins = self._sheets_of_principal(principal)
+        sheet_plugins = self._sheet_plugins_of_principal(principal)
         for sheet_id in principal.listPropertysheets():
             sheet_provider = sheet_plugins[sheet_id]
             sheet = sheet_provider.getPropertiesForUser(principal)

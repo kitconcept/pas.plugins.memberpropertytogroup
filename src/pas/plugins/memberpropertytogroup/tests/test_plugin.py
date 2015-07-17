@@ -28,14 +28,13 @@ class TestPluginHelpers(unittest.TestCase):
         self.mocked_property_key = mock_property_key.start()
         self.addCleanup(mock_property_key.stop)
 
-        # mock sheets
-        mock_sheets = mock.patch.object(
+        mock_sheets_plugins = mock.patch.object(
             MPTGPlugin,
-            '_sheets_of_principal',
-            mock.Mock(wraps=MPTGPlugin._sheets_of_principal)
+            '_sheet_plugins_of_principal',
+            mock.Mock(wraps=MPTGPlugin._sheet_plugins_of_principal)
         )
-        self.mocked_sheets = mock_sheets.start()
-        self.addCleanup(mock_sheets.stop)
+        self.mocked_sheet_plugins = mock_sheets_plugins.start()
+        self.addCleanup(mock_sheets_plugins.stop)
 
     def test_group_property_of_principal(self):
         # mock a user with sheet
@@ -46,16 +45,22 @@ class TestPluginHelpers(unittest.TestCase):
             {'testproperty': 'mockgroup'},
         )
         self.mocked_property_key.return_value = 'testproperty'
-        self.mocked_sheets.return_value = {
-            'testsheet': mock_user._propertysheets['testsheet']
+
+        # mock sheets provider
+        class MockProvider(object):
+            def getPropertiesForUser(self, principal):
+                return mock_user._propertysheets['testsheet']
+
+        self.mocked_sheet_plugins.return_value = {
+            'testsheet': MockProvider()
         }
 
         value = self.plugin._group_property_of_principal(mock_user)
         self.assertEqual(value, 'mockgroup')
 
 
-class TestPluginGroupCapability(unittest.TestCase):
-    """interface plonepas_interfaces.capabilities.IGroupCapability
+class TestGroupPlugin(unittest.TestCase):
+    """interface pas_interfaces.plugin.IGroupPlugin
 
     Test if above interface works as expected
     """

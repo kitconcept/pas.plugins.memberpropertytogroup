@@ -50,15 +50,25 @@ class TestMailchimpSettingsControlPanel(unittest.TestCase):
             ]
         )
 
-    def test_record_example_field(self):
+    def test_record_group_property(self):
         record = self.registry.records[
             'pas.plugins.memberpropertytogroup.interfaces.' +
-            'IPasPluginsMemberpropertytogroupSettings.example_field'
+            'IPasPluginsMemberpropertytogroupSettings.group_property'
         ]
         self.assertTrue(
-            'example_field' in IPasPluginsMemberpropertytogroupSettings
+            'group_property' in IPasPluginsMemberpropertytogroupSettings
         )
         self.assertEquals(record.value, u"")
+
+    def test_record_valid_groups(self):
+        record = self.registry.records[
+            'pas.plugins.memberpropertytogroup.interfaces.' +
+            'IPasPluginsMemberpropertytogroupSettings.valid_groups'
+        ]
+        self.assertTrue(
+            'valid_groups' in IPasPluginsMemberpropertytogroupSettings
+        )
+        self.assertEquals(record.value, [])
 
 
 class ControlpanelFunctionalTest(unittest.TestCase):

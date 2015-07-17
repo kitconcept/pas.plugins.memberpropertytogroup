@@ -2,6 +2,7 @@
 from pas.plugins.memberpropertytogroup.interfaces import _
 from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupSettings  # noqa
 from plone.app.registry.browser import controlpanel
+from z3c.form.browser.textlines import TextLinesFieldWidget
 
 
 class MemberpropertiestogroupSettingsEditForm(controlpanel.RegistryEditForm):
@@ -12,6 +13,7 @@ class MemberpropertiestogroupSettingsEditForm(controlpanel.RegistryEditForm):
 
     def updateFields(self):
         super(MemberpropertiestogroupSettingsEditForm, self).updateFields()
+        self.fields['valid_groups'].widgetFactory = TextLinesFieldWidget
 
     def updateWidgets(self):
         super(MemberpropertiestogroupSettingsEditForm, self).updateWidgets()
