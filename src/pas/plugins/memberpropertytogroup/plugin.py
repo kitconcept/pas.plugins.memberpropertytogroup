@@ -73,7 +73,7 @@ class MPTGPlugin(BasePlugin):
     def _valid_groups(self):
         result = []
         for line in self._settings.valid_groups:
-            result += (line.split('|') + [''] * 5)[:5]
+            result.append((line.split('|') + [''] * 5)[:5])
         return result
 
     def _principal_by_id(self, principal_id):
@@ -281,7 +281,6 @@ class MPTGPlugin(BasePlugin):
         o Insufficiently-specified criteria may have catastrophic
           scaling issues for some implementations.
         """
-        import ipdb; ipdb.set_trace()
         if id:
             kw['id'] = id
         result = []
