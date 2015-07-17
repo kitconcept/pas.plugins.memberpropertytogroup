@@ -43,7 +43,7 @@ setup(
     install_requires=[
         'setuptools',
         'Products.PlonePAS',
-        'Products.PlugableAuthService',
+        'Products.PluggableAuthService',
         'plone.app.registry',
     ],
     extras_require={
