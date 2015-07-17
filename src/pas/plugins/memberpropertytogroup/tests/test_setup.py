@@ -25,6 +25,7 @@ class TestSetup(unittest.TestCase):
                 'pas.plugins.memberpropertytogroup'
             )
         )
+        self.assertIn('memberpropertytogroup', self.portal.acl_users)
 
     def test_uninstall(self):
         """Test if pas.plugins.memberpropertytogroup is cleanly uninstalled."""
