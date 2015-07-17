@@ -141,3 +141,33 @@ class TestPlugin(unittest.TestCase):
         from Products.PluggableAuthService.interfaces.plugins import IPropertiesPlugin  # noqa
         plugin_ids = self.aclu.plugins.listPluginIds(IPropertiesPlugin)
         self.assertIn(self.plugin.getId(), plugin_ids)
+
+    def test_enumerateGroups(self):
+        self.mocked_valid_groups.return_value = [
+            ['prop1', 'group1', 'title1', 'descr1', 'email1'],
+            ['prop2', 'group2', 'title2', 'descr2', 'email2'],
+        ]
+        self.mocked_group_property_of_principal.return_value = ''
+        self.assertEqual(
+            len(self.plugin.enumerateGroups(id='group')),
+            2
+        )
+        self.assertEqual(
+            len(self.plugin.enumerateGroups()),
+            2
+        )
+        self.assertEqual(
+            len(self.plugin.enumerateGroups(id='group1')),
+            1
+        )
+        self.assertEqual(
+            self.plugin.enumerateGroups(
+                id='group1',
+                exact_match=True
+            )[0]['id'],
+            'group1'
+        )
+        self.assertEqual(
+            self.plugin.enumerateGroups(id='group', exact_match=True),
+            []
+        )
