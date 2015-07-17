@@ -2,9 +2,10 @@
 from pas.plugins.memberpropertytogroup.plugin import MPTGPlugin
 
 TITLE = 'Member Property To Group plugin (pas.plugins.memberpropertytogroup)'
+DEFAULTID = 'memberpropertytogroup'
 
 
-def _addPlugin(pas, pluginid='memberpropertytogroup'):
+def _addPlugin(pas, pluginid=DEFAULTID):
     if pluginid in pas.objectIds():
         return TITLE + ' already installed.'
     plugin = MPTGPlugin(pluginid, title=TITLE)
@@ -22,5 +23,15 @@ def _addPlugin(pas, pluginid='memberpropertytogroup'):
 
 
 def setup_plugin(context):
-    if context.readDataFile('paspluginsmptg_zope_marker.txt') is not None:
+    if context.readDataFile('paspluginsmemberpropertytogroup_marker.txt') is not None:  # noqa
         _addPlugin(context.getSite().acl_users)
+
+
+def _remove_plugin(pas, pluginid=DEFAULTID):
+    if pluginid in pas.objectIds():
+        pas.manage_delObjects([pluginid])
+
+
+def remove_plugin(context):
+    if context.readDataFile('paspluginsmemberpropertytogroup_uninstall.txt') is not None:  # noqa
+        _remove_plugin(context.getSite().acl_users)

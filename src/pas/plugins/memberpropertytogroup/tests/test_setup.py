@@ -35,6 +35,7 @@ class TestSetup(unittest.TestCase):
                 'pas.plugins.memberpropertytogroup'
             )
         )
+        # self.assertNotIn('memberpropertytogroup', self.portal.acl_users)
 
     def test_browserlayer(self):
         """Test that IPasPluginsMemberpropertytogroupLayer is registered."""

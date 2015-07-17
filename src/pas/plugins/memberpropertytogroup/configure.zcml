@@ -27,12 +27,18 @@
       title="pas.plugins.memberpropertytogroup (plone)"
   />
 
-  <genericsetup:registerProfile
-      description="Installs the acl_user/plain zope part pas.plugins.memberpropertytogroup add-on."
-      directory="profiles/zope"
-      name="plugin"
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      title="pas.plugins.memberpropertytogroup (zope, plugin only)"
+  <genericsetup:importStep
+      description=""
+      handler="pas.plugins.memberpropertytogroup.setuphandlers.setup_plugin"
+      name="pas.plugins.memberpropertytogroup.setup"
+      title="Setup pas.plugins.memberpropertytogroup PAS Plugin"
+  />
+
+  <genericsetup:importStep
+      description=""
+      handler="pas.plugins.memberpropertytogroup.setuphandlers.remove_plugin"
+      name="pas.plugins.memberpropertytogroup.remove"
+      title="Remove pas.plugins.memberpropertytogroup PAS Plugin"
   />
 
 </configure>
