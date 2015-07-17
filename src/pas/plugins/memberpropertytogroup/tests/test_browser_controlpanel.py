@@ -24,6 +24,14 @@ class TestMailchimpSettingsControlPanel(unittest.TestCase):
             IPasPluginsMemberpropertytogroupSettings
         )
 
+    def test_validator(self):
+        from pas.plugins.memberpropertytogroup.interfaces import validate_valid_groups  # noqa
+        from zope.interface import Invalid
+        with self.assertRaises(Invalid):
+            validate_valid_groups(['1'])
+        with self.assertRaises(Invalid):
+            validate_valid_groups(['1|2|3|4|5|6'])
+
     def test_memberpropertytogroup_controlpanel_view(self):
         view = getMultiAdapter(
             (self.portal, self.portal.REQUEST),
