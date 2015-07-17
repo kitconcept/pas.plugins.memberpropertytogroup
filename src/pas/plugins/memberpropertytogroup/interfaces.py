@@ -17,7 +17,7 @@ def validate_valid_groups(value):
                 _(
                     'validate_valid_groups_not_enough_pipe',
                     u"Line ${count} needs at least property value and groupid",
-                    mapping={'count': count+1}
+                    mapping={'count': count + 1}
                 )
             )
         if len(line.split('|')) > 5:
@@ -25,7 +25,7 @@ def validate_valid_groups(value):
                 _(
                     'validate_valid_groups_too_many_pipe',
                     u"Line ${count} has too many segments.",
-                    mapping={'count': count+1}
+                    mapping={'count': count + 1}
                 )
             )
     return True
