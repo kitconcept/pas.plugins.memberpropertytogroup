@@ -132,7 +132,8 @@ class MPTGPlugin(BasePlugin):
     # plonepas_interfaces.capabilities.IGroupCapability
     # (plone ui specific)
     #
-    @security.public
+    security.declarePublic('allowGroupAdd')
+
     def allowGroupAdd(self, principal_id, group_id):
         """
         True if this plugin will allow adding a certain principal to
@@ -140,7 +141,8 @@ class MPTGPlugin(BasePlugin):
         """
         return False
 
-    @security.public
+    security.declarePublic('allowGroupRemove')
+
     def allowGroupRemove(self, principal_id, group_id):
         """
         True if this plugin will allow removing a certain principal
@@ -233,7 +235,8 @@ class MPTGPlugin(BasePlugin):
     #
     #  Allow querying groups by ID, and searching for groups.
     #
-    @security.private
+    security.declarePrivate('enumerateGroups')
+
     def enumerateGroups(
         self,
         id=None,

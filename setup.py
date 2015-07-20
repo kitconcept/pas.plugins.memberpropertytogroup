@@ -45,6 +45,10 @@ setup(
         'setuptools',
     ],
     extras_require={
+        'plone3': [
+            'plone.registry',
+            'plone.app.registry',
+        ],
         'test': [
             'ipdb',
             'mock',
