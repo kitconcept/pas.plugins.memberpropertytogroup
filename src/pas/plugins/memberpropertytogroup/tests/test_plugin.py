@@ -58,6 +58,18 @@ class TestPluginHelpers(unittest.TestCase):
         value = self.plugin._group_property_of_principal(mock_user)
         self.assertEqual(value, 'mockgroup')
 
+    def test_is_property_match_equals(self):
+        TESTS_EQUAL = [
+            ('foo', 'foo'),
+            ('foobar', 'foo*'),
+            ('foo', 'foo*'),
+        ]
+        for prop, match in TESTS_EQUAL:
+            self.assertTrue(
+                self.plugin._is_property_match(prop, match),
+                'Problem with pair prop=' + prop + ', match=' + match
+            )
+
 
 class TestPlugin(unittest.TestCase):
 

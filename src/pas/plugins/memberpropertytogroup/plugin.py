@@ -107,6 +107,17 @@ class MPTGPlugin(BasePlugin):
                 return value
         return None
 
+    def _is_property_match(self, group_prop, group_match):
+        """check a given group property of a user against a group matcher
+        """
+        star = group_match.endswith('*')
+        if star:
+            group_match = group_match[:-1]
+        return (
+            star and group_prop.startswith(group_match)
+            or group_prop == group_match
+        )
+
     # ##
     # pas_interfaces.IGroupsPlugin
     #
@@ -124,7 +135,7 @@ class MPTGPlugin(BasePlugin):
         """
         group_prop_value = self._group_property_of_principal(principal)
         for prop, gid, title, descr, email in self._valid_groups():
-            if group_prop_value == prop:
+            if self._is_property_match(group_prop_value, prop):
                 return (gid, )
         return tuple()
 
