@@ -1,3 +1,5 @@
+.. image:: https://travis-ci.org/kitconcept/pas.plugins.memberpropertytogroup.svg?branch=master
+    :target: https://travis-ci.org/kitconcept/pas.plugins.memberpropertytogroup
 
 .. image:: https://coveralls.io/repos/kitconcept/pas.plugins.memberpropertytogroup/badge.svg
   :target: https://coveralls.io/r/kitconcept/pas.plugins.memberpropertytogroup
