@@ -24,3 +24,9 @@ local/
 output.xml
 parts/
 var/
+log.html
+report.html
+selenium-screenshot-*.png
+docs/Makefile
+docs/make.bat
+
