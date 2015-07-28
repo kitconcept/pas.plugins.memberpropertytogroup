@@ -59,10 +59,10 @@ Scenario: As administrator I can create a group based on multiple member propert
 
 Scenario: As administrator I can create a group based on member properties prefixes
   Pass Execution  Not implemented yet
-  Given a user 'John Doe' with the property 'student_id' = '1234567'
+  Given a user with the property 'student_id' = '1234567'
     and a logged-in manager
    When I create a virtual group 'Students' with the property 'student' = '123*'
-   Then the user 'John Doe' is member of the group 'Students'
+   Then the user is member of the group 'Students'
 
 
 *** Keywords *****************************************************************
