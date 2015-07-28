@@ -8,6 +8,7 @@ from plone.app.testing import PloneSandboxLayer
 from plone.testing import Layer
 from plone.testing import z2
 from Products.CMFCore.interfaces import ISiteRoot
+from Products.CMFCore.utils import getToolByName
 from zope.component import provideUtility
 
 import pas.plugins.memberpropertytogroup
@@ -90,9 +91,13 @@ class PasPluginsMPTGPloneLayer(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         self.loadZCML(package=pas.plugins.memberpropertytogroup)
+        z2.installProduct(app, 'pas.plugins.memberpropertytogroup')
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'pas.plugins.memberpropertytogroup:default')
+        mtool = getToolByName(portal, 'portal_membership')
+        member = mtool.getMemberById('test_user_1_')
+        member.setMemberProperties(mapping={"location": "employee"})
 
 
 PAS_PLUGINS_MPTG_PLONE_FIXTURE = PasPluginsMPTGPloneLayer()
