@@ -4,7 +4,7 @@
 #
 # Run this robot test stand-alone:
 #
-#  $ bin/test -s pas.plugins.memberpropertytogroup -t test_example.robot --all
+#  $ bin/test -s pas.plugins.memberpropertytogroup -t test_acceptance.robot --all
 #
 # Run this robot test with robot server (which is faster):
 #
@@ -14,7 +14,7 @@
 #
 # 2) Run robot tests:
 #
-# $ bin/robot src/pas/plugins/memberpropertytogroup/tests/robot/test_example.robot
+# $ bin/robot src/pas/plugins/memberpropertytogroup/tests/robot/test_acceptance.robot
 #
 # See the http://docs.plone.org for further details (search for robot
 # framework).
@@ -35,7 +35,6 @@ Test Teardown  Close all browsers
 *** Test Cases ***************************************************************
 
 Scenario: As administrator I can create a group based on member properties
-  Pass Execution  Not implemented yet
   Given a user 'John Doe' with the property 'usertype' = 'employee'
     and a logged-in manager
    When I create a virtual group 'Employees' with the property 'usertype' = 'employee'
@@ -72,19 +71,23 @@ Scenario: As administrator I can create a group based on member properties prefi
 # --- Given ------------------------------------------------------------------
 
 a logged-in manager
-  Pass
+  Enable Autologin As  Manager
 
 a logged-in reviewer
-  Pass
+  Enable Autologin As  Reviewer
 
 a user '${user}' with the property '${property}' = '${value}'
-  Pass
+  Go To  ${PLONE_URL}
 
 
 # --- WHEN -------------------------------------------------------------------
 
 I create a virtual group '${group}' with the property '${property}' = '${value}'
-  Pass
+  Go To  ${PLONE_URL}/@@memberpropertytogroup-controlpanel
+  Input Text  form.widgets.group_property  employee
+  Input Text  form.widgets.valid_groups  True|employees|Employees|Employees|employees@example.com
+  Click Button  Save
+  Wait until page contains  Changes saved
 
 I grant the user '${user}' the '${permission}' permission on a folder
   Pass
@@ -93,7 +96,7 @@ I grant the user '${user}' the '${permission}' permission on a folder
 # --- THEN -------------------------------------------------------------------
 
 the user '${user}' is member of the group '${group}'
-  Pass
+  Go To  ${PLONE_URL}/@@usergroup-usermembership?userid=test_user_1_
 
 the user '${user}' can edit the folder
   Pass
