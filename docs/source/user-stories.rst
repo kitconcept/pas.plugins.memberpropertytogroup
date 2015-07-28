@@ -37,6 +37,7 @@ Then the user can edit the folder.
    :alt: MemberPropertyToGroup Control Panel
    :align: center
 
+
 As administrator I can create a group based on multiple member properties
 -------------------------------------------------------------------------
 
