@@ -96,6 +96,7 @@ I create a virtual group '${group}' with the property '${property}' = '${value}'
   Go to  ${PLONE_URL}/@@memberpropertytogroup-controlpanel
   Input text  form.widgets.group_property  location
   Input text  form.widgets.valid_groups  employee|employees|Employees|Virtual Employee Group|employee@example.com
+  Capture screenshot  memberpropertytogroup-controlpanel.png
   Click button  Save
   Wait until page contains  Changes saved
 
@@ -106,6 +107,7 @@ I grant the virtual group the '${permission}' permission on a folder
   Input text  css=#sharing-user-group-search  employees
   Click button  css=#sharing-search-button
   Select checkbox  entries.role_Editor:records
+  Capture screenshot  grant-virtual-group-permission-on-folder.png
   Click button  Save
   Wait until page contains  Changes saved
 
@@ -116,6 +118,7 @@ the user is member of the group '${group}'
   Go To  ${PLONE_URL}/@@usergroup-usermembership?userid=test_user_1_
   Wait until page contains  Current group memberships
   Xpath Should Match X Times  //table[@summary='Group Memberships Listing']//tr/td//*[text()[contains(., '${group}')]]  1
+  Capture screenshot  the-user-is-member-of-the-group.png
 
 the user can edit the folder
   Enable autologin as  test_user_1_
@@ -124,4 +127,12 @@ the user can edit the folder
   Wait until page contains  Site Map
   Page should contain  Edit
   Page should contain element  xpath=//input[@name='title']
+  Capture screenshot  the-user-can-edit-the-folder.png
 
+
+# --- HELPER -----------------------------------------------------------------
+
+Capture screenshot
+  [Arguments]  ${filename}
+  # Base path is '/parts/test/test_acceptance/Scenario_[...]/
+  Capture Page Screenshot  filename=../../../../docs/source/_screenshots/${filename}
