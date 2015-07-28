@@ -38,21 +38,25 @@ class IPasPluginsMemberpropertytogroupLayer(IDefaultBrowserLayer):
 class IPasPluginsMemberpropertytogroupSettings(Interface):
 
     group_property = schema.TextLine(
-        title=_(u"Group Property"),
+        title=_(u"Users Group Property Field"),
         description=_(
-            u"Property key on users PropertySheet used as group mapping."
+            u"Name of property (key) on users property-sheet used as group "
+            u"mapping."
         ),
         required=False,
         default=u'',
     )
 
     valid_groups = schema.List(
-        title=_(u"Valid Groups"),
+        title=_(u"Mapped Groups"),
         description=_(
-            u"List of valid groups to be processed. "
-            u"On group per line. "
+            u"Mapped groups to be processed. "
+            u"On group per line. This creates valid plone groups, do not add "
+            u"them at other places. "
+            u"If user-property-value ends with an asterisk (*) all values "
+            u"starting with the given string are matching. "
             u"Format: "
-            u"propertyvalue|groupid|grouptitle|groupdescription|groupemail"
+            u"user-property-value|group-id|title|description|email"
         ),
         required=False,
         value_type=schema.TextLine(),
