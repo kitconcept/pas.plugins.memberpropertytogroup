@@ -18,8 +18,8 @@ class TestPluginForGroupCapability(unittest.TestCase):
 
     def test_addplugin(self):
         PLUGINID = 'mptg'
-        from pas.plugins.memberpropertytogroup.setuphandlers import _addPlugin
-        result = _addPlugin(self.aclu, pluginid=PLUGINID)
+        from pas.plugins.memberpropertytogroup.setuphandlers import _add_plugin
+        result = _add_plugin(self.aclu, pluginid=PLUGINID)
         self.assertIs(result, None)
         self.assertIn(PLUGINID, self.aclu.objectIds())
 
@@ -28,5 +28,17 @@ class TestPluginForGroupCapability(unittest.TestCase):
         self.assertIsInstance(mptg, MPTGPlugin)
 
         from pas.plugins.memberpropertytogroup.setuphandlers import TITLE
-        result = _addPlugin(self.aclu, pluginid=PLUGINID)
+        result = _add_plugin(self.aclu, pluginid=PLUGINID)
         self.assertEqual(result, TITLE + ' already installed.')
+
+    def test_removeplugin(self):
+        # add before remove
+        PLUGINID = 'mptg'
+        from pas.plugins.memberpropertytogroup.setuphandlers import _add_plugin
+        _add_plugin(self.aclu, pluginid=PLUGINID)
+        self.assertIn(PLUGINID, self.aclu.objectIds())
+
+        # now remove it
+        from pas.plugins.memberpropertytogroup.setuphandlers import _remove_plugin  # noqa
+        _remove_plugin(self.aclu, pluginid=PLUGINID)
+        self.assertNotIn(PLUGINID, self.aclu.objectIds())

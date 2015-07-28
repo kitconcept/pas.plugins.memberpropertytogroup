@@ -5,7 +5,7 @@ TITLE = 'Member Property To Group plugin (pas.plugins.memberpropertytogroup)'
 DEFAULTID = 'memberpropertytogroup'
 
 
-def _addPlugin(pas, pluginid=DEFAULTID):
+def _add_plugin(pas, pluginid=DEFAULTID):
     if pluginid in pas.objectIds():
         return TITLE + ' already installed.'
     plugin = MPTGPlugin(pluginid, title=TITLE)
@@ -24,7 +24,7 @@ def _addPlugin(pas, pluginid=DEFAULTID):
 
 def setup_plugin(context):
     if context.readDataFile('paspluginsmemberpropertytogroup_marker.txt') is not None:  # noqa
-        _addPlugin(context.getSite().acl_users)
+        _add_plugin(context.getSite().acl_users)
 
 
 def _remove_plugin(pas, pluginid=DEFAULTID):

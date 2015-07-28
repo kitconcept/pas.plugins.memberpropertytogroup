@@ -77,9 +77,9 @@ class TestPlugin(unittest.TestCase):
 
     def setUp(self):
         # create plugin
-        from pas.plugins.memberpropertytogroup.setuphandlers import _addPlugin
+        from pas.plugins.memberpropertytogroup.setuphandlers import _add_plugin
         self.aclu = self.layer['app'].acl_users
-        _addPlugin(self.aclu, 'mptg')
+        _add_plugin(self.aclu, 'mptg')
         self.plugin = self.aclu['mptg']
 
         # mock property
