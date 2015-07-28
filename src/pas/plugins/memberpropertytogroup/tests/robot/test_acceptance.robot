@@ -83,10 +83,10 @@ a user '${user}' with the property '${property}' = '${value}'
 # --- WHEN -------------------------------------------------------------------
 
 I create a virtual group '${group}' with the property '${property}' = '${value}'
-  Go To  ${PLONE_URL}/@@memberpropertytogroup-controlpanel
-  Input Text  form.widgets.group_property  employee
-  Input Text  form.widgets.valid_groups  True|employees|Employees|Employees|employees@example.com
-  Click Button  Save
+  Go to  ${PLONE_URL}/@@memberpropertytogroup-controlpanel
+  Input text  form.widgets.group_property  location
+  Input text  form.widgets.valid_groups  employee|employee|Employee|Virtual Employee Group|employee@example.com
+  Click button  Save
   Wait until page contains  Changes saved
 
 I grant the user '${user}' the '${permission}' permission on a folder
@@ -97,6 +97,8 @@ I grant the user '${user}' the '${permission}' permission on a folder
 
 the user '${user}' is member of the group '${group}'
   Go To  ${PLONE_URL}/@@usergroup-usermembership?userid=test_user_1_
+  Wait until page contains  Current group memberships
+  Xpath Should Match X Times  //table[@summary='Group Memberships Listing']//tr/td//*[text()[contains(., 'Employee')]]  1
 
 the user '${user}' can edit the folder
   Pass
