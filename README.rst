@@ -22,10 +22,13 @@ The main use case are organisations that have an existing LDAP infrastructure th
 If you have a vanilla Plone site without LDAP you most likely do not need this plugin.
 
 
-Features
---------
+Features / User Stories
+-----------------------
 
-- Can be bullet points
+- As administrator I can create a group based on member properties
+- As reviewer I can grant permissions based on member properties groups
+- As administrator I can create a group based on multiple member properties
+- As administrator I can create a group based on member properties
 
 
 Installation
