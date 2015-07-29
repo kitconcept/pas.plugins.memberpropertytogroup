@@ -98,6 +98,11 @@ class PasPluginsMPTGPloneLayer(PloneSandboxLayer):
         mtool = getToolByName(portal, 'portal_membership')
         member = mtool.getMemberById('test_user_1_')
         member.setMemberProperties(mapping={"location": "employee"})
+        types_tool = getToolByName(portal, "portal_types")
+        if 'Folder' not in types_tool.objectIds():
+            from plone.dexterity.fti import DexterityFTI
+            fti = DexterityFTI('Folder')
+            types_tool._setObject('Folder', fti)
 
 
 PAS_PLUGINS_MPTG_PLONE_FIXTURE = PasPluginsMPTGPloneLayer()
