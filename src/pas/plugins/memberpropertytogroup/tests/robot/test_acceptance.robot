@@ -85,7 +85,7 @@ a virtual group '${group}' with the property '${property}' = '${value}'
   Enable autologin as  Manager
   Go to  ${PLONE_URL}/@@memberpropertytogroup-controlpanel
   Input text  form.widgets.group_property  location
-  Input text  form.widgets.valid_groups  employee|employees|Employees|Virtual Employee Group|employee@example.com
+  Input text  form.widgets.valid_groups  employee|${group}|${group}|${group} (Virtual Group)|my-virtual-group@example.com
   Click button  Save
   Wait until page contains  Changes saved
 
