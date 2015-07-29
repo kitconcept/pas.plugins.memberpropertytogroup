@@ -44,7 +44,7 @@ Scenario: As reviewer I can grant permissions based on member properties groups
   Given a user with the property 'location' = 'employee'
     and a virtual group 'Employees' with the property 'location' = 'employee'
     and a logged-in manager
-   When I grant the virtual group 'Employees' the 'edit' permission on a folder
+   When I grant the virtual group 'Employees' the 'Edit' permission on a folder
    Then the user can edit the folder
 
 Scenario: As administrator I can create a group based on multiple member properties
@@ -125,10 +125,10 @@ the user can edit the folder
   Disable autologin
   Enable autologin as  test_user_1_
   Go to  ${PLONE_URL}/folder
-  Click link  Edit
+  Click element  xpath=//*[contains(text(), 'Edit')]
   Wait until page contains  Site Map
   Page should contain  Edit
-  Page should contain element  xpath=//input[@name='title']
+  Page should contain element  xpath=//*[@value='Save']
   Capture screenshot  the-user-can-edit-the-folder.png
 
 
