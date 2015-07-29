@@ -35,9 +35,10 @@ Test Teardown  Close all browsers
 *** Test Cases ***************************************************************
 
 Scenario: As administrator I can create a group based on member properties
-  Given a user with the property 'usertype' = 'employee'
+  # XXX: We need to change location -> usertype.
+  Given a user with the property 'location' = 'employee'
     and a logged-in manager
-   When I create a virtual group 'Employees' with the property 'usertype' = 'employee'
+   When I create a virtual group 'Employees' with the property 'location' = 'employee'
    Then the user is member of the group 'Employees'
 
 Scenario: As reviewer I can grant permissions based on member properties groups
@@ -84,8 +85,8 @@ a user '${user}' with the property '${property}' = '${value}'
 a virtual group '${group}' with the property '${property}' = '${value}'
   Enable autologin as  Manager
   Go to  ${PLONE_URL}/@@memberpropertytogroup-controlpanel
-  Input text  form.widgets.group_property  location
-  Input text  form.widgets.valid_groups  employee|${group}|${group}|${group} (Virtual Group)|my-virtual-group@example.com
+  Input text  form.widgets.group_property  ${property}
+  Input text  form.widgets.valid_groups  ${value}|${group}|${group}|${group} (Virtual Group)|my-virtual-group@example.com
   Click button  Save
   Wait until page contains  Changes saved
 
