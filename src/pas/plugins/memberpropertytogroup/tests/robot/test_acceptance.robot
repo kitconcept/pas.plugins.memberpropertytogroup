@@ -35,17 +35,16 @@ Test Teardown  Close all browsers
 *** Test Cases ***************************************************************
 
 Scenario: As administrator I can create a group based on member properties
-  # XXX: We need to change location -> usertype.
   Given a user with the property 'location' = 'employee'
     and a logged-in manager
    When I create a virtual group 'Employees' with the property 'location' = 'employee'
    Then the user is member of the group 'Employees'
 
 Scenario: As reviewer I can grant permissions based on member properties groups
-  Given a user with the property 'usertype' = 'employee'
-    and a virtual group 'Employees' with the property 'usertype' = 'employee'
+  Given a user with the property 'location' = 'employee'
+    and a virtual group 'Employees' with the property 'location' = 'employee'
     and a logged-in manager
-   When I grant the virtual group the 'edit' permission on a folder
+   When I grant the virtual group 'Employees' the 'edit' permission on a folder
    Then the user can edit the folder
 
 Scenario: As administrator I can create a group based on multiple member properties
@@ -95,19 +94,20 @@ a virtual group '${group}' with the property '${property}' = '${value}'
 
 I create a virtual group '${group}' with the property '${property}' = '${value}'
   Go to  ${PLONE_URL}/@@memberpropertytogroup-controlpanel
-  Input text  form.widgets.group_property  location
-  Input text  form.widgets.valid_groups  employee|employees|Employees|Virtual Employee Group|employee@example.com
+  Input text  form.widgets.group_property  ${property}
+  Input text  form.widgets.valid_groups  ${value}|${group}|${group}|${group} (Virtual Group)|my-virtual-group@example.com
   Capture screenshot  memberpropertytogroup-controlpanel.png
   Click button  Save
   Wait until page contains  Changes saved
 
-I grant the virtual group the '${permission}' permission on a folder
+I grant the virtual group '${group}' the 'Edit' permission on a folder
   Create content  type=Folder  id=folder  title=Folder
   Go to  ${PLONE_URL}/folder/@@sharing
   Wait until page contains element  css=#sharing-user-group-search
-  Input text  css=#sharing-user-group-search  employees
+  Input text  css=#sharing-user-group-search  ${group}
   Click button  css=#sharing-search-button
-  Select checkbox  entries.role_Editor:records
+  Xpath Should Match X Times  //table[@id='user-group-sharing']//td[@title='${group}']  1
+  Select checkbox  xpath=//table[@id='user-group-sharing']//td[@title='Employees']/following-sibling::td[2]/input
   Capture screenshot  grant-virtual-group-permission-on-folder.png
   Click button  Save
   Wait until page contains  Changes saved
@@ -122,6 +122,7 @@ the user is member of the group '${group}'
   Capture screenshot  the-user-is-member-of-the-group.png
 
 the user can edit the folder
+  Disable autologin
   Enable autologin as  test_user_1_
   Go to  ${PLONE_URL}/folder
   Click link  Edit
