@@ -4,6 +4,10 @@
 .. image:: https://coveralls.io/repos/kitconcept/pas.plugins.memberpropertytogroup/badge.svg
   :target: https://coveralls.io/r/kitconcept/pas.plugins.memberpropertytogroup
 
+.. image:: https://readthedocs.org/projects/paspluginsmemberpropertytogroup/badge/?version=latest
+  :target: https://readthedocs.org/projects/paspluginsmemberpropertytogroup/?badge=latest
+  :alt: Documentation Status
+
 .. image:: https://badge.waffle.io/kitconcept/pas.plugins.memberpropertytogroup.png?label=ready&title=Ready
  :target: https://waffle.io/kitconcept/pas.plugins.memberpropertytogroup
  :alt: 'Stories in Ready'
@@ -100,6 +104,7 @@ The development of this plugin has been kindly sponsored by `Bonn University`_.
    :scale: 50 %
    :alt: Bonn University
    :align: right
+   target: http://uni-bonn.de
 
 Icon by `FamFamFam <http://famfamfam.com/>`_
 
