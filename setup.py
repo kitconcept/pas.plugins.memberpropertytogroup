@@ -19,18 +19,19 @@ long_description = (
 
 setup(
     name='pas.plugins.memberpropertytogroup',
-    version='0.1',
-    description="An add-on for Plone",
+    version='1.0a1.dev0',
+    description='Plone PAS plugin to create virtual groups based on member properties.',  # noqa
     long_description=long_description,
     # Get more from http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
         "Environment :: Web Environment",
         "Framework :: Plone",
+        "Framework :: Plone :: 3.3",
         "Framework :: Plone :: 4.3",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
     ],
-    keywords='Python Plone',
+    keywords='Python Plone PAS LDAP',
     author='Timo Stollenwerk',
     author_email='tisto@plone.org',
     url='http://pypi.python.org/pypi/pas.plugins.memberpropertytogroup',
@@ -50,7 +51,6 @@ setup(
             'plone.app.registry',
         ],
         'test': [
-            'ipdb',
             'mock',
             'plone.app.testing',
             'plone.app.contenttypes',

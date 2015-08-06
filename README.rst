@@ -12,23 +12,31 @@
    If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide_addons.html
    This text does not appear on pypi or github. It is a comment.
 
+
 =============================================================================
 pas.plugins.memberpropertytogroup
 =============================================================================
 
-Plone PAS plugin that allows to create virtual groups based on member properties.
+Plone PAS plugin to create virtual groups based on member properties.
 
-The main use case are organisations that have an existing LDAP infrastructure that organise groups through member properties instead of  DAP groups.
-If you have a vanilla Plone site without LDAP you most likely do not need this plugin.
+The main use case are organisations that have an existing LDAP infrastructure that organises groups through member properties instead of LDAP groups.
+
+If you have a vanilla Plone site without LDAP, you most likely do not need this plugin.
 
 
-Features / User Stories
------------------------
+Features
+--------
 
 - As administrator I can create a group based on member properties
 - As reviewer I can grant permissions based on member properties groups
 - As administrator I can create a group based on multiple member properties
 - As administrator I can create a group based on member properties
+
+
+Documentation
+-------------
+
+The full documentation for integrators and developers can be found in the "docs" folder. It is also available online at http://paspluginsmemberpropertytogroup.readthedocs.org.
 
 
 Installation
@@ -50,15 +58,16 @@ and then running "bin/buildout".
 Contribute
 ----------
 
-If you want to help with the development (improvement, update, bug-fixing, ...) of ``pas.plugins.memberpropertytogroup`` this is a great idea!
-
 - `Source code at Github <https://github.com/kitconcept/pas.plugins.memberpropertytogroup>`_
 - `Issue tracker at Github <https://github.com/kitconcept/pas.plugins.memberpropertytogroup/issues>`_ or same
   `issues on Kanban board at Waffle.io <https://waffle.io/kitconcept/pas.plugins.memberpropertytogroup>`_
+- `Documentation at ReadTheDocs <http://paspluginsmemberpropertytogroup.readthedocs.org>`_:
 
-Maintainers are Timo Stollenwerk and Jens Klein.
 
-We appreciate any contribution and if a release is needed to be done on pypi, please just contact one of us.
+Support
+-------
+
+If you are having issues, `please let us know <https://github.com/kitconcept/pas.plugins.memberpropertytogroup/issues>`_.
 
 
 Development
@@ -78,6 +87,7 @@ Plone 5
     There must be an ``python`` binary available in system path pointing to Python 2.7 , then::
 
         $ bootstrap-4.3.x.sh
+
 
 Credits
 -------
