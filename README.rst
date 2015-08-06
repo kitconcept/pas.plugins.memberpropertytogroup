@@ -100,8 +100,6 @@ Plone 5
 Credits
 -------
 
-The development of this plugin has been kindly sponsored by `Bonn University`_.
-
 .. image:: http://www3.uni-bonn.de/logo.png
    :height: 164px
    :width: 222px
@@ -109,6 +107,8 @@ The development of this plugin has been kindly sponsored by `Bonn University`_.
    :alt: Bonn University
    :align: right
    target: http://uni-bonn.de
+
+The development of this plugin has been kindly sponsored by `Bonn University`_.
 
 Icon by `FamFamFam <http://famfamfam.com/>`_
 
