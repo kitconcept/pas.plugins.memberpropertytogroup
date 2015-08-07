@@ -4,28 +4,64 @@
 .. image:: https://coveralls.io/repos/kitconcept/pas.plugins.memberpropertytogroup/badge.svg
   :target: https://coveralls.io/r/kitconcept/pas.plugins.memberpropertytogroup
 
+.. image:: https://landscape.io/github/kitconcept/pas.plugins.memberpropertytogroup/master/landscape.svg?style=plastic
+  :target: https://landscape.io/github/kitconcept/pas.plugins.memberpropertytogroup/master
+  :alt: Code Health
+
+.. image:: https://readthedocs.org/projects/paspluginsmemberpropertytogroup/badge/?version=latest
+  :target: https://readthedocs.org/projects/paspluginsmemberpropertytogroup/?badge=latest
+  :alt: Documentation Status
+
 .. image:: https://badge.waffle.io/kitconcept/pas.plugins.memberpropertytogroup.png?label=ready&title=Ready
  :target: https://waffle.io/kitconcept/pas.plugins.memberpropertytogroup
  :alt: 'Stories in Ready'
+
+.. image:: https://img.shields.io/pypi/dm/pas.plugins.memberpropertytogroup.svg
+    :target: https://pypi.python.org/pypi/pas.plugins.memberpropertytogroup/
+    :alt: Downloads
+
+.. image:: https://img.shields.io/pypi/v/pas.plugins.memberpropertytogroup.svg
+    :target: https://pypi.python.org/pypi/pas.plugins.memberpropertytogroup/
+    :alt: Latest Version
+
+.. image:: https://img.shields.io/pypi/status/pas.plugins.memberpropertytogroup.svg
+    :target: https://pypi.python.org/pypi/pas.plugins.memberpropertytogroup/
+    :alt: Egg Status
+
+.. image:: https://img.shields.io/pypi/l/pas.plugins.memberpropertytogroup.svg
+    :target: https://pypi.python.org/pypi/pas.plugins.memberpropertytogroup/
+    :alt: License
+
 
 .. This README is meant for consumption by humans and pypi. Pypi can render rst files so please do not use Sphinx features.
    If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide_addons.html
    This text does not appear on pypi or github. It is a comment.
 
+
 =============================================================================
 pas.plugins.memberpropertytogroup
 =============================================================================
 
-Plone PAS plugin that allows to create virtual groups based on member properties.
+Plone PAS plugin to create virtual groups based on member properties.
 
-The main use case are organisations that have an existing LDAP infrastructure that organise groups through member properties instead of  DAP groups.
-If you have a vanilla Plone site without LDAP you most likely do not need this plugin.
+The main use case are organisations that have an existing LDAP infrastructure that organises groups through member properties instead of LDAP groups.
+
+If you have a vanilla Plone site without LDAP, you most likely do not need this plugin.
 
 
 Features
 --------
 
-- Can be bullet points
+- As administrator I can create a group based on member properties
+- As reviewer I can grant permissions based on member properties groups
+- As administrator I can create a group based on multiple member properties
+- As administrator I can create a group based on member properties
+
+
+Documentation
+-------------
+
+The full documentation for integrators and developers can be found in the "docs" folder. It is also available online at http://paspluginsmemberpropertytogroup.readthedocs.org.
 
 
 Installation
@@ -47,15 +83,16 @@ and then running "bin/buildout".
 Contribute
 ----------
 
-If you want to help with the development (improvement, update, bug-fixing, ...) of ``pas.plugins.memberpropertytogroup`` this is a great idea!
-
 - `Source code at Github <https://github.com/kitconcept/pas.plugins.memberpropertytogroup>`_
 - `Issue tracker at Github <https://github.com/kitconcept/pas.plugins.memberpropertytogroup/issues>`_ or same
   `issues on Kanban board at Waffle.io <https://waffle.io/kitconcept/pas.plugins.memberpropertytogroup>`_
+- `Documentation at ReadTheDocs <http://paspluginsmemberpropertytogroup.readthedocs.org>`_:
 
-Maintainers are Timo Stollenwerk and Jens Klein.
 
-We appreciate any contribution and if a release is needed to be done on pypi, please just contact one of us.
+Support
+-------
+
+If you are having issues, `please let us know <https://github.com/kitconcept/pas.plugins.memberpropertytogroup/issues>`_.
 
 
 Development
@@ -76,10 +113,9 @@ Plone 5
 
         $ bootstrap-4.3.x.sh
 
+
 Credits
 -------
-
-The development of this plugin has been kindly sponsored by `Bonn University`_.
 
 .. image:: http://www3.uni-bonn.de/logo.png
    :height: 164px
@@ -87,6 +123,9 @@ The development of this plugin has been kindly sponsored by `Bonn University`_.
    :scale: 50 %
    :alt: Bonn University
    :align: right
+   target: http://uni-bonn.de
+
+The development of this plugin has been kindly sponsored by `Bonn University`_.
 
 Icon by `FamFamFam <http://famfamfam.com/>`_
 
