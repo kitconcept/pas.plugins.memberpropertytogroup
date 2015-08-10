@@ -35,14 +35,14 @@ Test Teardown  Close all browsers
 *** Test Cases ***************************************************************
 
 Scenario: As administrator I can create a group based on member properties
-  Given a user with the property 'location' = 'employee'
+  Given a user with the property 'usertype' = 'employee'
     and a logged-in manager
-   When I create a virtual group 'Employees' with the property 'location' = 'employee'
+   When I create a virtual group 'Employees' with the property 'usertype' = 'employee'
    Then the user is member of the group 'Employees'
 
 Scenario: As reviewer I can grant permissions based on member properties groups
-  Given a user with the property 'location' = 'employee'
-    and a virtual group 'Employees' with the property 'location' = 'employee'
+  Given a user with the property 'usertype' = 'employee'
+    and a virtual group 'Employees' with the property 'usertype' = 'employee'
     and a logged-in manager
    When I grant the virtual group 'Employees' the 'Edit' permission on a folder
    Then the user can edit the folder
