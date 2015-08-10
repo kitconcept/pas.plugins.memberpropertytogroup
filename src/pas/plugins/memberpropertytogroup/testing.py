@@ -95,20 +95,36 @@ class PasPluginsMPTGPloneLayer(PloneSandboxLayer):
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'pas.plugins.memberpropertytogroup:default')
+
+        # Create Folder type if it does not exist (for Plone 5)
+        types_tool = getToolByName(portal, "portal_types")
+        if 'Folder' not in types_tool.objectIds():
+            from plone.dexterity.fti import DexterityFTI
+            fti = DexterityFTI('Folder')
+            types_tool._setObject('Folder', fti)
+
+        # XXX: This is robot test specific setup code which should be
         memberdata_tool = getToolByName(portal, 'portal_memberdata')
         memberdata_tool.manage_addProperty(
             id='usertype',
             value='',
             type='string'
         )
+        memberdata_tool.manage_addProperty(
+            id='city',
+            value='',
+            type='string'
+        )
+        memberdata_tool.manage_addProperty(
+            id='student_id',
+            value='',
+            type='string'
+        )
         mtool = getToolByName(portal, 'portal_membership')
         member = mtool.getMemberById('test_user_1_')
         member.setMemberProperties(mapping={"usertype": "employee"})
-        types_tool = getToolByName(portal, "portal_types")
-        if 'Folder' not in types_tool.objectIds():
-            from plone.dexterity.fti import DexterityFTI
-            fti = DexterityFTI('Folder')
-            types_tool._setObject('Folder', fti)
+        member.setMemberProperties(mapping={'student_id': '1234567'})
+        member.setMemberProperties(mapping={'city': 'bonn'})
 
 
 PAS_PLUGINS_MPTG_PLONE_FIXTURE = PasPluginsMPTGPloneLayer()
