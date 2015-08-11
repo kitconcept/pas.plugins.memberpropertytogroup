@@ -70,6 +70,11 @@ class TestPluginHelpers(unittest.TestCase):
                 'Problem with pair prop=' + prop + ', match=' + match
             )
 
+    def test_is_property_match_NoneType(self):
+        self.assertFalse(
+            self.plugin._is_property_match(None, '123*'),
+        )
+
 
 class TestPlugin(unittest.TestCase):
 

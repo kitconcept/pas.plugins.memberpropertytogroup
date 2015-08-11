@@ -5,7 +5,8 @@ Changelog
 1.0a2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Ignore empty lines in controlpanel input.
+  [jensens]
 
 
 1.0a1 (2015-08-06)

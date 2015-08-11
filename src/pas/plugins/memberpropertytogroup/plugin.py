@@ -73,6 +73,8 @@ class MPTGPlugin(BasePlugin):
     def _valid_groups(self):
         result = []
         for line in self._settings.valid_groups:
+            if not line.strip():
+                continue
             result.append((line.split('|') + [''] * 5)[:5])
         return result
 
@@ -110,6 +112,8 @@ class MPTGPlugin(BasePlugin):
     def _is_property_match(self, group_prop, group_match):
         """check a given group property of a user against a group matcher
         """
+        if not isinstance(group_prop, basestring):
+            return False
         star = group_match.endswith('*')
         if star:
             group_match = group_match[:-1]
