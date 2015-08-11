@@ -5,6 +5,10 @@ Changelog
 1.0a2 (unreleased)
 ------------------
 
+- Fix Scenario: As administrator I can create a group based on member 
+  properties prefixes
+  [jensens]
+
 - Ignore empty lines in controlpanel input.
   [jensens]
 
