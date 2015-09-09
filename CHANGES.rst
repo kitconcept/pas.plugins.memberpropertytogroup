@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0a2 (unreleased)
+1.0a2 (2015-09-09)
 ------------------
 
 - Fix Scenario: As administrator I can create a group based on member 
