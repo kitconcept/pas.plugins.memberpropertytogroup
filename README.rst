@@ -123,7 +123,7 @@ Credits
    :scale: 50 %
    :alt: Bonn University
    :align: right
-   target: http://uni-bonn.de
+   :target: http://uni-bonn.de
 
 The development of this plugin has been kindly sponsored by `Bonn University`_.
 
