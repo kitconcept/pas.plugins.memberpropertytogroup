@@ -91,6 +91,8 @@ If you are on Plone 3, you need to include the plone.app.registry KGS (know good
     eggs =
         pas.plugins.memberpropertytogroup [plone3]
 
+You can find a working example of a Plone 3 buildout here: https://github.com/kitconcept/pas.plugins.memberpropertytogroup/blob/master/plone-3.3.x.cfg
+
 
 Contribute
 ----------
