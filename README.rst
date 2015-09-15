@@ -77,7 +77,19 @@ Install pas.plugins.memberpropertytogroup by adding it to your buildout::
         pas.plugins.memberpropertytogroup
 
 
-and then running "bin/buildout".
+and then run "bin/buildout".
+
+If you are on Plone 3, you need to include the plone.app.registry KGS (know good set) and add the [plone3] extras to fetch the additonal dependencies that are not part of Plone 3.
+
+    [buildout]
+    extends =
+        http://dist.plone.org/release/3.3.6/versions.cfg
+        http://good-py.appspot.com/release/plone.app.registry/1.0b2?plone=3.3.6
+
+    ...
+
+    eggs =
+        pas.plugins.memberpropertytogroup [plone3]
 
 
 Contribute
