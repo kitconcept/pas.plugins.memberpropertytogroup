@@ -14,6 +14,15 @@ class MemberpropertiestogroupSettingsEditForm(controlpanel.RegistryEditForm):
     def updateFields(self):
         super(MemberpropertiestogroupSettingsEditForm, self).updateFields()
         self.fields['valid_groups'].widgetFactory = TextLinesFieldWidget
+        self.fields['valid_groups_1'].widgetFactory = TextLinesFieldWidget
+        self.fields['valid_groups_2'].widgetFactory = TextLinesFieldWidget
+        self.fields['valid_groups_3'].widgetFactory = TextLinesFieldWidget
+        self.fields['valid_groups_4'].widgetFactory = TextLinesFieldWidget
+        self.fields['valid_groups_5'].widgetFactory = TextLinesFieldWidget
+        self.fields['valid_groups_6'].widgetFactory = TextLinesFieldWidget
+        self.fields['valid_groups_7'].widgetFactory = TextLinesFieldWidget
+        self.fields['valid_groups_8'].widgetFactory = TextLinesFieldWidget
+        self.fields['valid_groups_9'].widgetFactory = TextLinesFieldWidget
 
     def updateWidgets(self):
         super(MemberpropertiestogroupSettingsEditForm, self).updateWidgets()
