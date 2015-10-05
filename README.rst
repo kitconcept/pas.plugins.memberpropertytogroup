@@ -52,10 +52,10 @@ If you have a vanilla Plone site without LDAP, you most likely do not need this 
 Features
 --------
 
-- `Create virtual groups based on member properties <http://paspluginsmemberpropertytogroup.readthedocs.org/en/latest/user-stories.html#as-administrator-i-can-create-a-group-based-on-member-properties>`_
-- `Create virtual groups based on multiple member properties <http://paspluginsmemberpropertytogroup.readthedocs.org/en/latest/user-stories.html#as-administrator-i-can-create-a-group-based-on-multiple-member-properties>`_
-- `Create virtual group based on a member properties prefix <http://paspluginsmemberpropertytogroup.readthedocs.org/en/latest/user-stories.html#as-administrator-i-can-create-a-group-based-on-member-properties-prefixes>`_
-- `Grant local permissions based on virtual member properties groups <http://paspluginsmemberpropertytogroup.readthedocs.org/en/latest/user-stories.html#as-reviewer-i-can-grant-permissions-based-on-member-properties-groups>`_
+- `Create virtual groups based on member properties <http://paspluginsmemberpropertytogroup.readthedocs.org/en/latest/features/create_virtual_groups.html#create-virtual-groups-based-on-member-properties>`_
+- `Create virtual groups based on multiple member properties <http://paspluginsmemberpropertytogroup.readthedocs.org/en/latest/features/create_virtual_groups.html#create-virtual-groups-based-on-multiple-member-properties>`_
+- `Create virtual group based on a member properties prefix <http://paspluginsmemberpropertytogroup.readthedocs.org/en/latest/features/create_virtual_groups.html#create-virtual-group-based-on-a-member-properties-prefix>`_
+- `Grant local permissions based on virtual member properties groups <http://paspluginsmemberpropertytogroup.readthedocs.org/en/latest/features/grant_permissions.html#grant-local-permissions-based-on-virtual-member-properties-groups>`_
 
 
 Documentation
