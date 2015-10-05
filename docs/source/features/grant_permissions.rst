@@ -7,14 +7,12 @@ Grant local permissions based on virtual member properties groups
   :language: robot
   :lines: 44-48
 
-Given
-^^^^^
+**Given**
 
 * a user with the property 'usertype' = 'employee'
 * a virtual group 'Employees' with the property 'usertype' = 'employee'
 
-When
-^^^^
+**When**
 
 * I grant the virtual group the 'edit' permission on a folder.
 
@@ -22,8 +20,7 @@ When
    :alt: MemberPropertyToGroup Control Panel
    :align: center
 
-Then
-^^^^
+**Then**
 
 * the user can edit the folder.
 
