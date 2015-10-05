@@ -134,12 +134,22 @@ Credits
 .. image:: http://www3.uni-bonn.de/logo.png
    :height: 164px
    :width: 222px
-   :scale: 50 %
+   :scale: 75 %
    :alt: Bonn University
-   :align: right
+   :align: center
    :target: http://uni-bonn.de
 
 The development of this plugin has been kindly sponsored by `Bonn University`_.
+
+.. image:: http://www.kitconcept.com/images/logo-200px.png
+   :height: 200px
+   :width: 65px
+   :scale: 300 %
+   :alt: kitconcept
+   :align: center
+   :target: http://www.kitconcept.com/
+
+Developed by `kitconcept`_.
 
 Icon by `FamFamFam <http://famfamfam.com/>`_
 
@@ -151,3 +161,4 @@ The project is licensed under the GPLv2.
 
 
 .. _Bonn University: http://www3.uni-bonn.de/
+.. _kitconcept: http://www.kitconcept.com/
