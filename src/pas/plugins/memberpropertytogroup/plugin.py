@@ -18,6 +18,8 @@ import os
 logger = logging.getLogger(__name__)
 tpl_dir = os.path.join(os.path.dirname(__file__), 'browser')
 
+NUMBER_OF_FIELDS = 9
+
 
 def manage_addMPTGPlugin(context, id, title='', RESPONSE=None, **kw):
     """Create an instance of a MPTG Plugin.
@@ -70,13 +72,26 @@ class MPTGPlugin(BasePlugin):
         )
         return settings
 
-    def _valid_groups(self):
+    def _valid_groups(self, index):
         result = []
-        for line in self._settings.valid_groups:
+        # Kept original field name for direct backwards compat
+        if index == 0:
+            index = ''
+        else:
+            index = '_' + str(index)
+        for line in getattr(self._settings, 'valid_groups' + index):
             if not line.strip():
                 continue
             result.append((line.split('|') + [''] * 5)[:5])
         return result
+
+    def _get_all_groups(self):
+        valid_groups = []
+        for index in range(0, NUMBER_OF_FIELDS):
+            partial_groups = self._valid_groups(index)
+            if partial_groups:
+                valid_groups = valid_groups + partial_groups
+        return valid_groups
 
     def _principal_by_id(self, principal_id):
         """lookup principal by id
@@ -84,10 +99,15 @@ class MPTGPlugin(BasePlugin):
         pas = self._getPAS()
         return pas.getUserById(principal_id)
 
-    def _configured_property(self):
+    def _configured_property(self, index):
         """get configured key to fetch the group property from propertysheet
         """
-        return self._settings.group_property
+        # Kept original field name for direct backwards compat
+        if index == 0:
+            index = ''
+        else:
+            index = '_' + str(index)
+        return getattr(self._settings, 'group_property' + index)
 
     def _sheet_plugins_of_principal(self, principal):
         pas = self._getPAS()
@@ -96,10 +116,10 @@ class MPTGPlugin(BasePlugin):
         )
         return dict(sheet_plugins)
 
-    def _group_property_of_principal(self, principal):
+    def _group_property_of_principal(self, principal, index):
         """get property with group information from principal
         """
-        key = self._configured_property()
+        key = self._configured_property(index)
         sheet_plugins = self._sheet_plugins_of_principal(principal)
         for sheet_id in principal.listPropertysheets():
             sheet_provider = sheet_plugins[sheet_id]
@@ -137,11 +157,14 @@ class MPTGPlugin(BasePlugin):
 
         o May assign groups based on values in the REQUEST object, if present
         """
-        group_prop_value = self._group_property_of_principal(principal)
-        for prop, gid, title, descr, email in self._valid_groups():
-            if self._is_property_match(group_prop_value, prop):
-                return (gid, )
-        return tuple()
+        groups_matched = []
+        for index in range(0, NUMBER_OF_FIELDS):
+            group_prop_value = self._group_property_of_principal(principal,
+                                                                 index)
+            for prop, gid, title, descr, email in self._valid_groups(index):
+                if self._is_property_match(group_prop_value, prop):
+                    groups_matched.append(gid)
+        return tuple(groups_matched)
 
     # ##
     # plonepas_interfaces.capabilities.IGroupCapability
@@ -174,7 +197,7 @@ class MPTGPlugin(BasePlugin):
         Returns the portal_groupdata-ish object for a group
         corresponding to this id. None if group does not exist here!
         """
-        for prop, gid, title, descr, email in self._valid_groups():
+        for prop, gid, title, descr, email in self._get_all_groups():
             if gid != group_id:
                 continue
             group = PloneGroup(gid, title).__of__(self)
@@ -219,7 +242,7 @@ class MPTGPlugin(BasePlugin):
         """
         Returns a list of the available groups (ids)
         """
-        return [_[1] for _ in self._valid_groups()]
+        return [_[1] for _ in self._get_all_groups()]
 
     def getGroupMembers(self, group_id):
         """
@@ -233,7 +256,7 @@ class MPTGPlugin(BasePlugin):
 
     def getPropertiesForUser(self, group, request=None):
         group_id = group.getId()
-        for prop, gid, title, descr, email in self._valid_groups():
+        for prop, gid, title, descr, email in self._get_all_groups():
             if gid != group_id:
                 continue
             sheet = UserPropertySheet(
@@ -302,7 +325,7 @@ class MPTGPlugin(BasePlugin):
         if id:
             kw['id'] = id
         result = []
-        for prop, gid, title, descr, email in self._valid_groups():
+        for prop, gid, title, descr, email in self._get_all_groups():
             record = {
                 'id': gid,
                 'pluginid': self.getId(),

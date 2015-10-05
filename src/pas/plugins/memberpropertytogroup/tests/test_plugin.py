@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
+from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupSettings  # noqa
 from pas.plugins.memberpropertytogroup.testing import PAS_PLUGINS_MPTG_ZOPE_FIXTURE  # noqa
+from pas.plugins.memberpropertytogroup.testing import PAS_PLUGINS_MPTG_PLONE_INTEGRATION_TESTING  # noqa
+from plone.registry import Registry
 import mock
 import unittest
 
@@ -55,7 +58,7 @@ class TestPluginHelpers(unittest.TestCase):
             'testsheet': MockProvider()
         }
 
-        value = self.plugin._group_property_of_principal(mock_user)
+        value = self.plugin._group_property_of_principal(mock_user, 0)
         self.assertEqual(value, 'mockgroup')
 
     def test_is_property_match_equals(self):
@@ -106,14 +109,27 @@ class TestPlugin(unittest.TestCase):
         self.mocked_valid_groups = mock_valid_groups.start()
         self.addCleanup(mock_valid_groups.stop)
 
+        # mock _get_all_groups
+        mock_get_all_groups = mock.patch.object(
+            MPTGPlugin,
+            '_get_all_groups',
+            mock.Mock(wraps=MPTGPlugin._get_all_groups)
+        )
+        self.mocked_get_all_groups = mock_get_all_groups.start()
+        self.addCleanup(mock_get_all_groups.stop)
+
     def test_getGroupsForPrincipal(self):
-        self.mocked_valid_groups.return_value = [
-            ['prop1', 'group1', '', '', ''],
-            ['prop2', 'group2', '', '', ''],
+        self.mocked_valid_groups.side_effect = [
+            [['prop1', 'group1', '', '', ''], ['prop2', 'group2', '', '', '']],
+            [], [], [], [], [], [], [], [], [],
         ]
         self.mocked_group_property_of_principal.return_value = 'prop1'
         self.assertEqual(self.plugin.getGroupsForPrincipal(None), ('group1', ))
 
+        self.mocked_valid_groups.side_effect = [
+            [['prop1', 'group1', '', '', ''], ['prop2', 'group2', '', '', '']],
+            [], [], [], [], [], [], [], [], [],
+        ]
         self.mocked_group_property_of_principal.return_value = 'prop2'
         self.assertEqual(self.plugin.getGroupsForPrincipal(None), ('group2', ))
 
@@ -125,6 +141,10 @@ class TestPlugin(unittest.TestCase):
 
     def test_getGroupById(self):
         self.mocked_valid_groups.return_value = [
+            ['prop1', 'group1', 'title1', 'descr1', 'email1'],
+            ['prop2', 'group2', 'title2', 'descr2', 'email2'],
+        ]
+        self.mocked_get_all_groups.return_value = [
             ['prop1', 'group1', 'title1', 'descr1', 'email1'],
             ['prop2', 'group2', 'title2', 'descr2', 'email2'],
         ]
@@ -142,7 +162,7 @@ class TestPlugin(unittest.TestCase):
         self.assertIsNot(sheet, None)
 
     def test_getGroupIds(self):
-        self.mocked_valid_groups.return_value = [
+        self.mocked_get_all_groups.return_value = [
             ['prop1', 'group1', 'title1', 'descr1', 'email1'],
             ['prop2', 'group2', 'title2', 'descr2', 'email2'],
         ]
@@ -151,6 +171,10 @@ class TestPlugin(unittest.TestCase):
 
     def test_getGroups(self):
         self.mocked_valid_groups.return_value = [
+            ['prop1', 'group1', 'title1', 'descr1', 'email1'],
+            ['prop2', 'group2', 'title2', 'descr2', 'email2'],
+        ]
+        self.mocked_get_all_groups.return_value = [
             ['prop1', 'group1', 'title1', 'descr1', 'email1'],
             ['prop2', 'group2', 'title2', 'descr2', 'email2'],
         ]
@@ -171,7 +195,7 @@ class TestPlugin(unittest.TestCase):
         self.assertIn(self.plugin.getId(), plugin_ids)
 
     def test_enumerateGroups(self):
-        self.mocked_valid_groups.return_value = [
+        self.mocked_get_all_groups.return_value = [
             ['prop1', 'group1', 'title1', 'descr1', 'email1'],
             ['prop2', 'group2', 'title2', 'descr2', 'email2'],
         ]
@@ -199,3 +223,21 @@ class TestPlugin(unittest.TestCase):
             self.plugin.enumerateGroups(id='group', exact_match=True),
             []
         )
+
+
+class TestPluginBasic(unittest.TestCase):
+    """Test that pas.plugins.memberpropertytogroup basic plugin functions."""
+
+    layer = PAS_PLUGINS_MPTG_PLONE_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        self.request = self.layer['request']
+        self.registry = Registry()
+        self.registry.registerInterface(
+            IPasPluginsMemberpropertytogroupSettings
+        )
+
+    # def test_valid_groups(self):
+    #     import ipdb;ipdb.set_trace()
+    #     pass

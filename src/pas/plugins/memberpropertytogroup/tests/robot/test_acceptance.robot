@@ -48,12 +48,12 @@ Scenario: As reviewer I can grant permissions based on member properties groups
    Then the user can edit the folder
 
 Scenario: As administrator I can create a group based on multiple member properties
-  Pass Execution  Not implemented yet
+  # Pass Execution  Not implemented yet
   Given a user 'John Doe' with the property 'usertype' = 'employee'
     and a user 'Jane Doe' with the property 'city' = 'bonn'
     and a logged-in manager
    When I create a virtual group 'Employees' with the property 'usertype' = 'employee'
-    and I create a virtual group 'Locals' with the property 'city' = 'bonn'
+    and I add another virtual group 'Locals' with the property 'city' = 'bonn' in slot 1
    Then the user 'John Doe' is member of the group 'Employees'
     and the user 'Jane Doe' is member of the group 'Locals'
 
@@ -99,6 +99,14 @@ I create a virtual group '${group}' with the property '${property}' = '${value}'
   Click button  Save
   Wait until page contains  Changes saved
 
+I add another virtual group '${group}' with the property '${property}' = '${value}' in slot ${slot}
+  Go to  ${PLONE_URL}/@@memberpropertytogroup-controlpanel
+  Input text  form.widgets.group_property_${slot}  ${property}
+  Input text  form.widgets.valid_groups_${slot}  ${value}|${group}|${group}|${group} (Virtual Group)|my-virtual-group@example.com
+  Capture screenshot  memberpropertytogroup-controlpanel.png
+  Click button  Save
+  Wait until page contains  Changes saved
+
 I grant the virtual group '${group}' the 'Edit' permission on a folder
   Create content  type=Folder  id=folder  title=Folder
   Go to  ${PLONE_URL}/folder/@@sharing
@@ -115,6 +123,12 @@ I grant the virtual group '${group}' the 'Edit' permission on a folder
 # --- THEN -------------------------------------------------------------------
 
 the user is member of the group '${group}'
+  Go To  ${PLONE_URL}/@@usergroup-usermembership?userid=test_user_1_
+  Wait until page contains  Current group memberships
+  Xpath Should Match X Times  //table[@summary='Group Memberships Listing']//tr/td//*[text()[contains(., '${group}')]]  1
+  Capture screenshot  the-user-is-member-of-the-group.png
+
+the user ${user} is member of the group '${group}'
   Go To  ${PLONE_URL}/@@usergroup-usermembership?userid=test_user_1_
   Wait until page contains  Current group memberships
   Xpath Should Match X Times  //table[@summary='Group Memberships Listing']//tr/td//*[text()[contains(., '${group}')]]  1
