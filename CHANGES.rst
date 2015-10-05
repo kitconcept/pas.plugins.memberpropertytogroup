@@ -5,13 +5,14 @@ Changelog
 1.0a3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- New feature: As administrator I can create a group based on multiple member properties.
+  [sneridagh]
 
 
 1.0a2 (2015-09-09)
 ------------------
 
-- Fix Scenario: As administrator I can create a group based on member 
+- Fix Scenario: As administrator I can create a group based on member
   properties prefixes
   [jensens]
 
