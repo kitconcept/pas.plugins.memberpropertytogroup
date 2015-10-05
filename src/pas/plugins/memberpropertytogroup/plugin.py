@@ -159,7 +159,8 @@ class MPTGPlugin(BasePlugin):
         """
         groups_matched = []
         for index in range(0, NUMBER_OF_FIELDS):
-            group_prop_value = self._group_property_of_principal(principal, index)
+            group_prop_value = self._group_property_of_principal(principal,
+                                                                 index)
             for prop, gid, title, descr, email in self._valid_groups(index):
                 if self._is_property_match(group_prop_value, prop):
                     groups_matched.append(gid)
