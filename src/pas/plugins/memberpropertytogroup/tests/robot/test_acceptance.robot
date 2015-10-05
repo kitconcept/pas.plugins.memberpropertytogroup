@@ -116,7 +116,9 @@ I grant the virtual group '${group}' the 'Edit' permission on a folder
   Xpath Should Match X Times  //table[@id='user-group-sharing']//td[@title='${group}']  1
   Select checkbox  xpath=//table[@id='user-group-sharing']//td[@title='Employees']/following-sibling::td[2]/input
   Capture screenshot  grant-virtual-group-permission-on-folder.png
-  Click button  Save
+  # XXX: problem with screenshot and click button, first click is not always
+  # excecuted.
+  Repeat Keyword  2  Click button  Save
   Wait until page contains  Changes saved
 
 
