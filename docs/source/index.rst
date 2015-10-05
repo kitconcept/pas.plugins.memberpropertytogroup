@@ -10,7 +10,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   user-stories
+   features/index.rst
 
 
 Indices and tables

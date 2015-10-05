@@ -95,7 +95,7 @@ I create a virtual group '${group}' with the property '${property}' = '${value}'
   Go to  ${PLONE_URL}/@@memberpropertytogroup-controlpanel
   Input text  form.widgets.group_property  ${property}
   Input text  form.widgets.valid_groups  ${value}|${group}|${group}|${group} (Virtual Group)|my-virtual-group@example.com
-  Capture screenshot  memberpropertytogroup-controlpanel.png
+  Capture screenshot  memberpropertytogroup-controlpanel-${group}.png
   Click button  Save
   Wait until page contains  Changes saved
 
@@ -103,7 +103,7 @@ I add another virtual group '${group}' with the property '${property}' = '${valu
   Go to  ${PLONE_URL}/@@memberpropertytogroup-controlpanel
   Input text  form.widgets.group_property_${slot}  ${property}
   Input text  form.widgets.valid_groups_${slot}  ${value}|${group}|${group}|${group} (Virtual Group)|my-virtual-group@example.com
-  Capture screenshot  memberpropertytogroup-controlpanel.png
+  Capture screenshot  memberpropertytogroup-controlpanel-${group}.png
   Click button  Save
   Wait until page contains  Changes saved
 
