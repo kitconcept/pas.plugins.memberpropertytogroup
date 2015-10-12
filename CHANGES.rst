@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0a3 (unreleased)
+1.0a3 (2015-10-12)
 ------------------
 
 - New feature: As administrator I can create a group based on multiple member properties.
