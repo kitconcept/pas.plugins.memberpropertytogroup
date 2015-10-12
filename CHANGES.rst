@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+1.0rc1 (unreleased)
+-------------------
+
+- Nothing changed yet.
+
+
 1.0a3 (2015-10-12)
 ------------------
 
