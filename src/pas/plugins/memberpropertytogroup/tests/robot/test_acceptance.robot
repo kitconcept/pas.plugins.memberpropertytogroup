@@ -83,6 +83,7 @@ a user '${user}' with the property '${property}' = '${value}'
 a virtual group '${group}' with the property '${property}' = '${value}'
   Enable autologin as  Manager
   Go to  ${PLONE_URL}/@@memberpropertytogroup-controlpanel
+  Click button  Add property
   Input text  form.widgets.group_property  ${property}
   Input text  form.widgets.valid_groups  ${value}|${group}|${group}|${group} (Virtual Group)|my-virtual-group@example.com
   Click button  Save
@@ -93,6 +94,7 @@ a virtual group '${group}' with the property '${property}' = '${value}'
 
 I create a virtual group '${group}' with the property '${property}' = '${value}'
   Go to  ${PLONE_URL}/@@memberpropertytogroup-controlpanel
+  Click button  Add property
   Input text  form.widgets.group_property  ${property}
   Input text  form.widgets.valid_groups  ${value}|${group}|${group}|${group} (Virtual Group)|my-virtual-group@example.com
   Capture screenshot  memberpropertytogroup-controlpanel-${group}.png
@@ -101,6 +103,7 @@ I create a virtual group '${group}' with the property '${property}' = '${value}'
 
 I add another virtual group '${group}' with the property '${property}' = '${value}' in slot ${slot}
   Go to  ${PLONE_URL}/@@memberpropertytogroup-controlpanel
+  Click button  Add property
   Input text  form.widgets.group_property_${slot}  ${property}
   Input text  form.widgets.valid_groups_${slot}  ${value}|${group}|${group}|${group} (Virtual Group)|my-virtual-group@example.com
   Capture screenshot  memberpropertytogroup-controlpanel-${group}.png

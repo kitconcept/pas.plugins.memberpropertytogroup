@@ -3,6 +3,7 @@ from pas.plugins.memberpropertytogroup.interfaces import _
 from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupSettings  # noqa
 from plone.app.registry.browser import controlpanel
 from z3c.form.browser.textlines import TextLinesFieldWidget
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class MemberpropertiestogroupSettingsEditForm(controlpanel.RegistryEditForm):
@@ -30,3 +31,4 @@ class MemberpropertiestogroupSettingsEditForm(controlpanel.RegistryEditForm):
 
 class MemberpropertiestogroupSettingsEditFormSettingsControlPanel(controlpanel.ControlPanelFormWrapper):  # noqa
     form = MemberpropertiestogroupSettingsEditForm
+    index = ViewPageTemplateFile('mptg.pt')

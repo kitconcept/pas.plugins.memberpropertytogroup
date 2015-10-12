@@ -11,4 +11,17 @@
         class=".controlpanel.MemberpropertiestogroupSettingsEditFormSettingsControlPanel"
         permission="cmf.ManagePortal"
         />
+
+    <browser:resource
+        name="pas.plugins.memberpropertytogroup.helper.js"
+        file="mptg_helper.js"
+        permission="zope.Public"
+        />
+
+    <browser:resource
+        name="pas.plugins.memberpropertytogroup.helper.css"
+        file="mptg_helper.css"
+        permission="zope.Public"
+        />
+
 </configure>
