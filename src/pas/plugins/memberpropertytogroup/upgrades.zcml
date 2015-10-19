@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+  <genericsetup:upgradeStep
+    source="*"
+    destination="1001"
+    title="Update pas.plugins.memberpropertytogroup setting registry"
+    description=""
+    profile="pas.plugins.memberpropertytogroup:default"
+    handler=".upgrades.update_registry"
+    />
+
+</configure>

@@ -2,10 +2,11 @@ Changelog
 =========
 
 
-1.0rc1 (unreleased)
--------------------
+1.0a3 (unreleased)
+------------------
 
-- Nothing changed yet.
+- Add upgrade step for registry entries that have been added in 1.0a3.
+  [timo]
 
 
 1.0a3 (2015-10-12)
