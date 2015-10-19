@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0a3 (unreleased)
+1.0a4 (unreleased)
 ------------------
 
 - Add upgrade step for registry entries that have been added in 1.0a3.
