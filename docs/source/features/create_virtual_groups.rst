@@ -31,10 +31,10 @@ Create virtual groups based on member properties
    :align: center
 
 
-Create virtual groups based on multiple member properties
----------------------------------------------------------
+Create multiple virtual groups based member properties
+------------------------------------------------------
 
-**As administrator I can create a group based on multiple member properties**
+**As administrator I can create multiple groups based on member properties**
 
 .. literalinclude:: ../../../src/pas/plugins/memberpropertytogroup/tests/robot/test_acceptance.robot
   :language: robot

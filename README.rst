@@ -53,7 +53,7 @@ Features
 --------
 
 - `Create virtual groups based on member properties <http://paspluginsmemberpropertytogroup.readthedocs.org/en/latest/features/create_virtual_groups.html#create-virtual-groups-based-on-member-properties>`_
-- `Create virtual groups based on multiple member properties <http://paspluginsmemberpropertytogroup.readthedocs.org/en/latest/features/create_virtual_groups.html#create-virtual-groups-based-on-multiple-member-properties>`_
+- `Create multiple virtual groups based member properties <http://paspluginsmemberpropertytogroup.readthedocs.org/en/latest/features/create_virtual_groups.html#create-multiple-virtual-groups-based-on-member-properties>`_
 - `Create virtual group based on a member properties prefix <http://paspluginsmemberpropertytogroup.readthedocs.org/en/latest/features/create_virtual_groups.html#create-virtual-group-based-on-a-member-properties-prefix>`_
 - `Grant local permissions based on virtual member properties groups <http://paspluginsmemberpropertytogroup.readthedocs.org/en/latest/features/grant_permissions.html#grant-local-permissions-based-on-virtual-member-properties-groups>`_
 
