@@ -47,5 +47,5 @@ Changelog
 ------------------
 
 - Initial release.
-  [tisto, jensens]
+  [timo, jensens]
 
