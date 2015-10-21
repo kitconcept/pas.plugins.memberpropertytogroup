@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0a6 (unreleased)
+1.0a6 (2015-10-21)
 ------------------
 
 - Plone 3 compatibility fixes.
