@@ -2,6 +2,18 @@ jQuery('head').append( jQuery('<link rel="stylesheet" type="text/css" />').attr(
 
 (function() {
      jQuery(document).ready(function() {
+
+        // Emulate initial markup of in Plone 4 where fields with empty values
+        // have a class 'empty' attached.
+        jQuery('#form div.field').each(function() {
+          var div = jQuery(this);
+          if (div.children('input').val() === '') {
+            div.addClass('empty');
+          } else if (div.children('textarea').val() === '') {
+            div.addClass('empty');
+          }
+        });
+
         jQuery('.add_more_properties').bind('click', function (event) {
             event.preventDefault();
             jQuery('#form div.field').each(function () {
@@ -13,10 +25,10 @@ jQuery('head').append( jQuery('<link rel="stylesheet" type="text/css" />').attr(
             return true;
             });
 
-            jQuery('.remove_properties').prop("disabled", false);
+            jQuery('.remove_properties').attr("disabled", false);
 
             if (jQuery('#form').children('.empty').length === 0) {
-                jQuery('.add_more_properties').prop("disabled", true);
+                jQuery('.add_more_properties').attr("disabled", true);
             }
         });
         jQuery('.remove_properties').bind('click', function () {
@@ -40,10 +52,10 @@ jQuery('head').append( jQuery('<link rel="stylesheet" type="text/css" />').attr(
                 jQuery('#form div.field').last().prev().addClass('empty');
             }
 
-            jQuery('.add_more_properties').prop("disabled", false);
+            jQuery('.add_more_properties').attr("disabled", false);
 
             if (jQuery('#form').children('.empty').length === 20) {
-                jQuery('.remove_properties').prop("disabled", true);
+                jQuery('.remove_properties').attr("disabled", true);
             }
         });
      });
