@@ -2,14 +2,15 @@ jQuery('head').append( jQuery('<link rel="stylesheet" type="text/css" />').attr(
 
 (function() {
      jQuery(document).ready(function() {
-        jQuery('.add_more_properties').on('click', function (event) {
+        jQuery('.add_more_properties').bind('click', function (event) {
             event.preventDefault();
             jQuery('#form div.field').each(function () {
                 if (jQuery(this).hasClass('empty')) {
                     jQuery(this).removeClass('empty');
                     jQuery(this).next().removeClass('empty');
-                    return false;
+                  return false;  // stop the each loop
                 }
+            return true;
             });
 
             jQuery('.remove_properties').prop("disabled", false);
@@ -18,7 +19,7 @@ jQuery('head').append( jQuery('<link rel="stylesheet" type="text/css" />').attr(
                 jQuery('.add_more_properties').prop("disabled", true);
             }
         });
-        jQuery('.remove_properties').on('click', function () {
+        jQuery('.remove_properties').bind('click', function () {
             event.preventDefault();
             if (jQuery('#form').has('.empty').length) {
                 jQuery('#form div.field').each(function () {
@@ -27,8 +28,9 @@ jQuery('head').append( jQuery('<link rel="stylesheet" type="text/css" />').attr(
                         jQuery(this).prev().prev().children('input').val('');
                         jQuery(this).prev().addClass('empty');
                         jQuery(this).prev().prev().addClass('empty');
-                        return false;
+                        return false;  // stop the each loop
                     }
+                  return true;
                 });
 
             } else {
