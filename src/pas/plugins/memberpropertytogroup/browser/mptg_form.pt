@@ -5,6 +5,9 @@
       i18n:domain="plone">
 
         <div id="content-core">
+          <script type="text/javascript" 
+                  tal:attributes="src string:${context/portal_url}/++resource++pas.plugins.memberpropertytogroup.helper.js">
+          </script>
             <metal:block use-macro="context/@@ploneform-macros/titlelessform">
 
               <metal:actions metal:fill-slot="actions">

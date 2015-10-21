@@ -32,4 +32,3 @@ class MemberpropertiestogroupSettingsEditForm(controlpanel.RegistryEditForm):
 
 class MemberpropertiestogroupSettingsEditFormSettingsControlPanel(controlpanel.ControlPanelFormWrapper):  # noqa
     form = MemberpropertiestogroupSettingsEditForm
-    index = ViewPageTemplateFile('mptg.pt')
