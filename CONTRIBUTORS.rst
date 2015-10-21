@@ -1,3 +1,4 @@
 - Timo Stollenwerk, tisto@plone.org
 - Jens Klein, jens@bluedynamics.com
 - Víctor Fernández de Alba, sneridagh@gmail.com
+- Carsten Senger, senger@rehfisch.de

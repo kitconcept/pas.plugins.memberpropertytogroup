@@ -33,10 +33,6 @@
         </div>
     </div>
 
-    <div class="formControls">
-      <button class="add_more_properties">Add property</button>
-      <button class="remove_properties" disabled>Remove last property</button>
-    </div>
 </div>
 </body>
 </html>

@@ -11,6 +11,7 @@ class MemberpropertiestogroupSettingsEditForm(controlpanel.RegistryEditForm):
     schema = IPasPluginsMemberpropertytogroupSettings
     label = _(u"Member Properties To Group Settings")
     description = _(u"")
+    template = ViewPageTemplateFile('mptg_form.pt')
 
     def updateFields(self):
         super(MemberpropertiestogroupSettingsEditForm, self).updateFields()

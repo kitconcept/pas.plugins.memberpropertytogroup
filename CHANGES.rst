@@ -5,7 +5,10 @@ Changelog
 1.0a5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix js to work with Plone 3 
+  [csenger]
+- Move add/remove buttons in controlpanel above the save/cancel buttons
+  [csenger]
 
 
 1.0a4 (2015-10-19)

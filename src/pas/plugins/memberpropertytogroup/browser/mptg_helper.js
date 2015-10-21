@@ -2,7 +2,8 @@ jQuery('head').append( jQuery('<link rel="stylesheet" type="text/css" />').attr(
 
 (function() {
      jQuery(document).ready(function() {
-        jQuery('.add_more_properties').on('click', function () {
+        jQuery('.add_more_properties').on('click', function (event) {
+            event.preventDefault();
             jQuery('#form div.field').each(function () {
                 if (jQuery(this).hasClass('empty')) {
                     jQuery(this).removeClass('empty');
@@ -18,6 +19,7 @@ jQuery('head').append( jQuery('<link rel="stylesheet" type="text/css" />').attr(
             }
         });
         jQuery('.remove_properties').on('click', function () {
+            event.preventDefault();
             if (jQuery('#form').has('.empty').length) {
                 jQuery('#form div.field').each(function () {
                     if (jQuery(this).hasClass('empty')) {
