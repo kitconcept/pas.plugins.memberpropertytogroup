@@ -5,7 +5,8 @@ Changelog
 1.0a6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Plone 3 compatibility fixes.
+  [csenger]
 
 
 1.0a5 (2015-10-21)

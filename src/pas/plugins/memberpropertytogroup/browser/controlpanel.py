@@ -3,7 +3,11 @@ from pas.plugins.memberpropertytogroup.interfaces import _
 from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupSettings  # noqa
 from plone.app.registry.browser import controlpanel
 from z3c.form.browser.textlines import TextLinesFieldWidget
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+
+try:
+    from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
+except ImportError:
+    from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 
 
 class MemberpropertiestogroupSettingsEditForm(controlpanel.RegistryEditForm):
