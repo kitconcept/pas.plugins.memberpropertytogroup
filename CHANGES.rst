@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0a5 (unreleased)
+1.0a5 (2015-10-21)
 ------------------
 
 - Fix js to work with Plone 3.
