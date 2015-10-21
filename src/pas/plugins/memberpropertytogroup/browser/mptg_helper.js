@@ -1,45 +1,49 @@
-$('head').append( $('<link rel="stylesheet" type="text/css" />').attr('href', '++resource++pas.plugins.memberpropertytogroup.helper.css') );
+jQuery('head').append( jQuery('<link rel="stylesheet" type="text/css" />').attr('href', '++resource++pas.plugins.memberpropertytogroup.helper.css') );
 
-(function($) {
-     $(document).ready(function() {
-        $('.add_more_properties').on('click', function () {
-            $('#form div.field').each(function () {
-                if ($(this).hasClass('empty')) {
-                    $(this).removeClass('empty');
-                    $(this).next().removeClass('empty');
-                    return false;
+(function() {
+     jQuery(document).ready(function() {
+        jQuery('.add_more_properties').bind('click', function (event) {
+            event.preventDefault();
+            jQuery('#form div.field').each(function () {
+                if (jQuery(this).hasClass('empty')) {
+                    jQuery(this).removeClass('empty');
+                    jQuery(this).next().removeClass('empty');
+                  return false;  // stop the each loop
                 }
+            return true;
             });
 
-            $('.remove_properties').prop("disabled", false);
+            jQuery('.remove_properties').prop("disabled", false);
 
-            if ($('#form').children('.empty').length === 0) {
-                $('.add_more_properties').prop("disabled", true);
+            if (jQuery('#form').children('.empty').length === 0) {
+                jQuery('.add_more_properties').prop("disabled", true);
             }
         });
-        $('.remove_properties').on('click', function () {
-            if ($('#form').has('.empty').length) {
-                $('#form div.field').each(function () {
-                    if ($(this).hasClass('empty')) {
-                        $(this).prev().children('textarea').val('');
-                        $(this).prev().prev().children('input').val('');
-                        $(this).prev().addClass('empty');
-                        $(this).prev().prev().addClass('empty');
-                        return false;
+        jQuery('.remove_properties').bind('click', function () {
+            event.preventDefault();
+            if (jQuery('#form').has('.empty').length) {
+                jQuery('#form div.field').each(function () {
+                    if (jQuery(this).hasClass('empty')) {
+                        jQuery(this).prev().children('textarea').val('');
+                        jQuery(this).prev().prev().children('input').val('');
+                        jQuery(this).prev().addClass('empty');
+                        jQuery(this).prev().prev().addClass('empty');
+                        return false;  // stop the each loop
                     }
+                  return true;
                 });
 
             } else {
-                $('#form div.field').last().children('textarea').val('');
-                $('#form div.field').last().addClass('empty');
-                $('#form div.field').last().prev().children('input').val('');
-                $('#form div.field').last().prev().addClass('empty');
+                jQuery('#form div.field').last().children('textarea').val('');
+                jQuery('#form div.field').last().addClass('empty');
+                jQuery('#form div.field').last().prev().children('input').val('');
+                jQuery('#form div.field').last().prev().addClass('empty');
             }
 
-            $('.add_more_properties').prop("disabled", false);
+            jQuery('.add_more_properties').prop("disabled", false);
 
-            if ($('#form').children('.empty').length === 20) {
-                $('.remove_properties').prop("disabled", true);
+            if (jQuery('#form').children('.empty').length === 20) {
+                jQuery('.remove_properties').prop("disabled", true);
             }
         });
      });

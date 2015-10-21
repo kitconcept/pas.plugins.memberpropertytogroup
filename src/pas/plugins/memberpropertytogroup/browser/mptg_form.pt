@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+
+        <div id="content-core">
+          <script type="text/javascript" 
+                  tal:attributes="src string:${context/portal_url}/++resource++pas.plugins.memberpropertytogroup.helper.js">
+          </script>
+            <metal:block use-macro="context/@@ploneform-macros/titlelessform">
+
+              <metal:actions metal:fill-slot="actions">
+
+                <div class="formControls">
+                  <button 
+                      class="add_more_properties submit-widget button-field">
+                    Add property
+                  </button>
+                  <button class="remove_properties" disabled="disabled">
+                    Remove last property
+                  </button>
+                </div>
+                <metal:block use-macro="context/@@ploneform-macros/actions" />
+
+
+              </metal:actions>
+
+            </metal:block>
+
+        </div>
+
+
+</html>
