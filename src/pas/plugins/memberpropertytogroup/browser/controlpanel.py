@@ -4,7 +4,6 @@ from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberproper
 from plone.app.registry.browser import controlpanel
 from z3c.form.browser.textlines import TextLinesFieldWidget
 from z3c.form.interfaces import HIDDEN_MODE
-from pas.plugins.memberpropertytogroup.interfaces import NUMBER_OF_FIELDS
 
 try:
     from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
@@ -15,8 +14,8 @@ except ImportError:
 class MemberpropertiestogroupSettingsEditForm(controlpanel.RegistryEditForm):
 
     schema = IPasPluginsMemberpropertytogroupSettings
-    label = _(u"Member Properties To Group Settings")
-    description = _(u"")
+    label = _(u'Member Properties To Group Settings')
+    description = _(u'')
     template = ViewPageTemplateFile('mptg_form.pt')
 
     def updateFields(self):

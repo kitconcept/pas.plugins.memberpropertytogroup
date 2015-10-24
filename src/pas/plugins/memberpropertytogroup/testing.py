@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from Products.CMFCore.interfaces import ISiteRoot
+from Products.CMFCore.utils import getToolByName
 from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
 from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
@@ -7,8 +9,6 @@ from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
 from plone.testing import Layer
 from plone.testing import z2
-from Products.CMFCore.interfaces import ISiteRoot
-from Products.CMFCore.utils import getToolByName
 from zope.component import provideUtility
 
 import pas.plugins.memberpropertytogroup
@@ -122,7 +122,7 @@ class PasPluginsMPTGPloneLayer(PloneSandboxLayer):
         )
         mtool = getToolByName(portal, 'portal_membership')
         member = mtool.getMemberById('test_user_1_')
-        member.setMemberProperties(mapping={"usertype": "employee"})
+        member.setMemberProperties(mapping={'usertype': 'employee'})
         member.setMemberProperties(mapping={'student_id': '1234567'})
         member.setMemberProperties(mapping={'city': 'bonn'})
 
