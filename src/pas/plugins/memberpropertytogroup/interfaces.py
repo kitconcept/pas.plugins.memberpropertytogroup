@@ -3,9 +3,12 @@ from zope import schema
 from zope.i18nmessageid import MessageFactory
 from zope.interface import Interface
 from zope.interface import Invalid
+from zope.interface import invariant
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
 _ = MessageFactory('pas.plugins.memberpropertytogroup')
+
+NUMBER_OF_FIELDS = 10
 
 
 def validate_valid_groups(value):
@@ -326,6 +329,26 @@ class IPasPluginsMemberpropertytogroupSettings(Interface):
         constraint=validate_valid_groups,
         missing_value=[]
     )
+
+    showing_fields = schema.Int(
+        title=_(u"Fields to show"),
+        required=False,
+        default=1)
+
+    @invariant
+    def validate_filled_field_couples(data):
+        for index in range(0, NUMBER_OF_FIELDS):
+            if index == 0:
+                index = ''
+            else:
+                index = '_' + str(index)
+            if getattr(data, 'group_property' + index) != '' and \
+               getattr(data, 'valid_groups' + index) == []:
+                raise Invalid(_(u"The field group_property{} is filled while valid_groups{} is empty.").format(index, index))
+
+            if getattr(data, 'group_property' + index) == '' and \
+               getattr(data, 'valid_groups' + index) != []:
+                raise Invalid(_(u"The field valid_groups{} is filled while group_property{} is empty.").format(index, index))
 
 
 class IMPTGPlugin(Interface):

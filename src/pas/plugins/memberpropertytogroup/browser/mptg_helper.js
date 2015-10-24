@@ -5,58 +5,66 @@ jQuery('head').append( jQuery('<link rel="stylesheet" type="text/css" />').attr(
 
         // Emulate initial markup of in Plone 4 where fields with empty values
         // have a class 'empty' attached.
-        jQuery('#form div.field').each(function() {
-          var div = jQuery(this);
-          if (div.children('input').val() === '') {
-            div.addClass('empty');
-          } else if (div.children('textarea').val() === '') {
-            div.addClass('empty');
-          }
-        });
+        // jQuery('#form div.field').each(function() {
+        //   var div = jQuery(this);
+        //   if (div.children('input').val() === '') {
+        //     div.addClass('empty');
+        //   } else if (div.children('textarea').val() === '') {
+        //     div.addClass('empty');
+        //   }
+        // });
+
+        if (parseInt(jQuery('#form-widgets-showing_fields').val()) > 1) {
+            jQuery('.remove_properties').attr("disabled", false);
+        }
+
+        if (parseInt(jQuery('#form-widgets-showing_fields').val()) == 10) {
+            jQuery('.add_more_properties').attr("disabled", true);
+        }
 
         jQuery('.add_more_properties').bind('click', function (event) {
             event.preventDefault();
-            jQuery('#form div.field').each(function () {
-                if (jQuery(this).hasClass('empty')) {
-                    jQuery(this).removeClass('empty');
-                    jQuery(this).next().removeClass('empty');
-                  return false;  // stop the each loop
-                }
-            return true;
-            });
+            var show_fields = jQuery('#form-widgets-showing_fields').val();
+            var selector_gp = '#form-widgets-group_property_' + show_fields;
+            var selector_vg = '#form-widgets-valid_groups_' + show_fields;
+            jQuery(selector_gp).parent().parent().parent().removeClass('field-hidden');
+            jQuery(selector_vg).parent().parent().parent().removeClass('field-hidden');
 
             jQuery('.remove_properties').attr("disabled", false);
 
-            if (jQuery('#form').children('.empty').length === 0) {
+            if (parseInt(show_fields) === 9) {
                 jQuery('.add_more_properties').attr("disabled", true);
             }
+
+            if (parseInt(show_fields) < 10) {
+                var increment = (parseInt(show_fields) + 1).toString();
+                jQuery('#form-widgets-showing_fields').val(increment);
+            }
+
         });
+
         jQuery('.remove_properties').bind('click', function () {
             event.preventDefault();
-            if (jQuery('#form').has('.empty').length) {
-                jQuery('#form div.field').each(function () {
-                    if (jQuery(this).hasClass('empty')) {
-                        jQuery(this).prev().children('textarea').val('');
-                        jQuery(this).prev().prev().children('input').val('');
-                        jQuery(this).prev().addClass('empty');
-                        jQuery(this).prev().prev().addClass('empty');
-                        return false;  // stop the each loop
-                    }
-                  return true;
-                });
-
-            } else {
-                jQuery('#form div.field').last().children('textarea').val('');
-                jQuery('#form div.field').last().addClass('empty');
-                jQuery('#form div.field').last().prev().children('input').val('');
-                jQuery('#form div.field').last().prev().addClass('empty');
+            var show_fields = jQuery('#form-widgets-showing_fields').val();
+            if (parseInt(show_fields) > 1) {
+                var decrement = (parseInt(show_fields) - 1).toString();
+                jQuery('#form-widgets-showing_fields').val(decrement);
+                show_fields = jQuery('#form-widgets-showing_fields').val();
             }
+            var selector_gp = '#form-widgets-group_property_' + show_fields;
+            var selector_vg = '#form-widgets-valid_groups_' + show_fields;
+            jQuery(selector_gp).parent().parent().parent().addClass('field-hidden');
+            jQuery(selector_vg).parent().parent().parent().addClass('field-hidden');
+
+            jQuery(selector_gp).val('');
+            jQuery(selector_vg).val('');
 
             jQuery('.add_more_properties').attr("disabled", false);
 
-            if (jQuery('#form').children('.empty').length === 20) {
+            if (parseInt(show_fields) === 1) {
                 jQuery('.remove_properties').attr("disabled", true);
             }
+
         });
      });
 })(jQuery);

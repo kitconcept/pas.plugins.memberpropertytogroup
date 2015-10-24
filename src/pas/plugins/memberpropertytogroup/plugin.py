@@ -3,6 +3,7 @@ from AccessControl import ClassSecurityInfo
 from App.class_init import InitializeClass
 from pas.plugins.memberpropertytogroup.interfaces import IMPTGPlugin
 from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupSettings  # noqa
+from pas.plugins.memberpropertytogroup.interfaces import NUMBER_OF_FIELDS
 from plone.registry.interfaces import IRegistry
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from Products.PlonePAS import interfaces as plonepas_interfaces
@@ -17,8 +18,6 @@ import os
 
 logger = logging.getLogger(__name__)
 tpl_dir = os.path.join(os.path.dirname(__file__), 'browser')
-
-NUMBER_OF_FIELDS = 9
 
 
 def manage_addMPTGPlugin(context, id, title='', RESPONSE=None, **kw):

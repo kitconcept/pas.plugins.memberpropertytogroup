@@ -5,15 +5,66 @@
       i18n:domain="plone">
 
         <div id="content-core">
-          <script type="text/javascript" 
+          <script type="text/javascript"
                   tal:attributes="src string:${context/portal_url}/++resource++pas.plugins.memberpropertytogroup.helper.js">
           </script>
             <metal:block use-macro="context/@@ploneform-macros/titlelessform">
 
+              <metal:actions metal:fill-slot="fields">
+
+                <tal:widgets repeat="widget view/widgets/values">
+
+                  <div class="row"
+                       tal:attributes="class python:view.get_visibility_for(widget)"
+                       tal:define="hidden python:widget.mode == 'hidden'"
+                       tal:omit-tag="hidden">
+
+                      <metal:field define-macro="field">
+                        <div class="field"
+                             tal:define="error widget/error;
+                                         hidden python:widget.mode == 'hidden';"
+                             tal:attributes="class python:'field' + (error and ' error' or '')">
+                          <label for=""
+                                 tal:attributes="for widget/id"
+                                 tal:condition="not:hidden">
+                            <span i18n:translate=""
+                                  tal:content="widget/label">label</span>
+                          </label>
+
+                          <span class="fieldRequired" title="Required"
+                                tal:condition="python:widget.required and not hidden"
+                                i18n:translate="label_required"
+                                i18n:attributes="title title_required;">
+                            (Required)
+                          </span>
+
+                          <div class="formHelp"
+                               tal:define="description widget/field/description"
+                               i18n:translate=""
+                               tal:content="description"
+                               tal:condition="python:description and not hidden"
+                               >field description</div>
+
+                          <div tal:condition="error"
+                               tal:content="structure error/render">
+                            Error
+                          </div>
+
+                          <div class="widget">
+                            <input type="text" tal:replace="structure widget/render" />
+                          </div>
+                        </div>
+                      </metal:field>
+
+                  </div>
+                </tal:widgets>
+
+              </metal:actions>
+
               <metal:actions metal:fill-slot="actions">
 
                 <div class="formControls">
-                  <button 
+                  <button
                       class="add_more_properties submit-widget button-field">
                     Add property
                   </button>
