@@ -3,17 +3,6 @@ jQuery('head').append( jQuery('<link rel="stylesheet" type="text/css" />').attr(
 (function() {
      jQuery(document).ready(function() {
 
-        // Emulate initial markup of in Plone 4 where fields with empty values
-        // have a class 'empty' attached.
-        // jQuery('#form div.field').each(function() {
-        //   var div = jQuery(this);
-        //   if (div.children('input').val() === '') {
-        //     div.addClass('empty');
-        //   } else if (div.children('textarea').val() === '') {
-        //     div.addClass('empty');
-        //   }
-        // });
-
         if (parseInt(jQuery('#form-widgets-showing_fields').val()) > 1) {
             jQuery('.remove_properties').attr("disabled", false);
         }
