@@ -65,10 +65,10 @@
 
                 <div class="formControls">
                   <button
-                      class="add_more_properties submit-widget button-field">
+                      class="add_more_properties submit-widget button-field allowMultiSubmit">
                     Add property
                   </button>
-                  <button class="remove_properties" disabled="disabled">
+                  <button class="remove_properties allowMultiSubmit" disabled="disabled">
                     Remove last property
                   </button>
                 </div>

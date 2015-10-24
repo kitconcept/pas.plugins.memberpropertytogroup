@@ -344,11 +344,11 @@ class IPasPluginsMemberpropertytogroupSettings(Interface):
                 index = '_' + str(index)
             if getattr(data, 'group_property' + index) != '' and \
                getattr(data, 'valid_groups' + index) == []:
-                raise Invalid(_(u"The field group_property{} is filled while valid_groups{} is empty.").format(index, index))
+                raise Invalid(_(u"The field group_property%s is filled while valid_groups%s is empty.") % (index, index))
 
             if getattr(data, 'group_property' + index) == '' and \
                getattr(data, 'valid_groups' + index) != []:
-                raise Invalid(_(u"The field valid_groups{} is filled while group_property{} is empty.").format(index, index))
+                raise Invalid(_(u"The field valid_groups%s is filled while group_property%s is empty.") % (index, index))
 
 
 class IMPTGPlugin(Interface):
