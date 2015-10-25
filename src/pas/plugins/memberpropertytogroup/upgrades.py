@@ -13,7 +13,9 @@ def update_registry(context):
 def add_show_fields_property(context):
     update_registry(context)
     registry = getUtility(IRegistry)
-    mtpg_settings = registry.forInterface(IPasPluginsMemberpropertytogroupSettings)
+    mtpg_settings = registry.forInterface(
+        IPasPluginsMemberpropertytogroupSettings
+    )
 
     all_filled = True
 
