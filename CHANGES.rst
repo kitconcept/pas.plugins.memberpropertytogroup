@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0a7 (unreleased)
+1.0a7 (2015-10-25)
 ------------------
 
 - Control panel markup and JS refactoring.
