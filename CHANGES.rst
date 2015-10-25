@@ -5,7 +5,8 @@ Changelog
 1.0a7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Control panel markup and JS refactoring.
+  [sneridagh]
 
 
 1.0a6 (2015-10-21)
