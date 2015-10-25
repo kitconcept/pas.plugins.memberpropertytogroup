@@ -1,4 +1,4 @@
 <?xml version="1.0"?>
 <registry>
-  <records interface="pas.plugins.memberpropertytogroup.interfaces.IPasPluginsMemberpropertytogroupSettings" />
+  <records interface="pas.plugins.memberpropertytogroup.interfaces.IPasPluginsMemberpropertytogroupSettings" purge="False" />
 </registry>

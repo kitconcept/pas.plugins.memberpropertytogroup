@@ -11,4 +11,13 @@
     handler=".upgrades.update_registry"
     />
 
+  <genericsetup:upgradeStep
+    source="*"
+    destination="1002"
+    title="Update pas.plugins.memberpropertytogroup setting registry"
+    description="Sets the control property correctly based on existing properties"
+    profile="pas.plugins.memberpropertytogroup:default"
+    handler=".upgrades.add_show_fields_property"
+    />
+
 </configure>
