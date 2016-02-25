@@ -143,6 +143,7 @@ the user can edit the folder
   Disable autologin
   Enable autologin as  test_user_1_
   Go to  ${PLONE_URL}/folder
+  Wait until page contains  Edit
   Click element  xpath=//*[contains(text(), 'Edit')]
   Wait until page contains  Site Map
   Page should contain  Edit
