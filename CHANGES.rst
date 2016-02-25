@@ -5,9 +5,9 @@ Changelog
 1.0a8 (unreleased)
 ------------------
 
-- Make pluins by default inactive ``getGroupMembers`` pluggable, so that
+- Make plugins (by default inactive) ``getGroupMembers`` pluggable, so that
   integrators may provide its own utility providing new ``IGetGroupMembers``
-  interface promising to return ther actual group members.
+  interface promising to return the actual group members.
   [jensens]
 
 
