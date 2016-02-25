@@ -116,12 +116,12 @@ I grant the virtual group '${group}' the 'Edit' permission on a folder
   Wait until page contains element  css=#sharing-user-group-search
   Input text  css=#sharing-user-group-search  ${group}
   Click button  css=#sharing-search-button
-  Xpath Should Match X Times  //table[@id='user-group-sharing']//td[@title='${group}']  1
-  Select checkbox  xpath=//table[@id='user-group-sharing']//td[@title='Employees']/following-sibling::td[2]/input
+  Wait until page contains element  xpath=//table[@id='user-group-sharing']//td[@title='${group}']
+  Select checkbox  xpath=//table[@id='user-group-sharing']//td[@title='${group}']/following-sibling::td[2]/input
   Capture screenshot  grant-virtual-group-permission-on-folder.png
-  # XXX: problem with screenshot and click button, first click is not always
-  # excecuted.
-  Repeat Keyword  2  Click button  Save
+  # XXX after capture the selection was reset: select again
+  Select checkbox  xpath=//table[@id='user-group-sharing']//td[@title='${group}']/following-sibling::td[2]/input
+  Click button  Save
   Wait until page contains  Changes saved
 
 
