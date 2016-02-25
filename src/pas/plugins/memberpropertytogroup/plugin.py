@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from AccessControl import ClassSecurityInfo
 from App.class_init import InitializeClass
+from pas.plugins.memberpropertytogroup.interfaces import IGetGroupMembers
 from pas.plugins.memberpropertytogroup.interfaces import IMPTGPlugin
 from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupSettings  # noqa
 from pas.plugins.memberpropertytogroup.interfaces import NUMBER_OF_FIELDS
@@ -13,6 +14,7 @@ from Products.PluggableAuthService.plugins.BasePlugin import BasePlugin
 from Products.PluggableAuthService.UserPropertySheet import UserPropertySheet
 from zope.component import queryUtility
 from zope.interface import implements
+
 import logging
 import os
 
@@ -245,10 +247,15 @@ class MPTGPlugin(BasePlugin):
 
     def getGroupMembers(self, group_id):
         """
-        return the members of the given group
+        returns the members of the given group
+        we can not list group members, since this is too expensive
+        thus we ask for some project specific implementation here
+        if no such implementation is provided we just return an empty tuple
         """
-        # we can not list group members, since this is too expensive
-        return tuple()
+        group_member_fetcher = queryUtility(IGetGroupMembers)
+        if group_member_fetcher is None:
+            return tuple()
+        return group_member_fetcher(self, group_id)
 
     # ##
     # pas_interfaces.plugins.IPropertiesPlugin

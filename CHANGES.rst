@@ -5,7 +5,10 @@ Changelog
 1.0a8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Make pluins by default inactive ``getGroupMembers`` pluggable, so that
+  integrators may provide its own utility providing new ``IGetGroupMembers``
+  interface promising to return ther actual group members.
+  [jensens]
 
 
 1.0a7 (2015-10-25)

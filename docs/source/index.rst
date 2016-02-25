@@ -11,6 +11,7 @@ Contents:
    :maxdepth: 2
 
    features/index.rst
+   extend.rst
 
 
 Indices and tables
