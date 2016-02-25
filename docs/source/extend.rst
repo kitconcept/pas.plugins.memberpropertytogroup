@@ -9,10 +9,10 @@ With this approach it is not possible to list the groups a members in a performa
 One would have to loop over all member instances for each group id,
 which gets expensive soon if there are many users.
 
-Specific backends - or user provider - offering its specific ways to get around this.
+Specific backends - or user providers - offering its specific ways to get around this.
 I.e for users stored in a SQL database the group may be queried efficiently.
-The same may apply for LDAP, dependent on hwo the users are stored.
-For other storages or for the default Plone user this does not apply
+The same may apply for LDAP, dependent on how the users are stored.
+For other storages or for the default Plone users this does not apply
 
 Solution
 --------
@@ -23,8 +23,8 @@ If there is no utility found an empty tuple is returned.
 This is the default behavior.
 
 Integrators using this module may provide their own solution by registering a utility for this interface.
-I case a utility was found it get called with the plugin instance and the group id is parameters.
-The result of the call is then considered as the members of the group and returned unmodifed.
+In case a utility was found, it gets called with the plugin instance and the group id as parameters.
+The result of the call is then considered as a list of members of the group and returned as is.
 
 
 Example
