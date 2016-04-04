@@ -2,13 +2,20 @@ Changelog
 =========
 
 
-1.0a8 (unreleased)
-------------------
+1.1 (unreleased)
+----------------
 
 - Make plugins (by default inactive) ``getGroupMembers`` pluggable, so that
   integrators may provide its own utility providing new ``IGetGroupMembers``
   interface promising to return the actual group members.
   [jensens]
+
+
+1.0 (2016-04-04)
+----------------
+
+- Identical to 1.0a7.
+  [timo]
 
 
 1.0a7 (2015-10-25)

@@ -139,8 +139,8 @@ class MPTGPlugin(BasePlugin):
         if star:
             group_match = group_match[:-1]
         return (
-            star and group_prop.startswith(group_match)
-            or group_prop == group_match
+            star and group_prop.startswith(group_match) or
+            group_prop == group_match
         )
 
     # ##
