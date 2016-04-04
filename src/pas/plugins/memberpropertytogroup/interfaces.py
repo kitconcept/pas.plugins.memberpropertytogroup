@@ -371,7 +371,7 @@ class IGetGroupMembers(Interface):
 
     This is use case specific.
     By default no group members are listed.
-    In some cases its possible to liste members.
+    In some cases its possible to list members.
     This may be the case if users are from sources where a query performance
     good enough to list users.
     """
