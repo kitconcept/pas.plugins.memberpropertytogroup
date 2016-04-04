@@ -5,7 +5,8 @@ Changelog
 1.0a8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Identical to 1.0a7.
+  [timo]
 
 
 1.0a7 (2015-10-25)
