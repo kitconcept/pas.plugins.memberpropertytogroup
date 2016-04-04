@@ -53,7 +53,6 @@ setup(
         'test': [
             'mock',
             'plone.app.testing',
-            'plone.app.contenttypes',
             'plone.app.robotframework[debug]',
         ],
     },
