@@ -28,6 +28,8 @@ setup(
         "Framework :: Plone :: 5.0",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
+        "Development Status :: 5 - Production/Stable",
+        "License :: OSI Approved :: GNU General Public License (GPL)",
     ],
     keywords='Python Plone PAS LDAP',
     author='Timo Stollenwerk',
