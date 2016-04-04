@@ -1,4 +1,4 @@
-- Timo Stollenwerk, tisto@plone.org
+- Timo Stollenwerk, stollenwerk@kitconcept.com
 - Jens Klein, jens@bluedynamics.com
-- Víctor Fernández de Alba, sneridagh@gmail.com
-- Carsten Senger, senger@rehfisch.de
+- Víctor Fernández de Alba, fernandezdealba@kitconcept.com
+- Carsten Senger, senger@kitconcept.com
