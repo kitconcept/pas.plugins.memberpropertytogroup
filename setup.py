@@ -6,20 +6,17 @@ from setuptools import setup
 
 
 long_description = (
-    open('README.rst').read()
-    + '\n' +
+    open('README.rst').read() + '\n' +
     'Contributors\n'
-    '============\n'
-    + '\n' +
-    open('CONTRIBUTORS.rst').read()
-    + '\n' +
-    open('CHANGES.rst').read()
-    + '\n')
+    '============\n' + '\n' +
+    open('CONTRIBUTORS.rst').read() + '\n' +
+    open('CHANGES.rst').read() + '\n'
+)
 
 
 setup(
     name='pas.plugins.memberpropertytogroup',
-    version='1.0.1.dev0',
+    version='1.1.dev0',
     description='Plone PAS plugin to create virtual groups based on member properties.',  # noqa
     long_description=long_description,
     # Get more from http://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -28,8 +25,11 @@ setup(
         "Framework :: Plone",
         "Framework :: Plone :: 3.3",
         "Framework :: Plone :: 4.3",
+        "Framework :: Plone :: 5.0",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
+        "Development Status :: 5 - Production/Stable",
+        "License :: OSI Approved :: GNU General Public License (GPL)",
     ],
     keywords='Python Plone PAS LDAP',
     author='Timo Stollenwerk',

@@ -224,6 +224,43 @@ class TestPlugin(unittest.TestCase):
             []
         )
 
+    def test_get_group_members(self):
+        # there is no utility be default providing the group members
+        from zope.component import queryUtility
+        from pas.plugins.memberpropertytogroup.interfaces import \
+            IGetGroupMembers
+        self.assertIsNone(queryUtility(IGetGroupMembers))
+
+        # mock group and user with such an group
+        self.mocked_valid_groups.return_value = [
+            ['prop1', 'group1', 'title1', 'descr1', 'email1'],
+            ['prop2', 'group2', 'title2', 'descr2', 'email2'],
+        ]
+        self.mocked_group_property_of_principal.return_value = 'prop2'
+
+        # by default no utility for group members fetching is present
+        self.assertEqual(
+            self.plugin.getGroupMembers('prop2'),
+            (),
+        )
+
+        # provide a utility and lets see if it get used
+        from zope.component import provideUtility
+
+        def fake_group_provider(plugin, group_id):
+            return ('fakeuser',)
+
+        provideUtility(fake_group_provider, provides=IGetGroupMembers)
+        self.assertIs(
+            queryUtility(IGetGroupMembers),
+            fake_group_provider,
+        )
+
+        self.assertEqual(
+            self.plugin.getGroupMembers('prop2'),
+            ('fakeuser',),
+        )
+
 
 class TestPluginBasic(unittest.TestCase):
     """Test that pas.plugins.memberpropertytogroup basic plugin functions."""

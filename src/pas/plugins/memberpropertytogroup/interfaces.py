@@ -364,3 +364,20 @@ class IPasPluginsMemberpropertytogroupSettings(Interface):
 
 class IMPTGPlugin(Interface):
     """Member Properties To Group Plugin"""
+
+
+class IGetGroupMembers(Interface):
+    """List group members from a MPTG plugin
+
+    This is use case specific.
+    By default no group members are listed.
+    In some cases its possible to list members.
+    This may be the case if users are from sources where a query performance
+    good enough to list users.
+    """
+
+    def __call__(plugin, group_id):
+        """list of members of the given group
+
+        as defined by IGroupIntrospection.getGroupMembers
+        """
