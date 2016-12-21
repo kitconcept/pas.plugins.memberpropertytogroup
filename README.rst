@@ -141,13 +141,13 @@ Credits
 
 The development of this plugin has been kindly sponsored by `Bonn University`_.
 
-.. image:: http://www.kitconcept.com/images/logo-200px.png
+.. image:: https://kitconcept.com/logo.png
    :height: 200px
    :width: 65px
    :scale: 300 %
    :alt: kitconcept
    :align: center
-   :target: http://www.kitconcept.com/
+   :target: https://www.kitconcept.com/
 
 Developed by `kitconcept`_.
 
