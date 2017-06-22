@@ -2,6 +2,18 @@ language: python
 python:
   - 2.7
 dist: trusty
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+install:
+  - sudo pip install -r requirements.txt
+before_script:
+  - wget "http://chromedriver.storage.googleapis.com/2.30/chromedriver_linux64.zip"
+  - unzip chromedriver_linux64.zip
+  - sudo mv chromedriver /usr/local/bin
 cache:
   pip: true
   directories:
