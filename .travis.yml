@@ -1,6 +1,7 @@
 language: python
 python:
   - 2.7
+dist: trusty
 cache:
   pip: true
   directories:
@@ -10,6 +11,9 @@ env:
   - PLONE_VERSION=5.0
 before_install:
   - mkdir -p $HOME/buildout-cache/{eggs,downloads}
+  - sudo apt install python2.7 python2.7-dev
+  - sudo apt install python-setuptools build-essential libssl-dev libxml2-dev libxslt1-dev libbz2-dev libjpeg62-dev
+  - sudo apt install git libreadline-dev wv poppler-utils
   - virtualenv .
   - bin/pip install -r requirements.txt
   - export DISPLAY=:99.0
