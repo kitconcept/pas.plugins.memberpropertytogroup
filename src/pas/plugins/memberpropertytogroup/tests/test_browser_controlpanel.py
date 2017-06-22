@@ -12,7 +12,7 @@ from zope.component import getMultiAdapter
 import unittest
 
 
-class TestMailchimpSettingsControlPanel(unittest.TestCase):
+class TestPasPluginsMemberpropertyToGoupControlPanel(unittest.TestCase):
 
     layer = PAS_PLUGINS_MPTG_PLONE_INTEGRATION_TESTING
 
