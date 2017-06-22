@@ -37,6 +37,9 @@
    If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide_addons.html
    This text does not appear on pypi or github. It is a comment.
 
+.. image:: https://raw.githubusercontent.com/kitconcept/pas.plugins.memberpropertytogroup/master/kitconcept.png
+   :alt: kitconcept
+   :target: https://kitconcept.com/
 
 =============================================================================
 pas.plugins.memberpropertytogroup
@@ -141,13 +144,9 @@ Credits
 
 The development of this plugin has been kindly sponsored by `Bonn University`_.
 
-.. image:: https://kitconcept.com/logo.png
-   :height: 200px
-   :width: 65px
-   :scale: 300 %
+.. image:: https://raw.githubusercontent.com/kitconcept/pas.plugins.memberpropertytogroup/master/kitconcept.png
    :alt: kitconcept
-   :align: center
-   :target: https://www.kitconcept.com/
+   :target: https://kitconcept.com/
 
 Developed by `kitconcept`_.
 
