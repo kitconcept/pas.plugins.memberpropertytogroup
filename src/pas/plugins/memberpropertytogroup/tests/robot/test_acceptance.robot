@@ -21,7 +21,12 @@
 #
 # ============================================================================
 
-*** Settings *****************************************************************
+*** Variables ***
+
+${BROWSER}  chrome
+
+
+*** Settings ***
 
 Resource  plone/app/robotframework/selenium.robot
 Resource  plone/app/robotframework/keywords.robot
@@ -32,7 +37,7 @@ Test Setup  Open test browser
 Test Teardown  Close all browsers
 
 
-*** Test Cases ***************************************************************
+*** Test Cases ***
 
 Scenario: As administrator I can create a group based on member properties
   Given a user with the property 'usertype' = 'employee'
@@ -64,7 +69,7 @@ Scenario: As administrator I can create a group based on member properties prefi
    Then the user is member of the group 'Students'
 
 
-*** Keywords *****************************************************************
+*** Keywords ***
 
 # --- Given ------------------------------------------------------------------
 
