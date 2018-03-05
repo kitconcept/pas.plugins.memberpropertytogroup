@@ -16,7 +16,7 @@ long_description = (
 
 setup(
     name='pas.plugins.memberpropertytogroup',
-    version='1.1.dev0',
+    version='1.1',
     description='Plone PAS plugin to create virtual groups based on member properties.',  # noqa
     long_description=long_description,
     # Get more from http://pypi.python.org/pypi?%3Aaction=list_classifiers
