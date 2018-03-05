@@ -4,6 +4,9 @@ Changelog
 1.1 (unreleased)
 ----------------
 
+- Plone 5.1 compatibility.
+  [timo]
+
 - Make plugins (by default inactive) ``getGroupMembers`` pluggable, so that
   integrators may provide its own utility providing new ``IGetGroupMembers``
   interface promising to return the actual group members.
@@ -71,4 +74,3 @@ Changelog
 
 - Initial release.
   [timo, jensens]
-
