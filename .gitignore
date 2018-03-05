@@ -23,10 +23,12 @@ lib/
 local/
 output.xml
 parts/
+share/
 var/
 log.html
 report.html
 selenium-screenshot-*.png
+pip-selfcheck.json
 docs/Makefile
 docs/make.bat
 docs/doctrees/

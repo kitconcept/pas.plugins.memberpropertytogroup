@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # see https://community.plone.org/t/not-using-bootstrap-py-as-default/620
+ln -fs plone-5.1.x.cfg buildout.cfg
 rm -r ./lib ./include ./local ./bin
-ln -fs plone-4.3.x.cfg buildout.cfg
 virtualenv --clear .
 ./bin/pip install -r requirements.txt
-./bin/buildout 
+./bin/buildout -c plone-5.1.x.cfg
