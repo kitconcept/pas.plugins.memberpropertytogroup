@@ -5,7 +5,7 @@ Create virtual groups based on member properties
 
 .. literalinclude:: ../../../src/pas/plugins/memberpropertytogroup/tests/robot/test_acceptance.robot
   :language: robot
-  :lines: 37-41
+  :lines: 42-46
 
 **Given**
 
@@ -34,11 +34,11 @@ Create virtual groups based on member properties
 Create multiple virtual groups based member properties
 ------------------------------------------------------
 
-**As administrator I can create multiple groups based on member properties**
+**As administrator I can create a group based on multiple member properties**
 
 .. literalinclude:: ../../../src/pas/plugins/memberpropertytogroup/tests/robot/test_acceptance.robot
   :language: robot
-  :lines: 52-58
+  :lines: 55-64
 
 **Given**
 
@@ -72,7 +72,7 @@ Create virtual group based on a member properties prefix
 
 .. literalinclude:: ../../../src/pas/plugins/memberpropertytogroup/tests/robot/test_acceptance.robot
   :language: robot
-  :lines: 61-64
+  :lines: 65-69
 
 **Given**
 

@@ -6,7 +6,7 @@ As administrator I can create a group based on member properties
 
 .. literalinclude:: ../../src/pas/plugins/memberpropertytogroup/tests/robot/test_acceptance.robot
   :language: robot
-  :lines: 42-46
+  :lines: 47-71
 
 When I create a virtual group 'Employees' with the property 'usertype' = 'employee'.
 

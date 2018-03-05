@@ -5,7 +5,7 @@ Grant local permissions based on virtual member properties groups
 
 .. literalinclude:: ../../../src/pas/plugins/memberpropertytogroup/tests/robot/test_acceptance.robot
   :language: robot
-  :lines: 44-48
+  :lines: 48-52
 
 **Given**
 
