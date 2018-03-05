@@ -1,3 +1,7 @@
+.. This README is meant for consumption by humans and pypi. Pypi can render rst files so please do not use Sphinx features.
+   If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide_addons.html
+   This text does not appear on pypi or github. It is a comment.
+
 .. image:: https://travis-ci.org/kitconcept/pas.plugins.memberpropertytogroup.svg?branch=master
     :target: https://travis-ci.org/kitconcept/pas.plugins.memberpropertytogroup
 
@@ -12,30 +16,15 @@
   :target: https://readthedocs.org/projects/paspluginsmemberpropertytogroup/?badge=latest
   :alt: Documentation Status
 
-.. image:: https://badge.waffle.io/kitconcept/pas.plugins.memberpropertytogroup.png?label=ready&title=Ready
- :target: https://waffle.io/kitconcept/pas.plugins.memberpropertytogroup
- :alt: 'Stories in Ready'
-
-.. image:: https://img.shields.io/pypi/dm/pas.plugins.memberpropertytogroup.svg
-    :target: https://pypi.python.org/pypi/pas.plugins.memberpropertytogroup/
-    :alt: Downloads
-
 .. image:: https://img.shields.io/pypi/v/pas.plugins.memberpropertytogroup.svg
     :target: https://pypi.python.org/pypi/pas.plugins.memberpropertytogroup/
     :alt: Latest Version
-
-.. image:: https://img.shields.io/pypi/status/pas.plugins.memberpropertytogroup.svg
-    :target: https://pypi.python.org/pypi/pas.plugins.memberpropertytogroup/
-    :alt: Egg Status
 
 .. image:: https://img.shields.io/pypi/l/pas.plugins.memberpropertytogroup.svg
     :target: https://pypi.python.org/pypi/pas.plugins.memberpropertytogroup/
     :alt: License
 
-
-.. This README is meant for consumption by humans and pypi. Pypi can render rst files so please do not use Sphinx features.
-   If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide_addons.html
-   This text does not appear on pypi or github. It is a comment.
+|
 
 .. image:: https://raw.githubusercontent.com/kitconcept/pas.plugins.memberpropertytogroup/master/kitconcept.png
    :alt: kitconcept
