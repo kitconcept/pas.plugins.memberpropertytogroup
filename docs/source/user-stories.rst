@@ -6,7 +6,7 @@ As administrator I can create a group based on member properties
 
 .. literalinclude:: ../../src/pas/plugins/memberpropertytogroup/tests/robot/test_acceptance.robot
   :language: robot
-  :lines: 37-41
+  :lines: 42-46
 
 When I create a virtual group 'Employees' with the property 'usertype' = 'employee'.
 
@@ -26,7 +26,7 @@ As reviewer I can grant permissions based on member properties groups
 
 .. literalinclude:: ../../src/pas/plugins/memberpropertytogroup/tests/robot/test_acceptance.robot
   :language: robot
-  :lines: 44-48
+  :lines: 48-53
 
 When I grant the virtual group the 'edit' permission on a folder.
 
@@ -46,7 +46,7 @@ As administrator I can create a group based on multiple member properties
 
 .. literalinclude:: ../../src/pas/plugins/memberpropertytogroup/tests/robot/test_acceptance.robot
   :language: robot
-  :lines: 52-58
+  :lines: 55-63
 
 
 As administrator I can create a group based on member properties prefixes
@@ -54,5 +54,4 @@ As administrator I can create a group based on member properties prefixes
 
 .. literalinclude:: ../../src/pas/plugins/memberpropertytogroup/tests/robot/test_acceptance.robot
   :language: robot
-  :lines: 62-65
-
+  :lines: 65-69
