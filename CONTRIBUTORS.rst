@@ -1,4 +1,4 @@
-- Timo Stollenwerk, stollenwerk@kitconcept.com
-- Jens Klein, jens@bluedynamics.com
-- Víctor Fernández de Alba, fernandezdealba@kitconcept.com
-- Carsten Senger, senger@kitconcept.com
+- Timo Stollenwerk
+- Jens Klein
+- Víctor Fernández de Alba
+- Carsten Senger
