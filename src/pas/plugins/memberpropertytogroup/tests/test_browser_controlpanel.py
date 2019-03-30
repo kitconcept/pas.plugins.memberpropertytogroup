@@ -37,7 +37,6 @@ class TestPasPluginsMemberpropertyToGoupControlPanel(unittest.TestCase):
             (self.portal, self.portal.REQUEST),
             name="memberpropertytogroup-controlpanel"
         )
-        view = view.__of__(self.portal)
         self.assertTrue(view())
 
     def test_memberpropertytogroup_controlpanel_view_protected(self):
