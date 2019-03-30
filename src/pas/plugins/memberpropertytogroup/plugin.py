@@ -351,4 +351,5 @@ class MPTGPlugin(BasePlugin):
             result = result[:max_results]
         return result
 
+
 InitializeClass(MPTGPlugin)
