@@ -5,6 +5,7 @@
 *.mo
 *.pyc
 *.swp
+.Python
 .coverage
 .installed.cfg
 .mr.developer.cfg
