@@ -15,7 +15,6 @@ addons:
 env:
   - PLONE_VERSION=4.3
   - PLONE_VERSION=5.1
-  - PLONE_VERSION=5.2
   before_install:
   - mkdir -p $HOME/buildout-cache/{eggs,downloads}
   - virtualenv .
