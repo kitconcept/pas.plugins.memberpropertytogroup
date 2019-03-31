@@ -53,7 +53,6 @@ setup(
         ],
         'test': [
             'mock',
-            'plone.api',
             'plone.app.testing',
             'plone.app.robotframework[debug]',
         ],

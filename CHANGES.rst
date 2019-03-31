@@ -4,8 +4,7 @@ Changelog
 1.2 (unreleased)
 ----------------
 
-- Plone 5.2 compatibility.
-  [timo]
+- Nothing changed yet.
 
 
 1.1 (2018-03-05)
