@@ -2,9 +2,6 @@
    If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide_addons.html
    This text does not appear on pypi or github. It is a comment.
 
-.. image:: https://travis-ci.org/kitconcept/pas.plugins.memberpropertytogroup.svg?branch=master
-    :target: https://travis-ci.org/kitconcept/pas.plugins.memberpropertytogroup
-
 .. image:: https://coveralls.io/repos/kitconcept/pas.plugins.memberpropertytogroup/badge.svg
   :target: https://coveralls.io/r/kitconcept/pas.plugins.memberpropertytogroup
 
@@ -104,21 +101,10 @@ If you are having issues, `please let us know <https://github.com/kitconcept/pas
 Development
 -----------
 
-Plone 3
-    There must be an ``python2.4`` binary available in system path, then::
-
-        $ bootstrap-3.3.x.sh
-
-Plone 4
-    There must be an ``python`` binary available in system path pointing to Python 2.7 , then::
-
-        $ make build-plone-4.3
-
 Plone 5
-    There must be an ``python`` binary available in system path pointing to Python 2.7 , then::
+    There must be an ``python`` binary available in system path pointing to Python 3.7 or superior, then::
 
-        $ make build-plone-3.3
-
+        $ make build-plone-5.2
 
 Credits
 -------
