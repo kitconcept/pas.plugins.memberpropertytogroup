@@ -48,10 +48,9 @@ jobs:
           make build-plone-${{ matrix.plone-version }}
       - name: Run code analysis
         run: make code-analysis
-      - name: Prepare Chrome driver
+      - name: Run tests
         run: |
           export DISPLAY=:99
           chromedriver --url-base=/wd/hub &
-          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
-      - name: Run tests
-        run: make test-all
+          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
+          make test-all
