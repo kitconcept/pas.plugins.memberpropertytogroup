@@ -61,6 +61,9 @@ lint:  ## Lint files
 test:
 	bin/test
 
+test-all:
+	bin/test --all
+
 release:
 	bin/fullrelease
 
