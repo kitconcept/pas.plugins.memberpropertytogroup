@@ -1,18 +1,18 @@
-# -*- coding: utf-8 -*-
 from pas.plugins.memberpropertytogroup.plugin import MPTGPlugin
 
-TITLE = 'Member Property To Group plugin (pas.plugins.memberpropertytogroup)'
-DEFAULTID = 'memberpropertytogroup'
+
+TITLE = "Member Property To Group plugin (pas.plugins.memberpropertytogroup)"
+DEFAULTID = "memberpropertytogroup"
 
 
 def _add_plugin(pas, pluginid=DEFAULTID):
     if pluginid in pas.objectIds():
-        return TITLE + ' already installed.'
+        return TITLE + " already installed."
     plugin = MPTGPlugin(pluginid, title=TITLE)
     pas._setObject(pluginid, plugin)
     plugin = pas[plugin.getId()]  # get plugin acquisition wrapped!
     for info in pas.plugins.listPluginTypeInfo():
-        interface = info['interface']
+        interface = info["interface"]
         if not interface.providedBy(plugin):
             continue
         pas.plugins.activatePlugin(interface, plugin.getId())
@@ -23,15 +23,17 @@ def _add_plugin(pas, pluginid=DEFAULTID):
 
 
 def setup_plugin(context):
-    if context.readDataFile('paspluginsmemberpropertytogroup_marker.txt') is not None:  # noqa
+    data = context.readDataFile("paspluginsmemberpropertytogroup_marker.txt")
+    if data is not None:
         _add_plugin(context.getSite().acl_users)
 
 
-def _remove_plugin(pas, pluginid=DEFAULTID):
-    if pluginid in pas.objectIds():
-        pas.manage_delObjects([pluginid])
+def _remove_plugin(pas, plugin_id=DEFAULTID):
+    if plugin_id in pas.objectIds():
+        pas.manage_delObjects([plugin_id])
 
 
 def remove_plugin(context):
-    if context.readDataFile('paspluginsmemberpropertytogroup_uninstall.txt') is not None:  # noqa
+    data = context.readDataFile("paspluginsmemberpropertytogroup_uninstall.txt")
+    if data is not None:
         _remove_plugin(context.getSite().acl_users)

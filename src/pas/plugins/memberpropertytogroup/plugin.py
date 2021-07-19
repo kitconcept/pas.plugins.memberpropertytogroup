@@ -1,57 +1,57 @@
-# -*- coding: utf-8 -*-
 from AccessControl import ClassSecurityInfo
 from App.class_init import InitializeClass
-from pas.plugins.memberpropertytogroup.interfaces import IGetGroupMembers
+from pas.plugins.memberpropertytogroup.interfaces import IGetGroupMembers  # noqa; noqa
 from pas.plugins.memberpropertytogroup.interfaces import IMPTGPlugin
-from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupSettings  # noqa
+from pas.plugins.memberpropertytogroup.interfaces import (
+    IPasPluginsMemberpropertytogroupSettings,
+)
 from pas.plugins.memberpropertytogroup.interfaces import NUMBER_OF_FIELDS
+from pathlib import Path
 from plone.registry.interfaces import IRegistry
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from Products.PlonePAS import interfaces as plonepas_interfaces
 from Products.PlonePAS.plugins.group import PloneGroup
+from Products.PlonePAS.tools.memberdata import MemberData
 from Products.PluggableAuthService.interfaces import plugins as pas_interfaces
 from Products.PluggableAuthService.plugins.BasePlugin import BasePlugin
 from Products.PluggableAuthService.UserPropertySheet import UserPropertySheet
 from zope.component import queryUtility
-from zope.interface import implements
+from zope.interface import implementer
 
 import logging
 import os
 
+
 logger = logging.getLogger(__name__)
-tpl_dir = os.path.join(os.path.dirname(__file__), 'browser')
+tpl_dir = Path(os.path.dirname(__file__)) / "browser"
 
 
-def manage_addMPTGPlugin(context, id, title='', RESPONSE=None, **kw):
-    """Create an instance of a MPTG Plugin.
-    """
+def manage_addMPTGPlugin(context, id, title="", response=None, **kw):
+    """Create an instance of a MPTG Plugin."""
     plugin = MPTGPlugin(id, title, **kw)
     context._setObject(plugin.getId(), plugin)
-    if RESPONSE is not None:
-        RESPONSE.redirect('manage_workspace')
+    if response is not None:
+        response.redirect("manage_workspace")
 
 
 manage_addMPTGPluginForm = PageTemplateFile(
-    os.path.join(tpl_dir, 'add_plugin.pt'),
-    globals(),
-    __name__='addMPTGPlugin'
+    os.path.join(tpl_dir, "add_plugin.pt"), globals(), __name__="addMPTGPlugin"
 )
 
 
+@implementer(
+    IMPTGPlugin,
+    pas_interfaces.IGroupEnumerationPlugin,
+    pas_interfaces.IGroupsPlugin,
+    pas_interfaces.IPropertiesPlugin,
+    plonepas_interfaces.capabilities.IGroupCapability,
+    plonepas_interfaces.group.IGroupIntrospection,
+)
 class MPTGPlugin(BasePlugin):
-    """Memberproperties to Group mapping PAS plugin
-    """
-    # using implements explicit here for python 2.4 compat.
-    implements(
-        IMPTGPlugin,
-        pas_interfaces.IGroupEnumerationPlugin,
-        pas_interfaces.IGroupsPlugin,
-        pas_interfaces.IPropertiesPlugin,
-        plonepas_interfaces.capabilities.IGroupCapability,
-        plonepas_interfaces.group.IGroupIntrospection,
-    )
+    """Memberproperties to Group mapping PAS plugin"""
+
     security = ClassSecurityInfo()
-    meta_type = 'Member Properties To Group Plugin'
+    meta_type = "Member Properties To Group Plugin"
     BasePlugin.manage_options
 
     # Tell PAS not to swallow our exceptions
@@ -77,13 +77,13 @@ class MPTGPlugin(BasePlugin):
         result = []
         # Kept original field name for direct backwards compat
         if index == 0:
-            index = ''
+            index = ""
         else:
-            index = '_' + str(index)
-        for line in getattr(self._settings, 'valid_groups' + index):
+            index = "_" + str(index)
+        for line in getattr(self._settings, "valid_groups" + index):
             if not line.strip():
                 continue
-            result.append((line.split('|') + [''] * 5)[:5])
+            result.append((line.split("|") + [""] * 5)[:5])
         return result
 
     def _get_all_groups(self):
@@ -95,34 +95,32 @@ class MPTGPlugin(BasePlugin):
         return valid_groups
 
     def _principal_by_id(self, principal_id):
-        """lookup principal by id
-        """
+        """lookup principal by id"""
         pas = self._getPAS()
         return pas.getUserById(principal_id)
 
     def _configured_property(self, index):
-        """get configured key to fetch the group property from propertysheet
-        """
+        """get configured key to fetch the group property from propertysheet"""
         # Kept original field name for direct backwards compat
         if index == 0:
-            index = ''
+            index = ""
         else:
-            index = '_' + str(index)
-        return getattr(self._settings, 'group_property' + index)
+            index = "_" + str(index)
+        return getattr(self._settings, "group_property" + index)
 
     def _sheet_plugins_of_principal(self, principal):
         pas = self._getPAS()
-        sheet_plugins = pas.plugins.listPlugins(
-            pas_interfaces.IPropertiesPlugin
-        )
+        sheet_plugins = pas.plugins.listPlugins(pas_interfaces.IPropertiesPlugin)
         return dict(sheet_plugins)
 
     def _group_property_of_principal(self, principal, index):
-        """get property with group information from principal
-        """
+        """get property with group information from principal"""
         key = self._configured_property(index)
         sheet_plugins = self._sheet_plugins_of_principal(principal)
-        for sheet_id in principal.listPropertysheets():
+        if isinstance(principal, MemberData):
+            principal = principal.getUser()
+        sheets = principal.listPropertysheets()
+        for sheet_id in sheets:
             sheet_provider = sheet_plugins[sheet_id]
             sheet = sheet_provider.getPropertiesForUser(principal)
             value = sheet.getProperty(key)
@@ -131,24 +129,20 @@ class MPTGPlugin(BasePlugin):
         return None
 
     def _is_property_match(self, group_prop, group_match):
-        """check a given group property of a user against a group matcher
-        """
-        if not isinstance(group_prop, basestring):
+        """check a given group property of a user against a group matcher"""
+        if not isinstance(group_prop, str):
             return False
-        star = group_match.endswith('*')
+        star = group_match.endswith("*")
         if star:
             group_match = group_match[:-1]
-        return (
-            star and group_prop.startswith(group_match) or
-            group_prop == group_match
-        )
+        return star and group_prop.startswith(group_match) or group_prop == group_match
 
     # ##
     # pas_interfaces.IGroupsPlugin
     #
     #  Determine the groups to which a user belongs.
 
-    security.declarePrivate('getGroupsForPrincipal')  # Plone3bbb
+    security.declarePrivate("getGroupsForPrincipal")  # Plone3bbb
 
     def getGroupsForPrincipal(self, principal, request=None):
         """principal -> ( group_1, ... group_N )
@@ -160,8 +154,7 @@ class MPTGPlugin(BasePlugin):
         """
         groups_matched = []
         for index in range(0, NUMBER_OF_FIELDS):
-            group_prop_value = self._group_property_of_principal(principal,
-                                                                 index)
+            group_prop_value = self._group_property_of_principal(principal, index)
             for prop, gid, title, descr, email in self._valid_groups(index):
                 if self._is_property_match(group_prop_value, prop):
                     groups_matched.append(gid)
@@ -171,7 +164,7 @@ class MPTGPlugin(BasePlugin):
     # plonepas_interfaces.capabilities.IGroupCapability
     # (plone ui specific)
     #
-    security.declarePublic('allowGroupAdd')
+    security.declarePublic("allowGroupAdd")
 
     def allowGroupAdd(self, principal_id, group_id):
         """
@@ -180,7 +173,7 @@ class MPTGPlugin(BasePlugin):
         """
         return False
 
-    security.declarePublic('allowGroupRemove')
+    security.declarePublic("allowGroupRemove")
 
     def allowGroupRemove(self, principal_id, group_id):
         """
@@ -206,9 +199,7 @@ class MPTGPlugin(BasePlugin):
             plugins = pas.plugins
 
             # add properties
-            properties_provider = plugins.listPlugins(
-                pas_interfaces.IPropertiesPlugin
-            )
+            properties_provider = plugins.listPlugins(pas_interfaces.IPropertiesPlugin)
             for propfinder_id, propfinder in properties_provider:
                 data = propfinder.getPropertiesForUser(group, None)
                 if not data:
@@ -216,13 +207,7 @@ class MPTGPlugin(BasePlugin):
                 group.addPropertysheet(propfinder_id, data)
 
             # add subgroups
-            group._addGroups(
-                pas._getGroupsForPrincipal(
-                    group,
-                    None,
-                    plugins=plugins
-                )
-            )
+            group._addGroups(pas._getGroupsForPrincipal(group, None, plugins=plugins))
             # add roles
             role_provider = plugins.listPlugins(pas_interfaces.IRolesPlugin)
             for rolemaker_id, rolemaker in role_provider:
@@ -266,10 +251,7 @@ class MPTGPlugin(BasePlugin):
             if gid != group_id:
                 continue
             sheet = UserPropertySheet(
-                self.getId(),
-                title=title,
-                description=descr,
-                email=email
+                self.getId(), title=title, description=descr, email=email
             )
             return sheet
         return None
@@ -279,17 +261,12 @@ class MPTGPlugin(BasePlugin):
     #
     #  Allow querying groups by ID, and searching for groups.
     #
-    security.declarePrivate('enumerateGroups')
+    security.declarePrivate("enumerateGroups")
 
     def enumerateGroups(
-        self,
-        id=None,
-        exact_match=False,
-        sort_by=None,
-        max_results=None,
-        **kw
+        self, id=None, exact_match=False, sort_by=None, max_results=None, **kw
     ):
-        """ -> ( group_info_1, ... group_info_N )
+        """-> ( group_info_1, ... group_info_N )
 
         o Return mappings for groups matching the given criteria.
 
@@ -329,21 +306,21 @@ class MPTGPlugin(BasePlugin):
           scaling issues for some implementations.
         """
         if id:
-            kw['id'] = id
+            kw["id"] = id
         result = []
         for prop, gid, title, descr, email in self._get_all_groups():
             record = {
-                'id': gid,
-                'pluginid': self.getId(),
+                "id": gid,
+                "pluginid": self.getId(),
             }
             if not kw:  # show all
                 result.append(record)
                 continue
             if exact_match:
-                if 'id' in kw and kw['id'] == gid:
+                if "id" in kw and kw["id"] == gid:
                     result.append(record)
                 continue
-            if gid.startswith(kw['id']):
+            if gid.startswith(kw["id"]):
                 result.append(record)
                 continue
         # todo: sort
