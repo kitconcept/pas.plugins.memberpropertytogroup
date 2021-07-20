@@ -2,10 +2,13 @@
    If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide_addons.html
    This text does not appear on pypi or github. It is a comment.
 
-.. image:: https://coveralls.io/repos/kitconcept/pas.plugins.memberpropertytogroup/badge.svg
+.. image:: https://img.shields.io/github/checks-status/kitconcept/pas.plugins.memberpropertytogroup/master?style=flat-square
+  :target: https://github.com/kitconcept/pas.plugins.memberpropertytogroup
+
+.. image:: https://img.shields.io/coveralls/github/kitconcept/pas.plugins.memberpropertytogroup?style=flat-square
   :target: https://coveralls.io/r/kitconcept/pas.plugins.memberpropertytogroup
 
-.. image:: https://readthedocs.org/projects/paspluginsmemberpropertytogroup/badge/?version=latest
+.. image:: https://img.shields.io/readthedocs/paspluginsmemberpropertytogroup?style=flat-square
   :target: https://readthedocs.org/projects/paspluginsmemberpropertytogroup/?badge=latest
   :alt: Documentation Status
 
