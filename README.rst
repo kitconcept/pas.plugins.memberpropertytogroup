@@ -2,17 +2,13 @@
    If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide_addons.html
    This text does not appear on pypi or github. It is a comment.
 
-.. image:: https://travis-ci.org/kitconcept/pas.plugins.memberpropertytogroup.svg?branch=master
-    :target: https://travis-ci.org/kitconcept/pas.plugins.memberpropertytogroup
+.. image:: https://img.shields.io/github/checks-status/kitconcept/pas.plugins.memberpropertytogroup/master?style=flat-square
+  :target: https://github.com/kitconcept/pas.plugins.memberpropertytogroup
 
-.. image:: https://coveralls.io/repos/kitconcept/pas.plugins.memberpropertytogroup/badge.svg
+.. image:: https://img.shields.io/coveralls/github/kitconcept/pas.plugins.memberpropertytogroup?style=flat-square
   :target: https://coveralls.io/r/kitconcept/pas.plugins.memberpropertytogroup
 
-.. image:: https://landscape.io/github/kitconcept/pas.plugins.memberpropertytogroup/master/landscape.svg?style=flat
-  :target: https://landscape.io/github/kitconcept/pas.plugins.memberpropertytogroup/master
-  :alt: Code Health
-
-.. image:: https://readthedocs.org/projects/paspluginsmemberpropertytogroup/badge/?version=latest
+.. image:: https://img.shields.io/readthedocs/paspluginsmemberpropertytogroup?style=flat-square
   :target: https://readthedocs.org/projects/paspluginsmemberpropertytogroup/?badge=latest
   :alt: Documentation Status
 
@@ -71,20 +67,6 @@ Install pas.plugins.memberpropertytogroup by adding it to your buildout::
 
 and then run "bin/buildout".
 
-If you are on Plone 3, you need to include the plone.app.registry KGS (know good set) and add the [plone3] extras to fetch the additonal dependencies that are not part of Plone 3::
-
-    [buildout]
-    extends =
-        http://dist.plone.org/release/3.3.6/versions.cfg
-        http://good-py.appspot.com/release/plone.app.registry/1.0b2?plone=3.3.6
-
-    ...
-
-    eggs =
-        pas.plugins.memberpropertytogroup [plone3]
-
-You can find a working example of a Plone 3 buildout here: https://github.com/kitconcept/pas.plugins.memberpropertytogroup/blob/master/plone-3.3.x.cfg
-
 
 Contribute
 ----------
@@ -104,21 +86,10 @@ If you are having issues, `please let us know <https://github.com/kitconcept/pas
 Development
 -----------
 
-Plone 3
-    There must be an ``python2.4`` binary available in system path, then::
-
-        $ bootstrap-3.3.x.sh
-
-Plone 4
-    There must be an ``python`` binary available in system path pointing to Python 2.7 , then::
-
-        $ make build-plone-4.3
-
 Plone 5
-    There must be an ``python`` binary available in system path pointing to Python 2.7 , then::
+    There must be an ``python`` binary available in system path pointing to Python 3.7 or superior, then::
 
-        $ make build-plone-3.3
-
+        $ make build-plone-5.2
 
 Credits
 -------

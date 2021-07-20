@@ -1,7 +1,9 @@
-# -*- coding: utf-8 -*-
 """Setup tests for this package."""
-from pas.plugins.memberpropertytogroup.testing import PAS_PLUGINS_MPTG_PLONE_INTEGRATION_TESTING  # noqa
+from pas.plugins.memberpropertytogroup.testing import (
+    PAS_PLUGINS_MPTG_PLONE_INTEGRATION_TESTING,
+)  # noqa
 from plone import api
+
 
 try:
     from Products.CMFPlone.utils import get_installer
@@ -20,32 +22,31 @@ class TestSetup(unittest.TestCase):
 
     def setUp(self):
         """Custom shared utility setup for tests."""
-        self.portal = self.layer['portal']
+        self.portal = self.layer["portal"]
         if HAS_INSTALLER:
             self.installer = get_installer(self.portal)
         else:
-            self.installer = api.portal.get_tool('portal_quickinstaller')
+            self.installer = api.portal.get_tool("portal_quickinstaller")
 
     def test_product_installed(self):
         """Test if pas.plugins.memberpropertytogroup is installed."""
         if HAS_INSTALLER:
             self.assertTrue(
-                self.installer.is_product_installed(
-                    'pas.plugins.memberpropertytogroup')
+                self.installer.is_product_installed("pas.plugins.memberpropertytogroup")
             )
         else:
             self.assertTrue(
-                self.installer.isProductInstalled(
-                    'pas.plugins.memberpropertytogroup'
-                )
+                self.installer.isProductInstalled("pas.plugins.memberpropertytogroup")
             )
 
     def test_browserlayer(self):
         """Test that IPasPluginsMemberpropertytogroupLayer is registered."""
-        from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupLayer  # noqa
+        from pas.plugins.memberpropertytogroup.interfaces import (
+            IPasPluginsMemberpropertytogroupLayer,
+        )  # noqa
         from plone.browserlayer import utils
-        self.assertIn(IPasPluginsMemberpropertytogroupLayer,
-                      utils.registered_layers())
+
+        self.assertIn(IPasPluginsMemberpropertytogroupLayer, utils.registered_layers())
 
 
 # class TestUninstall(unittest.TestCase):

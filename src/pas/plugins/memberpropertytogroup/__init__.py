@@ -1,12 +1,9 @@
-# -*- coding: utf-8 -*-
 from AccessControl.Permissions import add_user_folders
 from pas.plugins.memberpropertytogroup.plugin import manage_addMPTGPlugin
 from pas.plugins.memberpropertytogroup.plugin import manage_addMPTGPluginForm
 from pas.plugins.memberpropertytogroup.plugin import MPTGPlugin
 from pas.plugins.memberpropertytogroup.plugin import tpl_dir
 from Products.PluggableAuthService import registerMultiPlugin
-
-import os
 
 
 def initialize(context):
@@ -19,10 +16,11 @@ def initialize(context):
     with Zope and the CMF.
     """
     registerMultiPlugin(MPTGPlugin.meta_type)
+    icon = tpl_dir / "mptg.png"
     context.registerClass(
         MPTGPlugin,
         permission=add_user_folders,
-        icon=os.path.join(tpl_dir, 'mptg.png'),
+        icon=icon,
         constructors=(manage_addMPTGPluginForm, manage_addMPTGPlugin),
-        visibility=None
+        visibility=None,
     )

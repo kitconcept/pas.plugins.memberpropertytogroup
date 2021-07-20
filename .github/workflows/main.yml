@@ -1,0 +1,56 @@
+name: Run tests
+on:
+  push:
+    branches-ignore:
+      - "releases/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version:
+          - '3.7'
+          - '3.8'
+        plone-version:
+          - '5.2'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: nanasess/setup-chromedriver@master
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          sudo apt-get install -y build-essential libxml2-dev libxslt-dev python-dev
+          pip install virtualenv wheel
+      - name: Cache multiple paths
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/buildout-cache
+            ~/extends
+            ~/.cache/pip
+          key: ${{ runner.os }}-buildout-${{ matrix.plone-version }}-${{ matrix.python-version }}
+          restore-keys: |
+            ${{ runner.os }}-buildout-
+      - name: setup buildout cache
+        run: |
+            mkdir -p ~/buildout-cache/{eggs,downloads}
+            mkdir ~/.buildout
+            echo "[buildout]" > $HOME/.buildout/default.cfg
+            echo "download-cache = $HOME/buildout-cache/downloads" >> $HOME/.buildout/default.cfg
+            echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
+      - name: Run buildout
+        run: |
+          make build-plone-${{ matrix.plone-version }}
+      - name: Run code analysis
+        run: make code-analysis
+      - name: Run tests
+        run: |
+          export DISPLAY=:99
+          chromedriver --url-base=/wd/hub &
+          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
+          make test-all

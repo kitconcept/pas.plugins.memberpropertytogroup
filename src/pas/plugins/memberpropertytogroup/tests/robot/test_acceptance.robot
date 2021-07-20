@@ -135,13 +135,13 @@ I grant the virtual group '${group}' the 'Edit' permission on a folder
 the user is member of the group '${group}'
   Go To  ${PLONE_URL}/@@usergroup-usermembership?userid=test_user_1_
   Wait until page contains  Current group memberships
-  Xpath Should Match X Times  //table[@summary='Group Memberships Listing']//tr/td//*[text()[contains(., '${group}')]]  1
+  Page Should Contain Element  //table[@summary='Group Memberships Listing']//tr/td//*[text()[contains(., '${group}')]]  limit=1
   Capture screenshot  the-user-is-member-of-the-group.png
 
 the user ${user} is member of the group '${group}'
   Go To  ${PLONE_URL}/@@usergroup-usermembership?userid=test_user_1_
   Wait until page contains  Current group memberships
-  Xpath Should Match X Times  //table[@summary='Group Memberships Listing']//tr/td//*[text()[contains(., '${group}')]]  1
+  Page Should Contain Element  //table[@summary='Group Memberships Listing']//tr/td//*[text()[contains(., '${group}')]]  limit=1
   Capture screenshot  the-user-is-member-of-the-group.png
 
 the user can edit the folder

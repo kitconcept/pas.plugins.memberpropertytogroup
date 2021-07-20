@@ -7,6 +7,9 @@ Changelog
 - Plone 5.2 compatibility.
   [timo]
 
+- Drop Python 2, Plone < 5.2 compatibility.
+  [ericof]
+
 
 1.1 (2018-03-05)
 ----------------
