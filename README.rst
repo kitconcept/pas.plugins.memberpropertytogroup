@@ -5,10 +5,6 @@
 .. image:: https://coveralls.io/repos/kitconcept/pas.plugins.memberpropertytogroup/badge.svg
   :target: https://coveralls.io/r/kitconcept/pas.plugins.memberpropertytogroup
 
-.. image:: https://landscape.io/github/kitconcept/pas.plugins.memberpropertytogroup/master/landscape.svg?style=flat
-  :target: https://landscape.io/github/kitconcept/pas.plugins.memberpropertytogroup/master
-  :alt: Code Health
-
 .. image:: https://readthedocs.org/projects/paspluginsmemberpropertytogroup/badge/?version=latest
   :target: https://readthedocs.org/projects/paspluginsmemberpropertytogroup/?badge=latest
   :alt: Documentation Status
