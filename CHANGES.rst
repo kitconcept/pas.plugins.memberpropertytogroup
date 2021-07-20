@@ -10,6 +10,9 @@ Changelog
 - Drop Python 2, Plone < 5.2 compatibility.
   [ericof]
 
+- Implement package uninstall (#12).
+  [ericof]
+
 
 1.1 (2018-03-05)
 ----------------

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<object name="portal_controlpanel" purge="False">
+
+    <configlet
+        action_id="memberpropertytogroup"
+        appId="pas.plugins.memberpropertytogroup"
+        category="Products"
+        remove="True"
+    />
+
+</object>

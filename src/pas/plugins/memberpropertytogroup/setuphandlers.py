@@ -1,8 +1,18 @@
 from pas.plugins.memberpropertytogroup.plugin import MPTGPlugin
+from plone import api
+from Products.CMFPlone.interfaces import INonInstallable
+from zope.interface import implementer
 
 
 TITLE = "Member Property To Group plugin (pas.plugins.memberpropertytogroup)"
 DEFAULTID = "memberpropertytogroup"
+
+
+@implementer(INonInstallable)
+class HiddenProfiles(object):
+    def getNonInstallableProfiles(self):
+        """Hide uninstall profile from site-creation and quickinstaller"""
+        return ["pas.plugins.memberpropertytogroup:uninstall"]
 
 
 def _add_plugin(pas, pluginid=DEFAULTID):
@@ -33,7 +43,7 @@ def _remove_plugin(pas, plugin_id=DEFAULTID):
         pas.manage_delObjects([plugin_id])
 
 
-def remove_plugin(context):
-    data = context.readDataFile("paspluginsmemberpropertytogroup_uninstall.txt")
-    if data is not None:
-        _remove_plugin(context.getSite().acl_users)
+def uninstall(context):
+    """Uninstall the plugin."""
+    site = api.portal.get()
+    _remove_plugin(site.acl_users)
