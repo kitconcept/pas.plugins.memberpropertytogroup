@@ -142,7 +142,7 @@ the user ${user} is member of the group '${group}'
   Go To  ${PLONE_URL}/@@usergroup-usermembership?userid=test_user_1_
   Wait until page contains  Current group memberships
   Page Should Contain Element  //table[@summary='Group Memberships Listing']//tr/td//*[text()[contains(., '${group}')]]  limit=1
-  Capture screenshot  the-user-${user}-is-member-of-the-group-${group}.png
+  Capture screenshot  the-user-JohnDoe-is-member-of-the-group-${group}.png
 
 the user can edit the folder
   Disable autologin
