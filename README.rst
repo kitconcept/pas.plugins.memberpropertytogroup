@@ -2,7 +2,7 @@
    If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide_addons.html
    This text does not appear on pypi or github. It is a comment.
 
-.. image:: https://img.shields.io/github/checks-status/kitconcept/pas.plugins.memberpropertytogroup/master?style=flat-square
+.. image:: https://github.com/kitconcept/pas.plugins.memberpropertytogroup/actions/workflows/main.yml/badge.svg
   :target: https://github.com/kitconcept/pas.plugins.memberpropertytogroup
 
 .. image:: https://img.shields.io/coveralls/github/kitconcept/pas.plugins.memberpropertytogroup?style=flat-square
