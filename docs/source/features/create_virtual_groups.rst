@@ -26,7 +26,7 @@ Create virtual groups based on member properties
 
 * the user is member of the group 'Employees'
 
-.. image:: ../_screenshots/the-user-is-member-of-the-group.png
+.. image:: ../_screenshots/the-user-is-member-of-the-group-Employees.png
    :alt: MemberPropertyToGroup Control Panel
    :align: center
 
@@ -60,7 +60,7 @@ Create multiple virtual groups based member properties
 * the user 'John Doe' is member of the group 'Employees'
 * the user 'Jane Doe' is member of the group 'Locals'
 
-.. image:: ../_screenshots/the-user-is-member-of-the-group.png
+.. image:: ../_screenshots/the-user-'John Doe'-is-member-of-the-group-Employees.png
    :alt: MemberPropertyToGroup Control Panel
    :align: center
 
