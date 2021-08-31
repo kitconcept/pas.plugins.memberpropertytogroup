@@ -22,7 +22,7 @@ long_description = (
 
 setup(
     name="pas.plugins.memberpropertytogroup",
-    version="2.1.1",
+    version="2.1.2.dev0",
     description=description,
     long_description=long_description,
     classifiers=[
