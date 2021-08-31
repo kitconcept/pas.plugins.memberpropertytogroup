@@ -19,6 +19,7 @@ from zope.component import queryUtility
 from zope.interface import implementer
 
 import logging
+import re
 import os
 
 
@@ -132,10 +133,16 @@ class MPTGPlugin(BasePlugin):
         """check a given group property of a user against a group matcher"""
         if not isinstance(group_prop, str):
             return False
-        star = group_match.endswith("*")
-        if star:
+        start = "^"
+        end = "$"
+        if group_match.startswith("*"):
+            start = ""
+            group_match = group_match[1:]
+        if group_match.endswith("*"):
+            end = ""
             group_match = group_match[:-1]
-        return star and group_prop.startswith(group_match) or group_prop == group_match
+        pattern = f"{start}{group_match}{end}"
+        return True if re.match(pattern, group_prop) else False
 
     # ##
     # pas_interfaces.IGroupsPlugin

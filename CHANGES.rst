@@ -4,7 +4,8 @@ Changelog
 2.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Property matching now supports '*' both in the start and in the end of the value
+  [ericof]
 
 
 2.0.0 (2021-07-21)

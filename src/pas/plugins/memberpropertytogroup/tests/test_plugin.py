@@ -72,6 +72,10 @@ class TestPluginHelpers(unittest.TestCase):
             ("foo", "foo"),
             ("foobar", "foo*"),
             ("foo", "foo*"),
+            ("foo", "*foo*"),
+            ("foo", "*foo"),
+            ("foa", "*fo[ao]"),
+            ("foab", "*fo[ao]*"),
         ]
         for prop, match in TESTS_EQUAL:
             self.assertTrue(
