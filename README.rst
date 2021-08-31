@@ -102,7 +102,15 @@ Credits
    :align: center
    :target: http://uni-bonn.de
 
-The development of this plugin has been kindly sponsored by `Bonn University`_.
+.. image:: https://raw.githubusercontent.com/kitconcept/pas.plugins.memberpropertytogroup/master/hzb-logo.svg
+   :height: 39px
+   :width: 174px
+   :scale: 75 %
+   :alt: Helmholtz Zentrum Berlin
+   :align: center
+   :target: https://www.helmholtz-berlin.de/
+
+The development of this plugin has been kindly sponsored by `Bonn University`_ and `Helmholtz Zentrum Berlin`_.
 
 .. image:: https://raw.githubusercontent.com/kitconcept/pas.plugins.memberpropertytogroup/master/kitconcept.png
    :alt: kitconcept
@@ -120,4 +128,5 @@ The project is licensed under the GPLv2.
 
 
 .. _Bonn University: http://www3.uni-bonn.de/
+.. _Helmholtz Zentrum Berlin: https://www.helmholtz-berlin.de/
 .. _kitconcept: http://www.kitconcept.com/
