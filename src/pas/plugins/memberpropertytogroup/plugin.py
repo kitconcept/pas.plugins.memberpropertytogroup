@@ -142,7 +142,7 @@ class MPTGPlugin(BasePlugin):
             end = ""
             group_match = group_match[:-1]
         pattern = f"{start}{group_match}{end}"
-        return True if re.match(pattern, group_prop) else False
+        return True if re.search(pattern, group_prop) else False
 
     # ##
     # pas_interfaces.IGroupsPlugin
