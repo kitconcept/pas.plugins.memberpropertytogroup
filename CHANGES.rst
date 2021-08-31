@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.1 (unreleased)
+2.1.0 (2021-08-31)
 ------------------
 
 - Property matching now supports '*' both in the start and in the end of the value
