@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1.1 (unreleased)
+2.1.1 (2021-08-31)
 ------------------
 
 - Fix property matching.
