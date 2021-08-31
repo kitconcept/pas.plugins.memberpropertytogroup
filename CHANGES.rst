@@ -4,13 +4,14 @@ Changelog
 2.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix property matching.
+  [ericof]
 
 
 2.1.0 (2021-08-31)
 ------------------
 
-- Property matching now supports '*' both in the start and in the end of the value
+- Property matching now supports '*' both in the start and in the end of the value.
   [ericof]
 
 
