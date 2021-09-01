@@ -22,7 +22,7 @@
 
 |
 
-.. image:: https://raw.githubusercontent.com/kitconcept/pas.plugins.memberpropertytogroup/master/kitconcept.png
+.. image:: https://raw.githubusercontent.com/kitconcept/pas.plugins.memberpropertytogroup/main/kitconcept.png
    :alt: kitconcept
    :target: https://kitconcept.com/
 
@@ -104,7 +104,7 @@ The development of this plugin has been kindly sponsored by `Bonn University`_ a
 
 |
 
-.. image:: https://raw.githubusercontent.com/kitconcept/pas.plugins.memberpropertytogroup/master/hzb-logo.svg
+.. image:: https://raw.githubusercontent.com/kitconcept/pas.plugins.memberpropertytogroup/main/hzb-logo.svg
    :width: 200px
    :alt: Helmholtz Zentrum Berlin
    :align: center
@@ -115,9 +115,9 @@ The development of this plugin has been kindly sponsored by `Bonn University`_ a
 
 Developed by `kitconcept`_.
 
-.. image:: https://raw.githubusercontent.com/kitconcept/pas.plugins.memberpropertytogroup/master/kitconcept.png
+.. image:: https://raw.githubusercontent.com/kitconcept/pas.plugins.memberpropertytogroup/main/kitconcept.png
    :width: 200px
-   :alt: kitconcept
+   :alt: kitconcept GmbH
    :target: https://kitconcept.com/
 
 Icon by `FamFamFam <http://famfamfam.com/>`_
