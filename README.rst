@@ -104,7 +104,7 @@ Credits
 |
 
 .. image:: https://raw.githubusercontent.com/kitconcept/pas.plugins.memberpropertytogroup/master/hzb-logo.svg
-   :width: 174px
+   :width: 200px
    :alt: Helmholtz Zentrum Berlin
    :align: center
    :target: https://www.helmholtz-berlin.de/
@@ -114,6 +114,7 @@ Credits
 The development of this plugin has been kindly sponsored by `Bonn University`_ and `Helmholtz Zentrum Berlin`_.
 
 .. image:: https://raw.githubusercontent.com/kitconcept/pas.plugins.memberpropertytogroup/master/kitconcept.png
+   :width: 200px
    :alt: kitconcept
    :target: https://kitconcept.com/
 
