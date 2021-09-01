@@ -97,8 +97,7 @@ Credits
 The development of this plugin has been kindly sponsored by `Bonn University`_ and `Helmholtz Zentrum Berlin`_.
 
 .. image:: http://www3.uni-bonn.de/logo.png
-   :width: 222px
-   :scale: 75 %
+   :width: 200px
    :alt: Bonn University
    :align: center
    :target: http://uni-bonn.de
