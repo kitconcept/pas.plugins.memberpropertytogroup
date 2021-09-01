@@ -95,7 +95,6 @@ Credits
 -------
 
 .. image:: http://www3.uni-bonn.de/logo.png
-   :height: 164px
    :width: 222px
    :scale: 75 %
    :alt: Bonn University
