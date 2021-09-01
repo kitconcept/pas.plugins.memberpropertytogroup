@@ -94,6 +94,8 @@ Plone 5
 Credits
 -------
 
+The development of this plugin has been kindly sponsored by `Bonn University`_ and `Helmholtz Zentrum Berlin`_.
+
 .. image:: http://www3.uni-bonn.de/logo.png
    :width: 222px
    :scale: 75 %
@@ -111,14 +113,13 @@ Credits
 
 |
 
-The development of this plugin has been kindly sponsored by `Bonn University`_ and `Helmholtz Zentrum Berlin`_.
+
+Developed by `kitconcept`_.
 
 .. image:: https://raw.githubusercontent.com/kitconcept/pas.plugins.memberpropertytogroup/master/kitconcept.png
    :width: 200px
    :alt: kitconcept
    :target: https://kitconcept.com/
-
-Developed by `kitconcept`_.
 
 Icon by `FamFamFam <http://famfamfam.com/>`_
 
