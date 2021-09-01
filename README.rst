@@ -104,7 +104,6 @@ Credits
 |
 
 .. image:: https://raw.githubusercontent.com/kitconcept/pas.plugins.memberpropertytogroup/master/hzb-logo.svg
-   :height: 39px
    :width: 174px
    :alt: Helmholtz Zentrum Berlin
    :align: center
