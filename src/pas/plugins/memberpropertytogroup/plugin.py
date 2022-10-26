@@ -1,5 +1,5 @@
 from AccessControl import ClassSecurityInfo
-from App.class_init import InitializeClass
+from AccessControl.class_init import InitializeClass
 from pas.plugins.memberpropertytogroup.interfaces import IGetGroupMembers  # noqa; noqa
 from pas.plugins.memberpropertytogroup.interfaces import IMPTGPlugin
 from pas.plugins.memberpropertytogroup.interfaces import (
