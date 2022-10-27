@@ -15,8 +15,6 @@
     package="."
   />
 
-  <includeDependencies package="."/>
-
   <i18n:registerTranslations directory="locales"/>
 
   <include package=".browser"/>
