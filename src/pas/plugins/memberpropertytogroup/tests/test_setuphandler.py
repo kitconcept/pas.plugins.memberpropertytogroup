@@ -1,6 +1,4 @@
-from pas.plugins.memberpropertytogroup.testing import (
-    PAS_PLUGINS_MPTG_ZOPE_FIXTURE,
-)  # noqa
+from pas.plugins.memberpropertytogroup.testing import PAS_PLUGINS_MPTG_ZOPE_FIXTURE  # noqa
 
 import unittest
 
@@ -44,9 +42,7 @@ class TestPluginForGroupCapability(unittest.TestCase):
         self.assertIn(PLUGINID, self.aclu.objectIds())
 
         # now remove it
-        from pas.plugins.memberpropertytogroup.setuphandlers import (
-            _remove_plugin,
-        )  # noqa
+        from pas.plugins.memberpropertytogroup.setuphandlers import _remove_plugin  # noqa
 
         _remove_plugin(self.aclu, plugin_id=PLUGINID)
         self.assertNotIn(PLUGINID, self.aclu.objectIds())

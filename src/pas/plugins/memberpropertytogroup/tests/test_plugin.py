@@ -1,9 +1,5 @@
-from pas.plugins.memberpropertytogroup.interfaces import (
-    IPasPluginsMemberpropertytogroupSettings,
-)  # noqa
-from pas.plugins.memberpropertytogroup.testing import (
-    PAS_PLUGINS_MPTG_PLONE_INTEGRATION_TESTING,
-)  # noqa
+from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupSettings  # noqa
+from pas.plugins.memberpropertytogroup.testing import PAS_PLUGINS_MPTG_PLONE_INTEGRATION_TESTING  # noqa
 from pas.plugins.memberpropertytogroup.testing import PAS_PLUGINS_MPTG_ZOPE_FIXTURE
 from plone.registry import Registry
 from unittest import mock
@@ -19,9 +15,7 @@ class TestPluginHelpers(unittest.TestCase):
     def setUp(self):
         """Custom shared utility setup for tests."""
         # create plugin
-        from pas.plugins.memberpropertytogroup.plugin import (
-            manage_addMPTGPlugin,
-        )  # noqa
+        from pas.plugins.memberpropertytogroup.plugin import manage_addMPTGPlugin  # noqa
 
         self.aclu = self.layer["app"].acl_users
         manage_addMPTGPlugin(self.aclu, "mptg")
@@ -215,9 +209,7 @@ class TestPlugin(unittest.TestCase):
             ["prop2", "group2", "title2", "descr2", "email2"],
         ]
         self.mocked_group_property_of_principal.return_value = ""
-        from Products.PluggableAuthService.interfaces.plugins import (
-            IPropertiesPlugin,
-        )  # noqa
+        from Products.PluggableAuthService.interfaces.plugins import IPropertiesPlugin  # noqa
 
         plugin_ids = self.aclu.plugins.listPluginIds(IPropertiesPlugin)
         self.assertIn(self.plugin.getId(), plugin_ids)

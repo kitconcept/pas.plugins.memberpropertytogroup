@@ -2,9 +2,7 @@ from AccessControl import ClassSecurityInfo
 from AccessControl.class_init import InitializeClass
 from pas.plugins.memberpropertytogroup.interfaces import IGetGroupMembers  # noqa; noqa
 from pas.plugins.memberpropertytogroup.interfaces import IMPTGPlugin
-from pas.plugins.memberpropertytogroup.interfaces import (
-    IPasPluginsMemberpropertytogroupSettings,
-)
+from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupSettings
 from pas.plugins.memberpropertytogroup.interfaces import NUMBER_OF_FIELDS
 from pathlib import Path
 from plone.registry.interfaces import IRegistry
@@ -19,8 +17,8 @@ from zope.component import queryUtility
 from zope.interface import implementer
 
 import logging
-import re
 import os
+import re
 
 
 logger = logging.getLogger(__name__)

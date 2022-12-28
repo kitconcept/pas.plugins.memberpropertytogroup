@@ -1,7 +1,5 @@
 from pas.plugins.memberpropertytogroup.interfaces import _  # noqa
-from pas.plugins.memberpropertytogroup.interfaces import (
-    IPasPluginsMemberpropertytogroupSettings,
-)
+from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupSettings
 from plone.app.registry.browser import controlpanel
 from z3c.form.browser.textlines import TextLinesFieldWidget
 from z3c.form.interfaces import HIDDEN_MODE

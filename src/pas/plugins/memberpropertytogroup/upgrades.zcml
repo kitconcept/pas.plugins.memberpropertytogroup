@@ -1,23 +1,24 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    >
 
   <genericsetup:upgradeStep
-    source="*"
-    destination="1001"
-    title="Update pas.plugins.memberpropertytogroup setting registry"
-    description=""
-    profile="pas.plugins.memberpropertytogroup:default"
-    handler=".upgrades.update_registry"
-    />
+      title="Update pas.plugins.memberpropertytogroup setting registry"
+      description=""
+      profile="pas.plugins.memberpropertytogroup:default"
+      source="*"
+      destination="1001"
+      handler=".upgrades.update_registry"
+      />
 
   <genericsetup:upgradeStep
-    source="*"
-    destination="1002"
-    title="Update pas.plugins.memberpropertytogroup setting registry"
-    description="Sets the control property correctly based on existing properties"
-    profile="pas.plugins.memberpropertytogroup:default"
-    handler=".upgrades.add_show_fields_property"
-    />
+      title="Update pas.plugins.memberpropertytogroup setting registry"
+      description="Sets the control property correctly based on existing properties"
+      profile="pas.plugins.memberpropertytogroup:default"
+      source="*"
+      destination="1002"
+      handler=".upgrades.add_show_fields_property"
+      />
 
 </configure>

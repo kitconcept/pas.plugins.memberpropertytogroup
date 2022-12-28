@@ -1,6 +1,4 @@
-from pas.plugins.memberpropertytogroup.testing import (
-    PAS_PLUGINS_MPTG_PLONE_ACCEPTANCE_TESTING,
-)  # noqas
+from pas.plugins.memberpropertytogroup.testing import PAS_PLUGINS_MPTG_PLONE_ACCEPTANCE_TESTING  # noqas
 from plone.app.testing import ROBOT_TEST_LEVEL
 from plone.testing import layered
 

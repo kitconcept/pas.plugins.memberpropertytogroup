@@ -1,9 +1,5 @@
-from pas.plugins.memberpropertytogroup.interfaces import (
-    IPasPluginsMemberpropertytogroupSettings,
-)  # noqa
-from pas.plugins.memberpropertytogroup.testing import (
-    PAS_PLUGINS_MPTG_PLONE_INTEGRATION_TESTING,
-)  # noqa
+from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupSettings  # noqa
+from pas.plugins.memberpropertytogroup.testing import PAS_PLUGINS_MPTG_PLONE_INTEGRATION_TESTING  # noqa
 from plone.app.testing import logout
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
@@ -26,9 +22,7 @@ class TestPasPluginsMemberpropertyToGoupControlPanel(unittest.TestCase):
         self.registry.registerInterface(IPasPluginsMemberpropertytogroupSettings)
 
     def test_validator(self):
-        from pas.plugins.memberpropertytogroup.interfaces import (
-            validate_valid_groups,
-        )  # noqa
+        from pas.plugins.memberpropertytogroup.interfaces import validate_valid_groups  # noqa
         from zope.interface import Invalid
 
         with self.assertRaises(Invalid):

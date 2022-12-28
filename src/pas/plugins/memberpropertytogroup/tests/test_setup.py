@@ -1,7 +1,5 @@
 """Setup tests for this package."""
-from pas.plugins.memberpropertytogroup.testing import (
-    PAS_PLUGINS_MPTG_PLONE_INTEGRATION_TESTING,
-)  # noqa
+from pas.plugins.memberpropertytogroup.testing import PAS_PLUGINS_MPTG_PLONE_INTEGRATION_TESTING  # noqa
 from Products.CMFPlone.utils import get_installer
 
 import unittest
@@ -25,9 +23,7 @@ class TestSetup(unittest.TestCase):
 
     def test_browserlayer(self):
         """Test that IPasPluginsMemberpropertytogroupLayer is registered."""
-        from pas.plugins.memberpropertytogroup.interfaces import (
-            IPasPluginsMemberpropertytogroupLayer,
-        )  # noqa
+        from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupLayer  # noqa
         from plone.browserlayer import utils
 
         self.assertIn(IPasPluginsMemberpropertytogroupLayer, utils.registered_layers())
@@ -55,9 +51,7 @@ class TestUninstall(unittest.TestCase):
 
     def test_browserlayer_removed(self):
         """Test that IPasPluginsMemberpropertytogroupLayer is removed."""
-        from pas.plugins.memberpropertytogroup.interfaces import (
-            IPasPluginsMemberpropertytogroupLayer,
-        )  # noqa
+        from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupLayer  # noqa
         from plone.browserlayer import utils
 
         self.assertNotIn(

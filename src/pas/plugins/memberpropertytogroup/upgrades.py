@@ -1,6 +1,4 @@
-from pas.plugins.memberpropertytogroup.interfaces import (
-    IPasPluginsMemberpropertytogroupSettings,
-)  # noqa
+from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupSettings  # noqa
 from pas.plugins.memberpropertytogroup.interfaces import NUMBER_OF_FIELDS
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
