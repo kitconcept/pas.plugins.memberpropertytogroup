@@ -36,3 +36,5 @@ report.html
 _build/
 etc/
 inituser
+__pycache__
+.pytest_cache

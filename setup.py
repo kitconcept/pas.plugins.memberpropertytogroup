@@ -1,30 +1,24 @@
 """Installer for the pas.plugins.memberpropertytogroup package."""
+from pathlib import Path
 from setuptools import find_packages
 from setuptools import setup
 
 
-def _read_file(filename: str) -> str:
-    """Read a file and return its contents."""
-    data = open(filename).read()
-    return f"{data}\n"
+long_description = f"""
+{Path("README.md").read_text()}\n
+{Path("CONTRIBUTORS.md").read_text()}\n
+{Path("CHANGES.md").read_text()}\n
+"""
 
 
 description = "Plone PAS plugin to create virtual groups based on member properties"
-
-long_description = (
-    f"{_read_file('README.rst')}"
-    "Contributors\n"
-    "============\n"
-    f"{_read_file('CONTRIBUTORS.rst')}"
-    f"{_read_file('CHANGES.rst')}"
-)
-
 
 setup(
     name="pas.plugins.memberpropertytogroup",
     version="2.1.2.dev0",
     description=description,
     long_description=long_description,
+    long_description_content_type="text/markdown",
     classifiers=[
         "Environment :: Web Environment",
         "Framework :: Plone",

@@ -1,28 +1,23 @@
-Changelog
-=========
+# Changelog
 
-2.1.2 (unreleased)
-------------------
+## 2.1.2 (unreleased)
 
 - Nothing changed yet.
 
 
-2.1.1 (2021-08-31)
-------------------
+## 2.1.1 (2021-08-31)
 
 - Fix property matching.
   [ericof]
 
 
-2.1.0 (2021-08-31)
-------------------
+## 2.1.0 (2021-08-31)
 
 - Property matching now supports '*' both in the start and in the end of the value.
   [ericof]
 
 
-2.0.0 (2021-07-21)
-------------------
+## 2.0.0 (2021-07-21)
 
 - Plone 5.2 compatibility.
   [timo]
@@ -34,8 +29,7 @@ Changelog
   [ericof]
 
 
-1.1 (2018-03-05)
-----------------
+## 1.1 (2018-03-05)
 
 - Plone 5.1 compatibility.
   [timo]
@@ -46,29 +40,25 @@ Changelog
   [jensens]
 
 
-1.0 (2016-04-04)
-----------------
+## 1.0 (2016-04-04)
 
 - Identical to 1.0a7.
   [timo]
 
 
-1.0a7 (2015-10-25)
-------------------
+## 1.0a7 (2015-10-25)
 
 - Control panel markup and JS refactoring.
   [sneridagh]
 
 
-1.0a6 (2015-10-21)
-------------------
+## 1.0a6 (2015-10-21)
 
 - Plone 3 compatibility fixes.
   [csenger]
 
 
-1.0a5 (2015-10-21)
-------------------
+## 1.0a5 (2015-10-21)
 
 - Fix js to work with Plone 3.
   [csenger]
@@ -77,22 +67,19 @@ Changelog
   [csenger]
 
 
-1.0a4 (2015-10-19)
-------------------
+## 1.0a4 (2015-10-19)
 
 - Add upgrade step for registry entries that have been added in 1.0a3.
   [timo]
 
 
-1.0a3 (2015-10-12)
-------------------
+## 1.0a3 (2015-10-12)
 
 - New feature: As administrator I can create a group based on multiple member properties.
   [sneridagh]
 
 
-1.0a2 (2015-09-09)
-------------------
+## 1.0a2 (2015-09-09)
 
 - Fix Scenario: As administrator I can create a group based on member
   properties prefixes
@@ -102,8 +89,7 @@ Changelog
   [jensens]
 
 
-1.0a1 (2015-08-06)
-------------------
+## 1.0a1 (2015-08-06)
 
 - Initial release.
   [timo, jensens]
