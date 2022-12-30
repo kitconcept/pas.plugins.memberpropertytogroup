@@ -51,6 +51,11 @@ jobs:
         python-version: "3.11"
         plone-version: "6.0-latest"
 
+    # Install pas.plugins.memberpropertytogroup with test extras
+    - name: Install pas.plugins.memberpropertytogroup
+      run: |
+        pip install ".[test]"
+
     - name: Run robotframework tests
       run: |
         export DISPLAY=:99
