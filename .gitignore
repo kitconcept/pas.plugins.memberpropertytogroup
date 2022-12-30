@@ -38,3 +38,4 @@ etc/
 inituser
 __pycache__
 .pytest_cache
+/robot_*
