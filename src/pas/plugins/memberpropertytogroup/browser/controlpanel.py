@@ -1,19 +1,14 @@
-from pas.plugins.memberpropertytogroup.interfaces import _  # noqa
-from pas.plugins.memberpropertytogroup.interfaces import IPasPluginsMemberpropertytogroupSettings
+from pas.plugins.memberpropertytogroup import interfaces as ifaces
+from pas.plugins.memberpropertytogroup.interfaces import _
 from plone.app.registry.browser import controlpanel
 from z3c.form.browser.textlines import TextLinesFieldWidget
 from z3c.form.interfaces import HIDDEN_MODE
-
-
-try:
-    from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
-except ImportError:
-    from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
+from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 
 
 class MemberpropertiestogroupSettingsEditForm(controlpanel.RegistryEditForm):
 
-    schema = IPasPluginsMemberpropertytogroupSettings
+    schema = ifaces.IPasPluginsMemberpropertytogroupSettings
     label = _("Member Properties To Group Settings")
     description = _("")
     template = ViewPageTemplateFile("mptg_form.pt")
@@ -42,18 +37,14 @@ class MemberpropertiestogroupSettingsEditForm(controlpanel.RegistryEditForm):
 
     def get_visibility_for(self, widget):
         showing_fields = int(self.widgets["showing_fields"].value)
+        widget_name = widget.name.split(".")[2]
+        widget_name_idx = int(widget_name.split("_")[2])
         # Show always the first set of fields
-        if (
-            widget.name.split(".")[2] == "group_property"
-            or widget.name.split(".")[2] == "valid_groups"
-            or widget.name.split(".")[2] == "showing_fields"
-        ):
+        if widget_name in ("group_property", "valid_groups", "showing_fields"):
             return "row"
-
-        elif int(widget.name.split(".")[2].split("_")[2]) < showing_fields:
+        elif widget_name_idx < showing_fields:
             return "row"
-
-        elif int(widget.name.split(".")[2].split("_")[2]) >= showing_fields:
+        elif widget_name_idx >= showing_fields:
             return "row field-hidden"
 
 
