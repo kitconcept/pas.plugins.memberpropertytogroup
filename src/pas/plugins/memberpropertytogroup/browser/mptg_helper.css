@@ -1,3 +1,7 @@
-.row.field-hidden { display: none; }
+.row.field-hidden {
+  display: none;
+}
 
-button { padding: 4px; }
+.propertyActions {
+  padding-bottom: 1em;
+}
