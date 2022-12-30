@@ -1,8 +1,21 @@
 # Changelog
 
-## 2.1.2 (unreleased)
+## 3.0.0 (unreleased)
 
-- Nothing changed yet.
+- Adapt control panel to Bootstrap 5
+  [ericof]
+
+- Use plone/code-analysis-action@v2 as basis for code-analysis in GitHub Actions
+  [ericof]
+
+- Tests now use pytest instead of unittest
+  [ericof]
+
+- Drop support to Plone 5.2
+  [ericof]
+
+- Drop support to Python 3.7
+  [ericof]
 
 
 ## 2.1.1 (2021-08-31)
