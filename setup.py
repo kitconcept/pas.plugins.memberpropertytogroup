@@ -45,10 +45,14 @@ setup(
     ],
     extras_require={
         "test": [
+            "gocept.pytestlayer",
             "mock",
-            "plone.api",
             "plone.app.testing",
-            "plone.app.robotframework",
+            "plone.app.robotframework[debug]",
+            "plone.restapi[test]",
+            "pytest",
+            "pytest-mock",
+            "pytest-cov",
         ],
     },
     entry_points="""

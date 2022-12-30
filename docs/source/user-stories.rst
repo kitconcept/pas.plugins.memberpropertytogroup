@@ -4,7 +4,7 @@ Features
 As administrator I can create a group based on member properties
 ----------------------------------------------------------------
 
-.. literalinclude:: ../../src/pas/plugins/memberpropertytogroup/tests/robot/test_acceptance.robot
+.. literalinclude:: ../../tests/robot/test_acceptance.robot
   :language: robot
   :lines: 47-71
 
@@ -24,7 +24,7 @@ Then the user is member of the group 'Employees'
 As reviewer I can grant permissions based on member properties groups
 ---------------------------------------------------------------------
 
-.. literalinclude:: ../../src/pas/plugins/memberpropertytogroup/tests/robot/test_acceptance.robot
+.. literalinclude:: ../../tests/robot/test_acceptance.robot
   :language: robot
   :lines: 48-53
 
@@ -44,7 +44,7 @@ Then the user can edit the folder.
 As administrator I can create a group based on multiple member properties
 -------------------------------------------------------------------------
 
-.. literalinclude:: ../../src/pas/plugins/memberpropertytogroup/tests/robot/test_acceptance.robot
+.. literalinclude:: ../../tests/robot/test_acceptance.robot
   :language: robot
   :lines: 55-63
 
@@ -52,6 +52,6 @@ As administrator I can create a group based on multiple member properties
 As administrator I can create a group based on member properties prefixes
 -------------------------------------------------------------------------
 
-.. literalinclude:: ../../src/pas/plugins/memberpropertytogroup/tests/robot/test_acceptance.robot
+.. literalinclude:: ../../tests/robot/test_acceptance.robot
   :language: robot
   :lines: 65-69
