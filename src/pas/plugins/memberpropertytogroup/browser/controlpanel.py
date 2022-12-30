@@ -38,11 +38,11 @@ class MemberpropertiestogroupSettingsEditForm(controlpanel.RegistryEditForm):
     def get_visibility_for(self, widget):
         showing_fields = int(self.widgets["showing_fields"].value)
         widget_name = widget.name.split(".")[2]
-        widget_name_idx = int(widget_name.split("_")[2])
         # Show always the first set of fields
         if widget_name in ("group_property", "valid_groups", "showing_fields"):
             return "row"
-        elif widget_name_idx < showing_fields:
+        widget_name_idx = int(widget_name.split("_")[2])
+        if widget_name_idx < showing_fields:
             return "row"
         elif widget_name_idx >= showing_fields:
             return "row field-hidden"
