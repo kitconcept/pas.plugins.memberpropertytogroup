@@ -147,4 +147,5 @@ the user can edit the folder
 Capture screenshot
   [Arguments]  ${filename}
   # Base path is './test_acceptance/Scenario_[...]/
+  Set Window Size  1920  1080
   Capture Page Screenshot  filename=../../docs/source/_screenshots/${filename}
