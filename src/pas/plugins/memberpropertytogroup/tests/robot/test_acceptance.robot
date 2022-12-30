@@ -146,5 +146,5 @@ the user can edit the folder
 
 Capture screenshot
   [Arguments]  ${filename}
-  # Base path is '/parts/test/test_acceptance/Scenario_[...]/
-  Capture Page Screenshot  filename=../../../../docs/source/_screenshots/${filename}
+  # Base path is './test_acceptance/Scenario_[...]/
+  Capture Page Screenshot  filename=../../docs/source/_screenshots/${filename}

@@ -39,3 +39,4 @@ inituser
 __pycache__
 .pytest_cache
 /robot_*
+/test_acceptance

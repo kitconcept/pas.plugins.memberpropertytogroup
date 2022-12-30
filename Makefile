@@ -99,6 +99,10 @@ i18n: bin/i18ndude ## Update locales
 test: ## run tests
 	bin/pytest --disable-warnings
 
+.PHONY: test
+test-robot: ## run test-robot
+	bin/zope-testrunner --auto-color --auto-progress --test-path src --all
+
 .PHONY: start
 start: ## Start a Plone instance on localhost:8080
 	PYTHONWARNINGS=ignore ./bin/runwsgi etc/zope.ini
