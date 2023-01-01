@@ -1,31 +1,26 @@
-from pas.plugins.memberpropertytogroup.testing import (
-    PAS_PLUGINS_MPTG_PLONE_ACCEPTANCE_TESTING,
-)  # noqas
+from pas.plugins.memberpropertytogroup.testing import MPTG_ACCEPTANCE_TESTING
+from pathlib import Path
 from plone.app.testing import ROBOT_TEST_LEVEL
 from plone.testing import layered
 
-import os
 import robotsuite
 import unittest
 
 
 def test_suite():
     suite = unittest.TestSuite()
-    current_dir = os.path.abspath(os.path.dirname(__file__))
-    robot_dir = os.path.join(current_dir, "robot")
+    current_dir = Path(__file__).parent.resolve()
+    robot_dir = current_dir / "robot"
     robot_tests = [
-        os.path.join("robot", doc)
-        for doc in os.listdir(robot_dir)
-        if doc.endswith(".robot") and doc.startswith("test_")
+        f"{path}".replace(f"{current_dir}/", "")
+        for path in robot_dir.glob("test_*.robot")
     ]
     for robot_test in robot_tests:
         robottestsuite = robotsuite.RobotTestSuite(robot_test)
         robottestsuite.level = ROBOT_TEST_LEVEL
         suite.addTests(
             [
-                layered(
-                    robottestsuite, layer=PAS_PLUGINS_MPTG_PLONE_ACCEPTANCE_TESTING
-                ),
+                layered(robottestsuite, layer=MPTG_ACCEPTANCE_TESTING),
             ]
         )
     return suite

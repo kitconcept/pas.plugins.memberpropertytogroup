@@ -1,13 +1,13 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <import-steps>
 
-  <import-step
-      handler="pas.plugins.memberpropertytogroup.setuphandlers.setup_plugin"
-      id="pas.plugins.memberpropertytogroup.setup"
-      title="Setup Member Property To Group Plugin"
-      version="20150717">
+  <import-step id="pas.plugins.memberpropertytogroup.setup"
+               handler="pas.plugins.memberpropertytogroup.setuphandlers.setup_plugin"
+               title="Setup Member Property To Group Plugin"
+               version="20150717"
+  >
     <dependency step="plone-final" />
   Setup Member Property To Group Plugin
- </import-step>
+  </import-step>
 
 </import-steps>

@@ -63,15 +63,16 @@
 
               <metal:actions metal:fill-slot="actions">
 
-                <div class="formControls">
+                <div class="formControls propertyActions">
                   <button
-                      class="add_more_properties submit-widget button-field allowMultiSubmit">
+                      class="add_more_properties submit-widget button-field allowMultiSubmit btn btn-info">
                     Add property
                   </button>
-                  <button class="remove_properties allowMultiSubmit" disabled="disabled">
+                  <button class="remove_properties allowMultiSubmit btn btn-danger" disabled="disabled">
                     Remove last property
                   </button>
                 </div>
+
                 <metal:block use-macro="context/@@ploneform-macros/actions" />
 
 

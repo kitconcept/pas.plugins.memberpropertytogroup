@@ -2,26 +2,27 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="pas.plugins.memberpropertytogroup">
+    i18n_domain="pas.plugins.memberpropertytogroup"
+    >
 
-    <!-- Control panel -->
-    <browser:page
-        name="memberpropertytogroup-controlpanel"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".controlpanel.MemberpropertiestogroupSettingsEditFormSettingsControlPanel"
-        permission="cmf.ManagePortal"
-        />
+  <!-- Control panel -->
+  <browser:page
+      name="memberpropertytogroup-controlpanel"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".controlpanel.MemberpropertiestogroupSettingsEditFormSettingsControlPanel"
+      permission="cmf.ManagePortal"
+      />
 
-    <browser:resource
-        name="pas.plugins.memberpropertytogroup.helper.js"
-        file="mptg_helper.js"
-        permission="zope.Public"
-        />
+  <browser:resource
+      name="pas.plugins.memberpropertytogroup.helper.js"
+      file="mptg_helper.js"
+      permission="zope.Public"
+      />
 
-    <browser:resource
-        name="pas.plugins.memberpropertytogroup.helper.css"
-        file="mptg_helper.css"
-        permission="zope.Public"
-        />
+  <browser:resource
+      name="pas.plugins.memberpropertytogroup.helper.css"
+      file="mptg_helper.css"
+      permission="zope.Public"
+      />
 
 </configure>

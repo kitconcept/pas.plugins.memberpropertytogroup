@@ -17,7 +17,7 @@ class HiddenProfiles(object):
 
 def _add_plugin(pas, pluginid=DEFAULTID):
     if pluginid in pas.objectIds():
-        return TITLE + " already installed."
+        return f"{TITLE} already installed."
     plugin = MPTGPlugin(pluginid, title=TITLE)
     pas._setObject(pluginid, plugin)
     plugin = pas[plugin.getId()]  # get plugin acquisition wrapped!

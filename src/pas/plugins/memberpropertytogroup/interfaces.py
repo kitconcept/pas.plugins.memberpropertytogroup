@@ -42,7 +42,7 @@ class IPasPluginsMemberpropertytogroupSettings(Interface):
     group_property = schema.TextLine(
         title=_("Users Group Property Field"),
         description=_(
-            "Name of property (key) on users property-sheet used as group " "mapping."
+            "Name of property (key) on users property-sheet used as group mapping."
         ),
         required=False,
         default="",
@@ -70,7 +70,7 @@ class IPasPluginsMemberpropertytogroupSettings(Interface):
     group_property_1 = schema.TextLine(
         title=_("Users Group Property Field"),
         description=_(
-            "Name of property (key) on users property-sheet used as group " "mapping."
+            "Name of property (key) on users property-sheet used as group mapping."
         ),
         required=False,
         default="",
@@ -98,7 +98,7 @@ class IPasPluginsMemberpropertytogroupSettings(Interface):
     group_property_2 = schema.TextLine(
         title=_("Users Group Property Field"),
         description=_(
-            "Name of property (key) on users property-sheet used as group " "mapping."
+            "Name of property (key) on users property-sheet used as group mapping."
         ),
         required=False,
         default="",
@@ -126,7 +126,7 @@ class IPasPluginsMemberpropertytogroupSettings(Interface):
     group_property_3 = schema.TextLine(
         title=_("Users Group Property Field"),
         description=_(
-            "Name of property (key) on users property-sheet used as group " "mapping."
+            "Name of property (key) on users property-sheet used as group mapping."
         ),
         required=False,
         default="",
@@ -154,7 +154,7 @@ class IPasPluginsMemberpropertytogroupSettings(Interface):
     group_property_4 = schema.TextLine(
         title=_("Users Group Property Field"),
         description=_(
-            "Name of property (key) on users property-sheet used as group " "mapping."
+            "Name of property (key) on users property-sheet used as group mapping."
         ),
         required=False,
         default="",
@@ -324,28 +324,22 @@ class IPasPluginsMemberpropertytogroupSettings(Interface):
     @invariant
     def validate_filled_field_couples(data):
         for index in range(0, NUMBER_OF_FIELDS):
-            if index == 0:
-                index = ""
-            else:
-                index = "_" + str(index)
-            if (
-                getattr(data, "group_property" + index) != ""
-                and getattr(data, "valid_groups" + index) == []
-            ):
+            index = "" if index == 0 else f"_{index}"
+            group_property = getattr(data, f"group_property{index}")
+            valid_groups = getattr(data, f"valid_groups{index}")
+            if group_property != "" and valid_groups == []:
                 raise Invalid(
                     _(
-                        "The field group_property%s is filled while valid_groups%s is empty."
+                        "The field group_property%s is filled "
+                        "while valid_groups%s is empty."
                     )
                     % (index, index)  # noqa
                 )
-
-            if (
-                getattr(data, "group_property" + index) == ""
-                and getattr(data, "valid_groups" + index) != []
-            ):
+            elif group_property == "" and valid_groups != []:
                 raise Invalid(
                     _(
-                        "The field valid_groups%s is filled while group_property%s is empty."
+                        "The field valid_groups%s is filled "
+                        "while group_property%s is empty."
                     )
                     % (index, index)  # noqa
                 )

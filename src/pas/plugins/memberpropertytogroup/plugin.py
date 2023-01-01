@@ -1,11 +1,6 @@
 from AccessControl import ClassSecurityInfo
 from AccessControl.class_init import InitializeClass
-from pas.plugins.memberpropertytogroup.interfaces import IGetGroupMembers  # noqa; noqa
-from pas.plugins.memberpropertytogroup.interfaces import IMPTGPlugin
-from pas.plugins.memberpropertytogroup.interfaces import (
-    IPasPluginsMemberpropertytogroupSettings,
-)
-from pas.plugins.memberpropertytogroup.interfaces import NUMBER_OF_FIELDS
+from pas.plugins.memberpropertytogroup import interfaces as ifaces
 from pathlib import Path
 from plone.registry.interfaces import IRegistry
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
@@ -19,8 +14,8 @@ from zope.component import queryUtility
 from zope.interface import implementer
 
 import logging
-import re
 import os
+import re
 
 
 logger = logging.getLogger(__name__)
@@ -41,7 +36,7 @@ manage_addMPTGPluginForm = PageTemplateFile(
 
 
 @implementer(
-    IMPTGPlugin,
+    ifaces.IMPTGPlugin,
     pas_interfaces.IGroupEnumerationPlugin,
     pas_interfaces.IGroupsPlugin,
     pas_interfaces.IPropertiesPlugin,
@@ -70,18 +65,15 @@ class MPTGPlugin(BasePlugin):
     def _settings(self):
         registry = queryUtility(IRegistry)
         settings = registry.forInterface(
-            IPasPluginsMemberpropertytogroupSettings,
+            ifaces.IPasPluginsMemberpropertytogroupSettings,
         )
         return settings
 
     def _valid_groups(self, index):
         result = []
         # Kept original field name for direct backwards compat
-        if index == 0:
-            index = ""
-        else:
-            index = "_" + str(index)
-        for line in getattr(self._settings, "valid_groups" + index):
+        index = "" if index == 0 else f"_{index}"
+        for line in getattr(self._settings, f"valid_groups{index}"):
             if not line.strip():
                 continue
             result.append((line.split("|") + [""] * 5)[:5])
@@ -89,7 +81,7 @@ class MPTGPlugin(BasePlugin):
 
     def _get_all_groups(self):
         valid_groups = []
-        for index in range(0, NUMBER_OF_FIELDS):
+        for index in range(0, ifaces.NUMBER_OF_FIELDS):
             partial_groups = self._valid_groups(index)
             if partial_groups:
                 valid_groups = valid_groups + partial_groups
@@ -103,11 +95,8 @@ class MPTGPlugin(BasePlugin):
     def _configured_property(self, index):
         """get configured key to fetch the group property from propertysheet"""
         # Kept original field name for direct backwards compat
-        if index == 0:
-            index = ""
-        else:
-            index = "_" + str(index)
-        return getattr(self._settings, "group_property" + index)
+        index = "" if index == 0 else f"_{index}"
+        return getattr(self._settings, f"group_property{index}")
 
     def _sheet_plugins_of_principal(self, principal):
         pas = self._getPAS()
@@ -160,7 +149,7 @@ class MPTGPlugin(BasePlugin):
         o May assign groups based on values in the REQUEST object, if present
         """
         groups_matched = []
-        for index in range(0, NUMBER_OF_FIELDS):
+        for index in range(0, ifaces.NUMBER_OF_FIELDS):
             group_prop_value = self._group_property_of_principal(principal, index)
             for prop, gid, title, descr, email in self._valid_groups(index):
                 if self._is_property_match(group_prop_value, prop):
@@ -244,7 +233,7 @@ class MPTGPlugin(BasePlugin):
         thus we ask for some project specific implementation here
         if no such implementation is provided we just return an empty tuple
         """
-        group_member_fetcher = queryUtility(IGetGroupMembers)
+        group_member_fetcher = queryUtility(ifaces.IGetGroupMembers)
         if group_member_fetcher is None:
             return tuple()
         return group_member_fetcher(self, group_id)

@@ -86,7 +86,7 @@ class PasPluginsMPTGZopeLayer(Layer):
             z2.installProduct(self["app"], prd)
 
 
-PAS_PLUGINS_MPTG_ZOPE_FIXTURE = PasPluginsMPTGZopeLayer()
+MPTG_ZOPE_FIXTURE = PasPluginsMPTGZopeLayer()
 
 
 class PasPluginsMPTGPloneLayer(PloneSandboxLayer):
@@ -120,24 +120,24 @@ class PasPluginsMPTGPloneLayer(PloneSandboxLayer):
         member.setMemberProperties(mapping={"city": "bonn"})
 
 
-PAS_PLUGINS_MPTG_PLONE_FIXTURE = PasPluginsMPTGPloneLayer()
+MPTG_FIXTURE = PasPluginsMPTGPloneLayer()
 
 
-PAS_PLUGINS_MPTG_PLONE_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(PAS_PLUGINS_MPTG_PLONE_FIXTURE,),
+MPTG_INTEGRATION_TESTING = IntegrationTesting(
+    bases=(MPTG_FIXTURE,),
     name="PasPluginsMPTGPloneLayer:IntegrationTesting",
 )
 
 
-PAS_PLUGINS_MPTG_PLONE_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(PAS_PLUGINS_MPTG_PLONE_FIXTURE,),
+MPTG_FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(MPTG_FIXTURE,),
     name="PasPluginsMPTGPloneLayer:FunctionalTesting",
 )
 
 
-PAS_PLUGINS_MPTG_PLONE_ACCEPTANCE_TESTING = FunctionalTesting(
+MPTG_ACCEPTANCE_TESTING = FunctionalTesting(
     bases=(
-        PAS_PLUGINS_MPTG_PLONE_FIXTURE,
+        MPTG_FIXTURE,
         REMOTE_LIBRARY_BUNDLE_FIXTURE,
         z2.ZSERVER_FIXTURE,
     ),

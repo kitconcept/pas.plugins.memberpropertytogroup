@@ -1,0 +1,64 @@
+name: Build and test
+
+on: [push]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python:
+          - 3.8
+          - 3.9
+          - "3.10"
+          - "3.11"
+        plone:
+          - "6.0-latest"
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Plone ${{ matrix.plone }} with Python ${{ matrix.python }}
+      id: setup
+      uses: plone/setup-plone@v2.0.0
+      with:
+        python-version: ${{ matrix.python }}
+        plone-version: ${{ matrix.plone }}
+
+    # Install pas.plugins.memberpropertytogroup with test extras
+    - name: Install pas.plugins.memberpropertytogroup
+      run: |
+        pip install ".[test]"
+
+    # test
+    - name: Test Codebase
+      run: |
+        pytest --disable-warnings
+
+  robot:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: nanasess/setup-chromedriver@v1
+
+    - name: Setup Plone 6-latest with Python 3.11
+      id: setup
+      uses: plone/setup-plone@v2.0.0
+      with:
+        python-version: "3.11"
+        plone-version: "6.0-latest"
+
+    # Install pas.plugins.memberpropertytogroup with test extras
+    - name: Install pas.plugins.memberpropertytogroup
+      run: |
+        pip install ".[test]"
+
+    - name: Run robotframework tests
+      run: |
+        export DISPLAY=:99
+        chromedriver --url-base=/wd/hub &
+        sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
+        zope-testrunner --auto-color --auto-progress --test-path src --all

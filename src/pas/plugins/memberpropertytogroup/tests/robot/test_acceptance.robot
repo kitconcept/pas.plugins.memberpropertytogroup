@@ -1,25 +1,6 @@
 # ============================================================================
 # MEMBERPROPERTY TO GROUP ACCEPTANCE TESTS
 # ============================================================================
-#
-# Run this robot test stand-alone:
-#
-#  $ bin/test -s pas.plugins.memberpropertytogroup -t test_acceptance.robot --all
-#
-# Run this robot test with robot server (which is faster):
-#
-# 1) Start robot server:
-#
-# $ bin/robot-server --reload-path src pas.plugins.memberpropertytogroup.testing.PAS_PLUGINS_MPTG_PLONE_ACCEPTANCE_TESTING
-#
-# 2) Run robot tests:
-#
-# $ bin/robot src/pas/plugins/memberpropertytogroup/tests/robot/test_acceptance.robot
-#
-# See the http://docs.plone.org for further details (search for robot
-# framework).
-#
-# ============================================================================
 
 *** Variables ***
 
@@ -91,7 +72,8 @@ a virtual group '${group}' with the property '${property}' = '${value}'
   Click button  Add property
   Input text  form.widgets.group_property  ${property}
   Input text  form.widgets.valid_groups  ${value}|${group}|${group}|${group} (Virtual Group)|my-virtual-group@example.com
-  Click button  Save
+  Execute Javascript	window.scrollTo(0,document.body.scrollHeight);
+  Click Button  Save
   Wait until page contains  Changes saved
 
 
@@ -103,16 +85,19 @@ I create a virtual group '${group}' with the property '${property}' = '${value}'
   Input text  form.widgets.group_property  ${property}
   Input text  form.widgets.valid_groups  ${value}|${group}|${group}|${group} (Virtual Group)|my-virtual-group@example.com
   Capture screenshot  memberpropertytogroup-controlpanel-${group}.png
-  Click button  Save
+  Execute Javascript	window.scrollTo(0,document.body.scrollHeight);
+  Click Button  Save
   Wait until page contains  Changes saved
 
 I add another virtual group '${group}' with the property '${property}' = '${value}' in slot ${slot}
   Go to  ${PLONE_URL}/@@memberpropertytogroup-controlpanel
+  Execute Javascript	window.scrollTo(0,document.body.scrollHeight);
   Click button  Add property
   Input text  form.widgets.group_property_${slot}  ${property}
   Input text  form.widgets.valid_groups_${slot}  ${value}|${group}|${group}|${group} (Virtual Group)|my-virtual-group@example.com
   Capture screenshot  memberpropertytogroup-controlpanel-${group}.png
-  Click button  Save
+  Execute Javascript	window.scrollTo(0,document.body.scrollHeight);
+  Click Button  Save
   Wait until page contains  Changes saved
 
 I grant the virtual group '${group}' the 'Edit' permission on a folder
@@ -126,7 +111,8 @@ I grant the virtual group '${group}' the 'Edit' permission on a folder
   Capture screenshot  grant-virtual-group-permission-on-folder.png
   # XXX after capture the selection was reset: select again
   Select checkbox  xpath=//table[@id='user-group-sharing']//td[@title='${group}']/following-sibling::td[2]/input
-  Click button  Save
+  Execute Javascript	window.scrollTo(0,document.body.scrollHeight);
+  Click Button  Save
   Wait until page contains  Changes saved
 
 
@@ -160,5 +146,6 @@ the user can edit the folder
 
 Capture screenshot
   [Arguments]  ${filename}
-  # Base path is '/parts/test/test_acceptance/Scenario_[...]/
-  Capture Page Screenshot  filename=../../../../docs/source/_screenshots/${filename}
+  # Base path is './test_acceptance/Scenario_[...]/
+  Set Window Size  1920  1080
+  Capture Page Screenshot  filename=../../docs/source/_screenshots/${filename}
