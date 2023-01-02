@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.0.0 (unreleased)
+## 3.0.0 (2023-01-02)
 
 - Initial i18n support
   [ericof]
