@@ -1,3 +1,7 @@
 graft src/pas
-graft docs/
-include *.cfg *.rst *.in
+graft docs
+graft tests
+include *.cfg *.rst *.in *.md *.png *.svg *.txt Makefile
+include .editorconfig
+exclude pyvenv.cfg
+global-exclude *.py[cod]
