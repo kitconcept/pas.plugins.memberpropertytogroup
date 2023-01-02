@@ -25,4 +25,11 @@
       permission="zope.Public"
       />
 
+  <!-- RestAPI Control panel -->
+  <include package="plone.restapi" />
+  <adapter
+      factory=".controlpanel.PluginSettingsConfigletPanel"
+      name="memberpropertytogroup"
+      />
+
 </configure>

@@ -2,6 +2,9 @@
 
 ## 3.0.0 (unreleased)
 
+- Implement control panel via plone.restapi
+  [ericof]
+
 - Adapt control panel to Bootstrap 5
   [ericof]
 

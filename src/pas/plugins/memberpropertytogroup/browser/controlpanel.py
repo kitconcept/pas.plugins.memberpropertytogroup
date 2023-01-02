@@ -1,9 +1,12 @@
 from pas.plugins.memberpropertytogroup import interfaces as ifaces
 from pas.plugins.memberpropertytogroup.interfaces import _
 from plone.app.registry.browser import controlpanel
+from plone.restapi.controlpanels import RegistryConfigletPanel
 from z3c.form.browser.textlines import TextLinesFieldWidget
 from z3c.form.interfaces import HIDDEN_MODE
 from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
+from zope.component import adapter
+from zope.interface import Interface
 
 
 class MemberpropertiestogroupSettingsEditForm(controlpanel.RegistryEditForm):
@@ -52,3 +55,15 @@ class MemberpropertiestogroupSettingsEditFormSettingsControlPanel(
     controlpanel.ControlPanelFormWrapper
 ):  # noqa
     form = MemberpropertiestogroupSettingsEditForm
+
+
+@adapter(Interface, ifaces.IPasPluginsMemberpropertytogroupLayer)
+class PluginSettingsConfigletPanel(RegistryConfigletPanel):
+    """Control Panel endpoint"""
+
+    schema = ifaces.IPasPluginsMemberpropertytogroupSettings
+    configlet_id = "memberpropertytogroup"
+    configlet_category_id = "Products"
+    title = _("Member Property To Group")
+    group = ""
+    schema_prefix = "pas.plugins.memberpropertytogroup.interfaces.IPasPluginsMemberpropertytogroupSettings"  # noQA
