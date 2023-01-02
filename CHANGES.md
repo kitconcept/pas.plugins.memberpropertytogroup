@@ -2,6 +2,9 @@
 
 ## 3.0.0 (unreleased)
 
+- Initial i18n support
+  [ericof]
+
 - Implement control panel via plone.restapi
   [ericof]
 
