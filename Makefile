@@ -56,6 +56,10 @@ clean: ## Remove old virtualenv and creates a new one
 	@echo "$(RED)==> Cleaning environment and build$(RESET)"
 	rm -rf bin lib lib64 include share etc var inituser pyvenv.cfg .installed.cfg
 
+.PHONY: start
+start: ## Start a Plone instance on localhost:8080
+	PYTHONWARNINGS=ignore ./bin/runwsgi etc/zope.ini
+
 .PHONY: format
 format: ## Format the codebase according to our standards
 	@echo "$(GREEN)==> Format codebase$(RESET)"
@@ -95,6 +99,17 @@ i18n: bin/i18ndude ## Update locales
 	@echo "$(GREEN)==> Updating locales$(RESET)"
 	bin/update_locale
 
+# Release
+bin/fullrelease:	bin/pip
+	@echo "$(GREEN)==> Install zest.releaser$(RESET)"
+	bin/pip install "zest.releaser[recommended]"
+
+.PHONY: release
+release: bin/fullrelease ## Release the package with zest.releaser
+	@echo "$(GREEN)==> Release the package$(RESET)"
+	bin/fullrelease
+
+# Tests
 .PHONY: test
 test: ## run tests
 	bin/pytest --disable-warnings
@@ -102,7 +117,3 @@ test: ## run tests
 .PHONY: test
 test-robot: ## run test-robot
 	bin/zope-testrunner --auto-color --auto-progress --test-path src --all
-
-.PHONY: start
-start: ## Start a Plone instance on localhost:8080
-	PYTHONWARNINGS=ignore ./bin/runwsgi etc/zope.ini
