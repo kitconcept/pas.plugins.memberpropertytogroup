@@ -1,4 +1,4 @@
-<div align="center"><img alt="logo" src="./docs/_static/images/icon.png" width="70" /></div>
+<div align="center"><img alt="logo" src="https://raw.githubusercontent.com/kitconcept/pas.plugins.memberpropertytogroup/main/kitconcept.png" width="150" /></div>
 
 <h1 align="center">pas.plugins.memberpropertytogroup</h1>
 
@@ -14,7 +14,7 @@
 [![PyPI - Plone Versions](https://img.shields.io/pypi/frameworkversions/plone/pas.plugins.memberpropertytogroup)](https://pypi.org/project/pas.plugins.memberpropertytogroup/)
 
 [![Code analysis checks](https://github.com/kitconcept/pas.plugins.memberpropertytogroup/actions/workflows/code-analysis.yml/badge.svg)](https://github.com/kitconcept/pas.plugins.memberpropertytogroup/actions/workflows/code-analysis.yml)
-[![Tests](https://github.com/kitconcept/pas.plugins.memberpropertytogroup/actions/workflows/tests.yaml/badge.svg)](https://github.com/kitconcept/pas.plugins.memberpropertytogroup/actions/workflows/tests.yaml)
+[![Tests](https://github.com/kitconcept/pas.plugins.memberpropertytogroup/actions/workflows/tests.yml/badge.svg)](https://github.com/kitconcept/pas.plugins.memberpropertytogroup/actions/workflows/tests.yml)
 ![Code Style](https://img.shields.io/badge/Code%20Style-Black-000000)
 
 [![GitHub contributors](https://img.shields.io/github/contributors/kitconcept/pas.plugins.memberpropertytogroup)](https://github.com/kitconcept/pas.plugins.memberpropertytogroup)
