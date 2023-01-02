@@ -1,0 +1,77 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: pas/plugins/memberpropertytogroup/interfaces.py:322
+msgid "Fields to show"
+msgstr ""
+
+#: pas/plugins/memberpropertytogroup/configure.zcml:30
+msgid "Installs the pas.plugins.memberpropertytogroup add-on."
+msgstr ""
+
+#: pas/plugins/memberpropertytogroup/interfaces.py:53
+msgid "Mapped Groups"
+msgstr ""
+
+#: pas/plugins/memberpropertytogroup/interfaces.py:54
+msgid "Mapped groups to be processed. On group per line. This creates valid plone groups, do not add them at other places. If user-property-value ends with an asterisk (*) all values starting with the given string are matching. Format: user-property-value|group-id|title|description|email"
+msgstr ""
+
+#: pas/plugins/memberpropertytogroup/browser/controlpanel.py:15
+msgid "Member Properties To Group Settings"
+msgstr ""
+
+#: pas/plugins/memberpropertytogroup/browser/controlpanel.py:67
+msgid "Member Property To Group"
+msgstr ""
+
+#: pas/plugins/memberpropertytogroup/interfaces.py:44
+msgid "Name of property (key) on users property-sheet used as group mapping."
+msgstr ""
+
+#: pas/plugins/memberpropertytogroup/interfaces.py:332
+msgid "The field group_property%s is filled while valid_groups%s is empty."
+msgstr ""
+
+#: pas/plugins/memberpropertytogroup/interfaces.py:340
+msgid "The field valid_groups%s is filled while group_property%s is empty."
+msgstr ""
+
+#: pas/plugins/memberpropertytogroup/configure.zcml:39
+msgid "Uninstall the pas.plugins.memberpropertytogroup add-on."
+msgstr ""
+
+#: pas/plugins/memberpropertytogroup/interfaces.py:43
+msgid "Users Group Property Field"
+msgstr ""
+
+#: pas/plugins/memberpropertytogroup/configure.zcml:39
+msgid "pas.plugins.memberpropertytogroup (Uninstall)"
+msgstr ""
+
+#: pas/plugins/memberpropertytogroup/configure.zcml:30
+msgid "pas.plugins.memberpropertytogroup (plone)"
+msgstr ""
+
+#. Default: "Line ${count} needs at least property value and groupid"
+#: pas/plugins/memberpropertytogroup/interfaces.py:19
+msgid "validate_valid_groups_not_enough_pipe"
+msgstr ""
+
+#. Default: "Line ${count} has too many segments."
+#: pas/plugins/memberpropertytogroup/interfaces.py:27
+msgid "validate_valid_groups_too_many_pipe"
+msgstr ""
