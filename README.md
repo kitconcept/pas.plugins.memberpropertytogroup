@@ -92,26 +92,14 @@ By default we use the latest Plone version in the 6.x series.
 The development of this plugin has been kindly sponsored by [Bonn University](http://www3.uni-bonn.de/) and [Helmholtz Zentrum Berlin](https://www.helmholtz-berlin.de/).
 
 
-```{image} http://www3.uni-bonn.de/logo.png
-:width: 200px
-:alt: Bonn University
-:align: center
-```
+<img alt="Bonn University" src="http://www3.uni-bonn.de/logo.png" width="200px" />
 
+<img alt="Helmholtz Zentrum Berlin" src="https://raw.githubusercontent.com/kitconcept/pas.plugins.memberpropertytogroup/main/hzb-logo.svg" width="200px" />
 
-```{image} https://raw.githubusercontent.com/kitconcept/pas.plugins.memberpropertytogroup/main/hzb-logo.svg
-:width: 200px
-:alt: Helmholtz Zentrum Berlin
-:align: center
-```
 
 Developed by [kitconcept](https://www.kitconcept.com/)
 
-```{image} https://raw.githubusercontent.com/kitconcept/pas.plugins.memberpropertytogroup/main/kitconcept.png
-:width: 200px
-:alt: kitconcept GmbH
-:target: https://kitconcept.com/
-```
+<img alt="kitconcept GmbH" src="https://raw.githubusercontent.com/kitconcept/pas.plugins.memberpropertytogroup/main/kitconcept.png" width="200px" />
 
 Icon by [FamFamFam](https://famfamfam.com/)
 
