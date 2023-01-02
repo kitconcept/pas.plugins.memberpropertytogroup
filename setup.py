@@ -15,7 +15,7 @@ description = "Plone PAS plugin to create virtual groups based on member propert
 
 setup(
     name="pas.plugins.memberpropertytogroup",
-    version="3.0.0",
+    version="3.0.1.dev0",
     description=description,
     long_description=long_description,
     long_description_content_type="text/markdown",
