@@ -10,12 +10,6 @@ def uninstall(installer):
     installer.uninstall_product(PACKAGE_NAME)
 
 
-@pytest.fixture
-def cp_actions(portal):
-    controlpanel = portal.portal_controlpanel
-    return [a.getAction(portal)["id"] for a in controlpanel.listActions()]
-
-
 def test_product_installed(installer):
     """Test if pas.plugins.memberpropertytogroup is installed."""
     assert installer.is_product_installed(PACKAGE_NAME) is True
@@ -28,9 +22,9 @@ def test_browserlayer(browser_layers):
     assert ifaces.IPasPluginsMemberpropertytogroupLayer in browser_layers
 
 
-def test_configlet_install(cp_actions):
+def test_configlet_install(controlpanel_actions):
     """Test if control panel is installed."""
-    assert "memberpropertytogroup" in cp_actions
+    assert "memberpropertytogroup" in controlpanel_actions
 
 
 def test_product_uninstalled(uninstall, installer):
@@ -45,6 +39,6 @@ def test_browserlayer_removed(uninstall, browser_layers):
     assert ifaces.IPasPluginsMemberpropertytogroupLayer not in browser_layers
 
 
-def test_configlet_removed(uninstall, cp_actions):
+def test_configlet_removed(uninstall, controlpanel_actions):
     """Test if control panel is installed."""
-    assert "memberpropertytogroup" not in cp_actions
+    assert "memberpropertytogroup" not in controlpanel_actions

@@ -3,7 +3,8 @@
 ## 3.0.1 (unreleased)
 
 
-- Nothing changed yet.
+- Add `pytest-plone` as test dependency.
+  [ericof]
 
 
 ## 3.0.0 (2023-01-02)

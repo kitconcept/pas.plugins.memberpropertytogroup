@@ -58,6 +58,7 @@ setup(
             "pytest",
             "pytest-mock",
             "pytest-cov",
+            "pytest-plone",
         ],
     },
     entry_points="""
